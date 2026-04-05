@@ -1,0 +1,1179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ARISE — 7 Days to Clear, Build, and Sustain | AUREA Leaders</title>
+<meta name="description" content="Free 7-day challenge for coaches, healers, speakers, and thought leaders. Break through the 3 blocks to your mission — and get first access to Seraph, the AI platform built for transformation leaders.">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --ink: #0D0B08;
+    --gold: #C9A84C;
+    --gold-light: #E8D5A3;
+    --gold-dark: #8B6F35;
+    --parchment: #F7F3EC;
+    --ash: #6B6660;
+    --ash-dark: #3a3835;
+    --font-heading: 'Cormorant Garamond', serif;
+    --font-body: 'Jost', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--ink);
+    color: var(--parchment);
+    font-family: var(--font-body);
+    font-weight: 300;
+    font-size: 17px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  .eyebrow {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: .28em;
+    color: var(--gold-dark);
+    margin-bottom: 24px;
+  }
+  .section-pad { padding: 100px 24px; }
+  .container { max-width: 800px; margin: 0 auto; }
+  .container-wide { max-width: 1000px; margin: 0 auto; }
+  .text-center { text-align: center; }
+  .gold { color: var(--gold); }
+  .muted { color: var(--ash); }
+
+  /* ---- BUTTONS ---- */
+  .btn {
+    display: inline-block;
+    padding: 18px 48px;
+    border: 1px solid var(--gold);
+    background: rgba(201, 168, 76, 0.08);
+    color: var(--gold);
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: .2em;
+    text-decoration: none;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: background 0.3s, box-shadow 0.3s;
+  }
+  .btn:hover {
+    background: rgba(201, 168, 76, 0.18);
+    box-shadow: 0 0 30px rgba(201, 168, 76, 0.15);
+  }
+  .btn-large { padding: 22px 56px; font-size: 14px; }
+
+  /* ---- HERO ---- */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 60px 24px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(201, 168, 76, 0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero .eyebrow { margin-bottom: 32px; font-size: 11px; }
+  .hero h1 {
+    font-family: var(--font-heading);
+    font-weight: 300;
+    font-size: clamp(36px, 6vw, 64px);
+    line-height: 1.15;
+    color: var(--parchment);
+    margin-bottom: 28px;
+  }
+  .hero h1 em { font-style: italic; color: var(--gold-light); }
+  .hero .sub {
+    font-size: 18px;
+    color: var(--ash);
+    max-width: 580px;
+    margin: 0 auto 14px;
+    line-height: 1.6;
+  }
+  .hero .arena-line {
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-size: 17px;
+    color: var(--gold-dark);
+    margin-bottom: 20px;
+  }
+  .hero .details {
+    font-size: 14px;
+    color: var(--ash);
+    margin-bottom: 40px;
+  }
+  .hero .btn { margin-bottom: 32px; }
+  @media (max-width: 768px) {
+    .hero-grid-50 { grid-template-columns: 1fr !important; gap: 32px !important; }
+    .hero-grid-50 > div:first-child { text-align: center !important; }
+    .hero-grid-50 h1 { text-align: center !important; }
+    .hero-grid-50 .arena-line { text-align: center !important; }
+  }
+  .stats {
+    display: flex;
+    gap: 48px;
+    justify-content: center;
+    margin-top: 20px;
+    flex-wrap: wrap;
+  }
+  .stat { text-align: center; }
+  .stat .num {
+    font-family: var(--font-heading);
+    font-size: 32px;
+    font-weight: 300;
+    color: var(--gold);
+  }
+  .stat .label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: .15em;
+    color: var(--ash);
+  }
+  .ticker-wrap { width: 100%; overflow: hidden; padding: 40px 0 0; }
+  .ticker {
+    display: flex;
+    gap: 60px;
+    animation: scroll-ticker 40s linear infinite;
+    white-space: nowrap;
+  }
+  .ticker-item {
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-size: 15px;
+    color: var(--ash);
+    flex-shrink: 0;
+  }
+  .ticker-item .name { color: var(--gold-dark); font-style: normal; }
+  @keyframes scroll-ticker {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* ---- PROBLEM ---- */
+  .problem { background: var(--ink); }
+  .problem .content {
+    max-width: 640px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .problem .lead {
+    font-family: var(--font-heading);
+    font-size: clamp(22px, 3.5vw, 30px);
+    font-weight: 300;
+    line-height: 1.5;
+    color: var(--parchment);
+    margin-bottom: 32px;
+  }
+  .problem .lines {
+    font-size: 17px;
+    line-height: 2.2;
+    color: var(--ash);
+  }
+  .problem .lines strong { color: var(--parchment); font-weight: 400; }
+  .problem .bridge {
+    font-family: var(--font-heading);
+    font-size: 24px;
+    font-weight: 300;
+    color: var(--gold-light);
+    margin-top: 48px;
+    margin-bottom: 12px;
+  }
+  .problem .bridge-sub { color: var(--ash); margin-bottom: 40px; }
+
+  /* ---- THREE BLOCKS ---- */
+  .blocks { background: #110f0b; }
+  .blocks-heading {
+    font-family: var(--font-heading);
+    font-weight: 300;
+    font-size: clamp(26px, 4vw, 38px);
+    text-align: center;
+    margin-bottom: 16px;
+    line-height: 1.3;
+  }
+  .blocks-sub {
+    text-align: center;
+    color: var(--ash);
+    max-width: 600px;
+    margin: 0 auto 64px;
+    font-size: 17px;
+  }
+  .blocks-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+  }
+  @media (max-width: 768px) { .blocks-grid { grid-template-columns: 1fr; } }
+  .block-card {
+    border: 1px solid var(--ash-dark);
+    border-radius: 2px;
+    padding: 40px 32px;
+    text-align: center;
+    transition: border-color 0.3s;
+  }
+  .block-card:hover { border-color: var(--gold-dark); }
+  .block-card .block-num {
+    font-family: var(--font-heading);
+    font-size: 14px;
+    color: var(--gold-dark);
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  .block-card h3 {
+    font-family: var(--font-heading);
+    font-weight: 300;
+    font-size: 28px;
+    color: var(--gold);
+    margin-bottom: 16px;
+  }
+  .block-card p {
+    font-size: 15px;
+    color: var(--ash);
+    line-height: 1.7;
+  }
+
+  /* ---- GUIDE ---- */
+  .guide { background: linear-gradient(180deg, var(--ink) 0%, #110f0b 100%); }
+  .guide-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 64px;
+    align-items: start;
+  }
+  @media (max-width: 768px) { .guide-grid { grid-template-columns: 1fr; gap: 40px; } }
+  .guide-photo {
+    width: 100%;
+    aspect-ratio: 3/4;
+    background: var(--ash-dark);
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--ash);
+    font-size: 14px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+  }
+  .guide-text h2 {
+    font-family: var(--font-heading);
+    font-weight: 300;
+    font-size: 32px;
+    margin-bottom: 4px;
+  }
+  .guide-text .title-sub {
+    font-size: 14px;
+    color: var(--gold-dark);
+    margin-bottom: 32px;
+  }
+  .guide-text p { margin-bottom: 20px; color: var(--parchment); opacity: 0.88; }
+  .guide-text .vulnerability {
+    border-left: 2px solid var(--gold-dark);
+    padding-left: 20px;
+    margin: 32px 0;
+  }
+  .guide-text .vulnerability p {
+    color: var(--gold-light);
+    opacity: 1;
+    font-family: var(--font-heading);
+    font-size: 19px;
+    font-weight: 300;
+    line-height: 1.65;
+    font-style: italic;
+  }
+  .testimonials-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 64px;
+  }
+  @media (max-width: 768px) { .testimonials-row { grid-template-columns: 1fr; } }
+  .test-card {
+    border: 1px solid var(--ash-dark);
+    border-radius: 2px;
+    padding: 28px;
+    transition: border-color 0.3s;
+  }
+  .test-card:hover { border-color: var(--gold-dark); }
+  .test-card .quote {
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--parchment);
+    margin-bottom: 20px;
+    opacity: 0.9;
+  }
+  .test-card .attr { font-size: 13px; color: var(--gold-dark); font-weight: 400; }
+  .test-card .attr-org { font-size: 12px; color: var(--ash); }
+
+  /* ---- JOURNEY ---- */
+  .journey { background: var(--ink); }
+  .journey h2 {
+    font-family: var(--font-heading);
+    font-weight: 300;
+    font-size: clamp(28px, 4vw, 40px);
+    text-align: center;
+    margin-bottom: 12px;
+  }
+  .journey .sub {
+    text-align: center;
+    color: var(--ash);
+    max-width: 600px;
+    margin: 0 auto 24px;
+  }
+  .journey .identity-line {
+    text-align: center;
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-size: 19px;
+    color: var(--gold-dark);
+    max-width: 620px;
+    margin: 0 auto 64px;
+  }
+
+  /* Phase labels */
+  .phase-label {
+    text-align: center;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: .25em;
+    color: var(--gold);
+    margin: 48px 0 32px;
+    position: relative;
+  }
+  .phase-label::before, .phase-label::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 80px;
+    height: 1px;
+    background: var(--gold-dark);
+  }
+  .phase-label::before { right: calc(50% + 80px); }
+  .phase-label::after { left: calc(50% + 80px); }
+  .phase-label:first-of-type { margin-top: 0; }
+
+  .day-card {
+    max-width: 680px;
+    margin: 0 auto 40px;
+    display: flex;
+    gap: 28px;
+    align-items: flex-start;
+  }
+  .day-num {
+    font-family: var(--font-heading);
+    font-size: 52px;
+    font-weight: 300;
+    color: var(--gold);
+    line-height: 1;
+    flex-shrink: 0;
+    width: 56px;
+    text-align: right;
+  }
+  .day-content { flex: 1; }
+  .day-content h3 {
+    font-family: var(--font-heading);
+    font-weight: 400;
+    font-size: 22px;
+    color: var(--parchment);
+    margin-bottom: 8px;
+  }
+  .day-content p {
+    font-size: 15px;
+    color: var(--ash);
+    line-height: 1.7;
+  }
+  .day-content .highlight {
+    color: var(--gold-light);
+    font-style: italic;
+  }
+  .day-content .seraph-tease {
+    margin-top: 12px;
+    padding: 16px 20px;
+    border-left: 2px solid var(--gold-dark);
+    background: rgba(201, 168, 76, 0.03);
+  }
+  .day-content .seraph-tease p {
+    color: var(--gold-dark);
+    font-size: 14px;
+    font-style: italic;
+  }
+
+  /* ---- SERAPH SECTION ---- */
+  .seraph {
+    background: linear-gradient(180deg, #110f0b 0%, var(--ink) 100%);
+    text-align: center;
+  }
+  .seraph-box {
+    max-width: 680px;
+    margin: 0 auto;
+    border: 1px solid var(--gold-dark);
+    border-radius: 2px;
+    padding: 48px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  .seraph-box::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: radial-gradient(ellipse at center, rgba(201, 168, 76, 0.04) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .seraph-box .eyebrow { color: var(--gold); }
+  .seraph-box h3 {
+    font-family: var(--font-heading);
+    font-weight: 300;
+    font-size: clamp(24px, 3.5vw, 32px);
+    margin-bottom: 20px;
+    line-height: 1.35;
+  }
+  .seraph-box .desc {
+    color: var(--ash);
+    font-size: 16px;
+    max-width: 540px;
+    margin: 0 auto 24px;
+    line-height: 1.7;
+  }
+  .seraph-box .co-create {
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-size: 17px;
+    color: var(--gold-light);
+  }
+  @media (max-width: 768px) {
+    .seraph .container-wide > div[style*="grid-template-columns: repeat(3"] {
+      grid-template-columns: 1fr !important;
+    }
+  }
+
+  /* ---- OUTCOMES ---- */
+  .outcomes { background: #110f0b; }
+  .outcomes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+    margin-top: 48px;
+  }
+  .outcome-card {
+    border: 1px solid var(--ash-dark);
+    border-radius: 2px;
+    padding: 32px;
+  }
+  .outcome-card .symbol { font-size: 18px; color: var(--gold); margin-bottom: 12px; }
+  .outcome-card h4 {
+    font-family: var(--font-heading);
+    font-weight: 400;
+    font-size: 20px;
+    margin-bottom: 8px;
+  }
+  .outcome-card p { font-size: 15px; color: var(--ash); }
+
+  /* ---- WHO ---- */
+  .who { background: var(--ink); }
+  .who-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    margin-top: 48px;
+  }
+  @media (max-width: 768px) { .who-grid { grid-template-columns: 1fr; } }
+  .who-col {
+    border: 1px solid var(--ash-dark);
+    border-radius: 2px;
+    padding: 36px;
+  }
+  .who-col.yes { border-color: var(--gold-dark); }
+  .who-col h3 {
+    font-family: var(--font-heading);
+    font-weight: 400;
+    font-size: 20px;
+    margin-bottom: 24px;
+  }
+  .who-col.yes h3 { color: var(--gold); }
+  .who-col.no h3 { color: var(--ash); }
+  .who-col ul { list-style: none; }
+  .who-col ul li {
+    padding: 8px 0;
+    font-size: 15px;
+    color: var(--ash);
+    line-height: 1.5;
+  }
+  .who-col.yes ul li { color: var(--parchment); opacity: 0.88; }
+  .who-col ul li::before { content: '\2192\00a0\00a0'; color: var(--gold-dark); }
+
+  /* ---- STAKES ---- */
+  .stakes { background: var(--ink); }
+  .stakes-dont, .stakes-do {
+    max-width: 640px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .stakes-dont { color: var(--ash); }
+  .stakes-dont h3, .stakes-do h3 {
+    font-family: var(--font-heading);
+    font-weight: 300;
+    font-size: 22px;
+    margin-bottom: 24px;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+  }
+  .stakes-dont h3 { color: var(--ash); }
+  .stakes-do h3 { color: var(--gold); }
+  .gold-divider {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold-dark), transparent);
+    margin: 64px 0;
+  }
+  .stakes-do { color: var(--parchment); line-height: 1.9; }
+  .stakes-do .closer {
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-size: 19px;
+    color: var(--gold-light);
+    margin-top: 32px;
+  }
+
+  /* ---- FAQ ---- */
+  .faq { background: #110f0b; }
+  .faq-item { border-bottom: 1px solid var(--ash-dark); cursor: pointer; }
+  .faq-item:first-child { border-top: 1px solid var(--ash-dark); }
+  .faq-q {
+    font-family: var(--font-heading);
+    font-size: 19px;
+    font-weight: 400;
+    padding: 24px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--parchment);
+  }
+  .faq-q .toggle { font-size: 20px; color: var(--gold-dark); transition: transform 0.3s; }
+  .faq-a {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, padding 0.3s;
+    font-size: 15px;
+    color: var(--ash);
+    line-height: 1.7;
+  }
+  .faq-item.open .faq-a { max-height: 400px; padding-bottom: 24px; }
+  .faq-item.open .toggle { transform: rotate(45deg); }
+  .faq-item.open { border-left: 2px solid var(--gold-dark); padding-left: 20px; }
+
+  /* ---- FINAL CTA ---- */
+  .final-cta {
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 80px 24px;
+    position: relative;
+  }
+  .final-cta::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(201, 168, 76, 0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .final-cta h2 {
+    font-family: var(--font-heading);
+    font-weight: 300;
+    font-size: clamp(32px, 5vw, 52px);
+    line-height: 1.2;
+    margin-bottom: 24px;
+  }
+  .final-cta .sub { color: var(--ash); margin-bottom: 40px; font-size: 18px; }
+  .final-cta .details {
+    margin-top: 24px;
+    font-size: 13px;
+    color: var(--ash);
+    letter-spacing: .05em;
+  }
+  .final-cta .closing-quote {
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-size: 18px;
+    color: var(--gold-dark);
+    margin-top: 64px;
+    max-width: 500px;
+  }
+
+  footer {
+    padding: 40px 24px;
+    text-align: center;
+    font-size: 12px;
+    color: var(--ash);
+    border-top: 1px solid var(--ash-dark);
+  }
+  footer a { color: var(--ash); text-decoration: none; margin: 0 12px; }
+  footer a:hover { color: var(--gold-dark); }
+  footer .logo {
+    font-family: var(--font-heading);
+    font-size: 18px;
+    color: var(--gold-dark);
+    letter-spacing: .15em;
+    margin-bottom: 16px;
+  }
+
+  .fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .fade-in.visible { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+
+<!-- ===== HERO ===== -->
+<section class="hero" style="min-height: auto; padding: 60px 24px 40px;">
+  <!-- AUREA Logo -->
+  <div style="margin-bottom: 40px;">
+    <img src="aurea-logo.png" alt="AUREA" style="height: 120px; width: auto;">
+  </div>
+  <p class="eyebrow">Free 7-Day Breakthrough Experience &middot; Launching Monday, April 20, 2026</p>
+
+  <!-- 50/50 Row: Headline + Video -->
+  <div class="hero-grid-50" style="display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; max-width: 1080px; width: 100%; margin: 0 auto;">
+    <!-- Left: Headline -->
+    <div style="text-align: left;">
+      <h1 style="text-align: left;">7 Days to Clear What's Blocking You, Build What's Calling You, and Get <em>the Tribe and Technology to Sustain It</em></h1>
+    </div>
+    <!-- Right: Video Placeholder -->
+    <div style="position: relative; width: 100%; aspect-ratio: 16/9; background: var(--ash-dark); border-radius: 4px; overflow: hidden; border: 1px solid var(--ash-dark);">
+      <div style="position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px;">
+        <div style="width: 64px; height: 64px; border-radius: 50%; border: 2px solid var(--gold); display: flex; align-items: center; justify-content: center; background: rgba(201, 168, 76, 0.1); cursor: pointer; transition: background 0.3s;">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="var(--gold)"><polygon points="8,5 19,12 8,19"/></svg>
+        </div>
+        <p style="font-size: 12px; color: var(--ash); text-transform: uppercase; letter-spacing: .15em;">Watch &amp; Join the Challenge</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Full-width: Subheader, CTA, Details -->
+  <p class="arena-line" style="max-width: 640px; font-size: 17px; line-height: 1.65; margin: 36px auto 20px;">For those who sense it's not just their shadow holding them back &mdash; but the full light of who they're here to become.</p>
+  <div style="margin: 0 0 20px;">
+    <a href="#register" class="btn btn-large">Yes, I'm Ready for a Breakthrough</a>
+  </div>
+  <p style="font-size: 13px; letter-spacing: .06em; color: var(--ash);">Live Coaching &middot; Daily Somatic Meditations &middot; First Access to <strong style="color: var(--gold);">Seraph</strong> &mdash; the AI Platform Built for Transformation Leaders</p>
+
+  <!-- What You Get Snapshot — Horizontal -->
+  <div style="margin: 0 auto 40px; max-width: 820px; width: 100%;">
+    <p style="font-size: 11px; text-transform: uppercase; letter-spacing: .22em; color: var(--gold-dark); margin-bottom: 20px; text-align: center;">In 7 Days, You Will Have</p>
+    <div style="display: flex; justify-content: center; gap: 16px; flex-wrap: wrap;">
+      <div style="flex: 1; min-width: 220px; max-width: 260px; border: 1px solid var(--ash-dark); border-radius: 2px; padding: 24px 20px; text-align: center; transition: border-color 0.3s;">
+        <div style="color: var(--gold); font-size: 20px; margin-bottom: 10px;">&#10022;</div>
+        <p style="font-family: var(--font-heading); font-size: 18px; font-weight: 400; color: var(--parchment); line-height: 1.4; margin: 0;">An Experience of<br>Your Highest Self</p>
+      </div>
+      <div style="flex: 1; min-width: 220px; max-width: 260px; border: 1px solid var(--ash-dark); border-radius: 2px; padding: 24px 20px; text-align: center; transition: border-color 0.3s;">
+        <div style="color: var(--gold); font-size: 20px; margin-bottom: 10px;">&#10022;</div>
+        <p style="font-family: var(--font-heading); font-size: 18px; font-weight: 400; color: var(--parchment); line-height: 1.4; margin: 0;">An Aligned Offer<br>From Your Truth</p>
+      </div>
+      <div style="flex: 1; min-width: 220px; max-width: 260px; border: 1px solid var(--ash-dark); border-radius: 2px; padding: 24px 20px; text-align: center; transition: border-color 0.3s;">
+        <div style="color: var(--gold); font-size: 20px; margin-bottom: 10px;">&#10022;</div>
+        <p style="font-family: var(--font-heading); font-size: 18px; font-weight: 400; color: var(--parchment); line-height: 1.4; margin: 0;">A 30-Day Roadmap<br>to $10,000</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bonus -->
+  <div style="margin: 8px auto 0; max-width: 620px; text-align: center;">
+    <div style="border: 1px solid var(--gold-dark); border-radius: 2px; padding: 16px 28px; background: rgba(201, 168, 76, 0.04); display: inline-block;">
+      <p style="font-size: 12px; text-transform: uppercase; letter-spacing: .2em; color: var(--gold); margin-bottom: 4px;">Bonus</p>
+      <p style="font-family: var(--font-heading); font-size: 18px; font-weight: 400; color: var(--parchment); line-height: 1.4; margin: 0;">First Access to the AUREA Seraph Ecosystem<br><span style="font-size: 13px; color: var(--gold-dark); font-family: var(--font-body); font-weight: 300;">The AI Platform Built for Transformation Leaders</span></p>
+    </div>
+  </div>
+
+  <!-- Credibility -->
+  <div style="margin-top: 24px; display: flex; flex-direction: column; align-items: center; gap: 6px;">
+    <div style="display: flex; gap: 4px;">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="#C9A84C"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="#C9A84C"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="#C9A84C"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="#C9A84C"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="#C9A84C"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+    </div>
+    <p style="font-size: 12px; color: var(--ash); letter-spacing: .05em;">5.0 on Google &middot; Trusted by 1,000+ coaches and entrepreneurs</p>
+  </div>
+
+  <!-- Testimonial Ticker -->
+  <div class="ticker-wrap">
+    <div class="ticker" style="animation-duration: 20s;">
+      <span class="ticker-item">"THIS is the community I've been searching for over the last decade." &mdash; <span class="name">Michelle Hori, Executive Coach</span></span>
+      <span class="ticker-item">"It has renewed my vision and resolve around expanding my endeavors." &mdash; <span class="name">Anamaria Aristizabal, Master Coach &amp; Author</span></span>
+      <span class="ticker-item">"If you do the work, you will get the results." &mdash; <span class="name">Fernando Subirats, Founder, The Manifestival</span></span>
+      <span class="ticker-item">"THIS is the community I've been searching for over the last decade." &mdash; <span class="name">Michelle Hori, Executive Coach</span></span>
+      <span class="ticker-item">"It has renewed my vision and resolve around expanding my endeavors." &mdash; <span class="name">Anamaria Aristizabal, Master Coach &amp; Author</span></span>
+      <span class="ticker-item">"If you do the work, you will get the results." &mdash; <span class="name">Fernando Subirats, Founder, The Manifestival</span></span>
+    </div>
+  </div>
+</section>
+
+<!-- ===== THREE BLOCKS ===== -->
+<section class="blocks section-pad fade-in">
+  <div class="container-wide">
+    <p class="eyebrow text-center">What's Actually In Your Way</p>
+    <h2 class="blocks-heading">Three Blocks Between You<br>and Your Mission at Full Volume</h2>
+    <p class="blocks-sub">Every course you've taken tried to solve one of these. ARISE addresses all three &mdash; in 7 days, together, in the right order.</p>
+
+    <div class="blocks-grid">
+      <div class="block-card">
+        <div class="block-num">Block One</div>
+        <h3>Frequency</h3>
+        <p>You know intellectually that you're gifted. But you cannot consistently access the <em>feeling</em> of your own greatness. Without that felt sense alive in your body, every offer you build, every piece of content you create, every price you set comes from a contracted version of you &mdash; not the sovereign one. The strategy doesn't work until the frequency is right.</p>
+      </div>
+      <div class="block-card">
+        <div class="block-num">Block Two</div>
+        <h3>Tribe</h3>
+        <p>You are building alone. And somewhere in your nervous system lives a primal fear: that if you fully become who you are, you will be ostracized. Persecuted for being different. Abandoned by the people you love. This fear keeps you small. It only dissolves in the presence of co-creators who see your fire &mdash; and match it. You need a tribe that makes expansion feel safe.</p>
+      </div>
+      <div class="block-card" style="border-color: var(--gold-dark);">
+        <div class="block-num">Block Three</div>
+        <h3>Technology</h3>
+        <p>AI is rewriting the rules of business in real time. You know it matters. You don't know how to use it. The tools were built for marketers and growth hackers &mdash; not for people who think in transformation. So we built something different: <strong style="color: var(--gold-light);">Seraph</strong> &mdash; an AI operating system with a soul-aligned guide, personalized morning activations, tribe matching based on your actual design, offer building, and daily command center. All built for YOUR kind of work. During ARISE, you experience it first.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PROBLEM ===== -->
+<section class="problem section-pad fade-in">
+  <div class="content">
+    <div class="lines">
+      You <strong>KNOW</strong> you are meant to lead.<br>
+      You <strong>KNOW</strong> your story could change lives.<br>
+      You <strong>KNOW</strong> there are people out there who need exactly what you carry.<br><br>
+      <em>And yet &mdash;</em><br><br>
+      You can't access the <strong>feeling</strong> of your own greatness long enough to build from it.<br>
+      You are <strong>alone</strong> &mdash; without a tribe of co-creators who see your fire and refuse to let you shrink.<br>
+      You are <strong>overwhelmed</strong> by technology that was built for marketers, not for people who think in transformation.<br><br>
+      And underneath all of it &mdash; a deeper knowing you can't shake:<br><br>
+      <strong>Something is being revealed in the world right now.</strong><br>
+      Darkness that has been hidden for generations is surfacing.<br>
+      In systems. In institutions. In the people we were told to trust.<br>
+      And it is not random. It is a mirror.<br><br>
+      What is being exposed out there is the same shadow<br>
+      that lives in here &mdash; in your patterns, your fears,<br>
+      your reasons for staying small.<br><br>
+      The question is not <em>why is this happening.</em><br>
+      The question is <em>what is it activating in you?</em><br><br>
+      Not because you're not ready.<br>
+      Because no one gave you the bridge between your transformation<br>
+      and the business that should exist around it.
+    </div>
+    <p class="bridge">This is that bridge.</p>
+    <p class="bridge-sub">7 days. Free. Everything changes.</p>
+    <a href="#register" class="btn">I'm Ready &mdash; Save My Spot</a>
+  </div>
+</section>
+
+<!-- ===== GUIDE ===== -->
+<section class="guide section-pad">
+  <div class="container-wide">
+    <p class="eyebrow text-center">Your Guide</p>
+    <div class="guide-grid">
+      <div class="guide-photo">[ Jackson Strong Photo ]</div>
+      <div class="guide-text">
+        <h2>Jackson Strong</h2>
+        <p class="title-sub">Founder of AUREA Leaders &middot; Creator of Stage Secrets</p>
+
+        <p>My career began in high-tech private equity and the startup world. I worked for multiple companies valued over $300M. I was good at it.</p>
+        <p>But I was dying in the matrix.</p>
+        <p>In 2016, the tension between my corporate life and my soul's work snapped. I had a legitimate nervous breakdown. I got divorced, quit the corporate life, and founded my first company serving purpose-driven entrepreneurs.</p>
+        <p>Since then, I've generated over $600,000 helping transformational leaders find their message, build their offer, and monetize their mission. I've spent 10,000+ hours in the room with people just like you.</p>
+
+        <div class="vulnerability">
+          <p>I need to tell you something that people in my position aren't supposed to say: this past year has been one of the hardest of my life. I have felt the same fear, the same contraction, the same voice whispering "who are you to do this" that I know you're feeling right now.</p>
+        </div>
+
+        <p>But the hardest year of my life was also the deepest work I've ever done.</p>
+        <p>I went into seclusion in the forests of East Texas. I sat with deep medicines. I consulted with guides and allies I trust with my life. I confronted every shadow that has been holding me back &mdash; not to bypass it, not to transcend it, but to <em>alchemize</em> it. To face it with open eyes and integrate what I found. Because I will not stand in front of you and teach transformation I am not living.</p>
+        <p>And I went back through everything. Every coaching program we've run. Every testimonial. Every intake form. Every piece of feedback our community has ever shared &mdash; about what holds them back, what breaks their rituals, what collapses their consistency, what keeps them from charging what they're worth, what makes them shrink when they should be expanding. I've sat with hundreds of entrepreneurs in deep, intimate containers and at live events around the world. And I listened &mdash; not as a coach with answers, but as a builder trying to find the marrow.</p>
+        <p>ARISE is what I found at the bottom. The bone broth. The most concentrated, distilled essence of everything I've heard, everything I've lived, and everything I know works. Seven days. Three blocks. No filler. Bypassing nothing. Victimized by nothing. Empowered and driven by it all.</p>
+        <p>And we're not done listening. During ARISE, your feedback directly shapes what we build next. This isn't a finished product delivered from on high. It's a living process built alongside the people it's for.</p>
+        <p>I'm not here as a guru. I'm here as a builder who went into the fire &mdash; mine and yours &mdash; and came back with something real. Not from a mountaintop. From the arena. And the arena is still where I live.</p>
+      </div>
+    </div>
+
+    <div class="testimonials-row fade-in">
+      <div class="test-card">
+        <p class="quote">"Jackson's guidance has been nothing short of transformative. His unique blend of expertise and compassion empowered me to step into my true potential."</p>
+        <p class="attr">&mdash; Lakia Meadan</p>
+        <p class="attr-org">Sacred Earth Travels</p>
+      </div>
+      <div class="test-card">
+        <p class="quote">"It's truly a deep dive into your soul's purpose. Being in a group container with Jackson and other vibrant souls is so expansive. 11 out of 10!"</p>
+        <p class="attr">&mdash; Daniela Sardi &amp; Tyler Schraeder</p>
+        <p class="attr-org">Stage Secrets Alumni</p>
+      </div>
+      <div class="test-card">
+        <p class="quote">"Jackson knows how to bring your authenticity to life and break through the blocks to speaking your truth. My heart as an entrepreneur is in a better place."</p>
+        <p class="attr">&mdash; Kim Kong</p>
+        <p class="attr-org">Founder, Movement University</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 7-DAY JOURNEY ===== -->
+<section class="journey section-pad">
+  <div class="container-wide">
+    <p class="eyebrow text-center">The 7-Day Journey</p>
+    <h2>Simple Enough to Follow.<br>Powerful Enough to Change Everything.</h2>
+    <p class="sub">Each day includes a live call, a guided somatic meditation, and one clear action. No overwhelm. No busywork. Just the moves that matter.</p>
+    <p class="identity-line">This is not a business challenge. This is an identity activation with a business built on top of it &mdash; powered by technology that was built for your kind of mind.</p>
+
+    <!-- PHASE 1: FREQUENCY -->
+    <div class="phase-label">Phase 1 &mdash; Frequency</div>
+
+    <div class="day-card fade-in">
+      <div class="day-num">1</div>
+      <div class="day-content">
+        <h3>Find Your Frequency</h3>
+        <p>Before strategy, before offers &mdash; you must access the <span class="highlight">feeling</span> of your own greatness. Not the intellectual knowing. The felt sense. Through a guided somatic meditation, we drop below the noise &mdash; below the doubt, the conditioning, the years of being told to be smaller &mdash; and make contact with who you actually are. Then we excavate: the gifts you can't stop expressing, the wound that became your credential, and the transformation only YOU can deliver. This is not a worksheet. It is a remembering.</p>
+      </div>
+    </div>
+
+    <div class="day-card fade-in">
+      <div class="day-num">2</div>
+      <div class="day-content">
+        <h3>Name Your Genius</h3>
+        <p>Your ideal client is a mirror of who you used to be. Today you build an emotionally vivid portrait of the exact human you serve &mdash; not a demographic, but a living person whose inner world you can describe with the precision that makes selling feel like witnessing. When you can name their pain in their own words, they stop scrolling and start listening. You will distill your transformation into a genius statement so clear a stranger can feel it in one sentence.</p>
+      </div>
+    </div>
+
+    <div class="day-card fade-in">
+      <div class="day-num">3</div>
+      <div class="day-content">
+        <h3>Claim Your Identity</h3>
+        <p>The version of you that builds this mission is not the version of you that has been waiting. Today you cross the threshold. You will write 5 present-tense identity declarations &mdash; not someday, <strong>now</strong> &mdash; and anchor them in your body through a guided somatic process. This is not affirmation theater. This is identity engineering. When your nervous system believes the declaration, the behavior follows without force.</p>
+      </div>
+    </div>
+
+    <!-- PHASE 2: TRIBE -->
+    <div class="phase-label">Phase 2 &mdash; Tribe</div>
+
+    <div class="day-card fade-in">
+      <div class="day-num">4</div>
+      <div class="day-content">
+        <h3>Meet Your Builders</h3>
+        <p>Today you stop building alone. You will be matched into a co-creator pod &mdash; a small group of leaders at your level, with your fire, who understand this path because they are walking it. Somewhere in your nervous system lives a primal fear: that if you fully become who you are, you will be ostracized. Persecuted for being different. That fear only dissolves in the presence of people who <span class="highlight">see your fire and match it</span>. Today, you will be witnessed by a room that refuses to let you shrink. The rest of the challenge, you build together.</p>
+      </div>
+    </div>
+
+    <!-- PHASE 3: TECHNOLOGY -->
+    <div class="phase-label">Phase 3 &mdash; Technology</div>
+
+    <div class="day-card fade-in">
+      <div class="day-num">5</div>
+      <div class="day-content">
+        <h3>Build Your Offer &mdash; With Seraph</h3>
+        <p>Your gifts become a structure: a name, a promise, a price, a format. Something a stranger can look at and say "I need that." Today you step into <strong style="color: var(--gold-light);">Seraph</strong> for the first time &mdash; and experience what it feels like to build with AI that understands sacred work. Serafina, your AI guide, helps you construct a real offer and a live landing page before the call ends. Your pod holds you accountable. The technology makes it fast. You leave today not with a concept, but with something live in the world.</p>
+        <div class="seraph-tease">
+          <p>This is the day you experience the Pathfinder Panel, Serafina, and the offer-building tools &mdash; and realize why nothing else on the market was built for you.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="day-card fade-in">
+      <div class="day-num">6</div>
+      <div class="day-content">
+        <h3>Find Your Voice + Regulate to Receive</h3>
+        <p>Morning: you press record. You take the genius from Day 2, the identity from Day 3, the tribe from Day 4, and the offer from Day 5 &mdash; and you speak it out loud to a real audience. The world doesn't need your perfection. It needs your presence. And your nervous system needs the proof that being visible did not kill you.</p>
+        <p style="margin-top: 16px;">Afternoon: you go into the body. You learn the science of why your throat tightens when you think about charging, why your stomach contracts when you see an invoice. You'll experience the Gain Tracker &mdash; Seraph's neurological retraining system that rewires how you measure progress. You will practice saying your price out loud &mdash; and regulate through the contraction. <span class="highlight">This is the session that makes everything else stick.</span></p>
+      </div>
+    </div>
+
+    <!-- CONVERGENCE -->
+    <div class="phase-label">Convergence</div>
+
+    <div class="day-card fade-in">
+      <div class="day-num">7</div>
+      <div class="day-content">
+        <h3>ARISE</h3>
+        <p>Your frequency. Your tribe. Your technology. Today they converge. You launch with your pod &mdash; your offer live, your voice in the world, your nervous system regulated to hold what's coming. You'll see the full vision of Seraph: the Leader's Journey, the Sacred Quest system, the tribe matching, the Sacred Alarm &mdash; the complete sovereign operating system that was built for people who carry transformation. And you make a decision: step into the full Seraph ecosystem with AUREA Leaders &mdash; or walk forward with everything you created this week and build on your own. Either way, you leave different than you arrived. You are no longer preparing. You are building. And the people who need you can finally find you.</p>
+      </div>
+    </div>
+
+    <div class="text-center" style="margin-top: 48px;">
+      <a href="#register" class="btn">Join the Challenge &mdash; Free</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SERAPH SECTION ===== -->
+<section class="seraph section-pad fade-in">
+  <div class="container-wide">
+    <p class="eyebrow text-center" style="color: var(--gold);">Introducing Seraph</p>
+    <h2 style="font-family: var(--font-heading); font-weight: 300; font-size: clamp(28px, 4vw, 42px); text-align: center; margin-bottom: 12px; line-height: 1.25;">The World's First Sovereign Operating System<br>for Transformation Leaders</h2>
+    <p style="text-align: center; color: var(--ash); max-width: 620px; margin: 0 auto 20px; font-size: 17px; line-height: 1.7;">Every tool on the market was built for marketers. Seraph was built for <em>you</em> &mdash; coaches, healers, speakers, and thought leaders who think in transformation, not conversion rates.</p>
+    <p style="text-align: center; font-family: var(--font-heading); font-style: italic; font-size: 18px; color: var(--gold-dark); margin-bottom: 56px;">During ARISE, you experience it first. Your feedback shapes what it becomes.</p>
+
+    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; max-width: 960px; margin: 0 auto;">
+      <div style="border: 1px solid var(--ash-dark); border-radius: 2px; padding: 32px 24px; transition: border-color 0.3s;" onmouseover="this.style.borderColor='var(--gold-dark)'" onmouseout="this.style.borderColor='var(--ash-dark)'">
+        <p style="font-size: 24px; margin-bottom: 12px;">&#9788;</p>
+        <h4 style="font-family: var(--font-heading); font-weight: 400; font-size: 20px; color: var(--gold-light); margin-bottom: 10px;">Sacred Alarm</h4>
+        <p style="font-size: 14px; color: var(--ash); line-height: 1.65;">A personalized morning activation that meets you where you are &mdash; somatic, strategic, and calibrated to your nervous system state. Not a notification. A ceremony.</p>
+      </div>
+      <div style="border: 1px solid var(--ash-dark); border-radius: 2px; padding: 32px 24px; transition: border-color 0.3s;" onmouseover="this.style.borderColor='var(--gold-dark)'" onmouseout="this.style.borderColor='var(--ash-dark)'">
+        <p style="font-size: 24px; margin-bottom: 12px;">&#10070;</p>
+        <h4 style="font-family: var(--font-heading); font-weight: 400; font-size: 20px; color: var(--gold-light); margin-bottom: 10px;">Serafina &mdash; Your AI Guide</h4>
+        <p style="font-size: 14px; color: var(--ash); line-height: 1.65;">A soul-aligned AI intelligence that knows your journey stage, speaks your language, builds your offers, and holds space with warmth. Not a chatbot. A guide.</p>
+      </div>
+      <div style="border: 1px solid var(--ash-dark); border-radius: 2px; padding: 32px 24px; transition: border-color 0.3s;" onmouseover="this.style.borderColor='var(--gold-dark)'" onmouseout="this.style.borderColor='var(--ash-dark)'">
+        <p style="font-size: 24px; margin-bottom: 12px;">&#9830;</p>
+        <h4 style="font-family: var(--font-heading); font-weight: 400; font-size: 20px; color: var(--gold-light); margin-bottom: 10px;">HD Penta Tribe Matching</h4>
+        <p style="font-size: 14px; color: var(--ash); line-height: 1.65;">Matched into a co-creator pod based on your Human Design profile &mdash; not demographics. Complementary energies that make collaboration electric, not draining.</p>
+      </div>
+      <div style="border: 1px solid var(--ash-dark); border-radius: 2px; padding: 32px 24px; transition: border-color 0.3s;" onmouseover="this.style.borderColor='var(--gold-dark)'" onmouseout="this.style.borderColor='var(--ash-dark)'">
+        <p style="font-size: 24px; margin-bottom: 12px;">&#9881;</p>
+        <h4 style="font-family: var(--font-heading); font-weight: 400; font-size: 20px; color: var(--gold-light); margin-bottom: 10px;">Pathfinder Panel</h4>
+        <p style="font-size: 14px; color: var(--ash); line-height: 1.65;">Your daily command center &mdash; one screen where identity, offers, content, tribe, and progress converge. Built for how your mind works, not against it.</p>
+      </div>
+      <div style="border: 1px solid var(--ash-dark); border-radius: 2px; padding: 32px 24px; transition: border-color 0.3s;" onmouseover="this.style.borderColor='var(--gold-dark)'" onmouseout="this.style.borderColor='var(--ash-dark)'">
+        <p style="font-size: 24px; margin-bottom: 12px;">&#9650;</p>
+        <h4 style="font-family: var(--font-heading); font-weight: 400; font-size: 20px; color: var(--gold-light); margin-bottom: 10px;">Gain Tracker</h4>
+        <p style="font-size: 14px; color: var(--ash); line-height: 1.65;">Retrain your brain to measure forward from where you started, not backward from where you're going. Neurological retraining away from deficit orientation.</p>
+      </div>
+      <div style="border: 1px solid var(--ash-dark); border-radius: 2px; padding: 32px 24px; transition: border-color 0.3s;" onmouseover="this.style.borderColor='var(--gold-dark)'" onmouseout="this.style.borderColor='var(--ash-dark)'">
+        <p style="font-size: 24px; margin-bottom: 12px;">&#9733;</p>
+        <h4 style="font-family: var(--font-heading); font-weight: 400; font-size: 20px; color: var(--gold-light); margin-bottom: 10px;">The Leader's Journey</h4>
+        <p style="font-size: 14px; color: var(--ash); line-height: 1.65;">A 12-month Hero's Journey curriculum mapped to the monomyth &mdash; with stage gates, sacred quests, and a progression system that meets you exactly where you are.</p>
+      </div>
+    </div>
+
+    <div style="max-width: 680px; margin: 56px auto 0; text-align: center;">
+      <div style="border: 1px solid var(--gold-dark); border-radius: 2px; padding: 36px 32px; background: rgba(201, 168, 76, 0.03);">
+        <p style="font-family: var(--font-heading); font-size: 22px; font-weight: 300; color: var(--parchment); margin-bottom: 12px; line-height: 1.4;">Nothing like this exists. We checked.</p>
+        <p style="color: var(--ash); font-size: 15px; line-height: 1.7; margin-bottom: 16px;">Seraph is not another CRM with a chatbot bolted on. It is a sovereign operating system for identity, nervous system regulation, and wealth transformation &mdash; with AI that understands sacred work, supports neurodivergent minds, and builds WITH you, not AT you.</p>
+        <p style="font-family: var(--font-heading); font-style: italic; font-size: 18px; color: var(--gold);">ARISE participants are co-creators, not customers.<br>Your feedback during the challenge directly shapes what Seraph becomes.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== OUTCOMES ===== -->
+<section class="outcomes section-pad fade-in">
+  <div class="container-wide">
+    <p class="eyebrow text-center">After 7 Days, You Will Have</p>
+    <div class="outcomes-grid">
+      <div class="outcome-card">
+        <div class="symbol">&#10022;</div>
+        <h4>Your Frequency</h4>
+        <p>The felt sense of your highest self &mdash; activated in your body, not just your mind.</p>
+      </div>
+      <div class="outcome-card">
+        <div class="symbol">&#10022;</div>
+        <h4>Your Genius Statement</h4>
+        <p>The 1-2 sentence distillation of the transformation only you can deliver.</p>
+      </div>
+      <div class="outcome-card">
+        <div class="symbol">&#10022;</div>
+        <h4>Your Co-Creator Pod</h4>
+        <p>A matched tribe of builders at your level &mdash; people who see your fire and refuse to let you shrink.</p>
+      </div>
+      <div class="outcome-card">
+        <div class="symbol">&#10022;</div>
+        <h4>Your Identity Declarations</h4>
+        <p>5 present-tense statements about who you are becoming &mdash; anchored somatically.</p>
+      </div>
+      <div class="outcome-card">
+        <div class="symbol">&#10022;</div>
+        <h4>Your First Offer + Landing Page</h4>
+        <p>Named, priced, structured, and LIVE &mdash; built inside Seraph with Serafina guiding the process.</p>
+      </div>
+      <div class="outcome-card">
+        <div class="symbol">&#10022;</div>
+        <h4>Your First Piece of Content</h4>
+        <p>Something real, shared with a real audience. The ice is broken forever.</p>
+      </div>
+      <div class="outcome-card">
+        <div class="symbol">&#10022;</div>
+        <h4>Your Regulation Practice</h4>
+        <p>A nervous system protocol for YOUR wiring &mdash; so you can hold the wealth, visibility, and impact that's coming.</p>
+      </div>
+      <div class="outcome-card" style="border-color: var(--gold-dark);">
+        <div class="symbol">&#10022;</div>
+        <h4>Hands-On Seraph Experience</h4>
+        <p>You will have used the platform no one else has seen &mdash; Sacred Alarm, Serafina, Pathfinder Panel, Gain Tracker &mdash; and your feedback will shape its future.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ALCHEMY / GODDESS ===== -->
+<section class="section-pad fade-in" style="background: var(--ink);">
+  <div class="container">
+    <p class="eyebrow text-center">The Alchemy</p>
+    <div style="text-align: center; max-width: 660px; margin: 0 auto;">
+      <h2 style="font-family: var(--font-heading); font-weight: 300; font-size: clamp(26px, 4vw, 38px); line-height: 1.3; margin-bottom: 32px;">Whatever Is Holding You Back<br>Is What You're Meant to Utilize.</h2>
+      <p style="color: var(--ash); margin-bottom: 24px;">This is the principle that changes everything: your wounds are not obstacles to your mission. They ARE the mission. The shadow you've been trying to heal, hide, or transcend is the raw material of your genius. The pain you've walked through is the exact credential your future clients need to see in order to trust you with theirs.</p>
+      <p style="color: var(--ash); margin-bottom: 24px;">The same is true at the collective level. The darkness surfacing in the world right now &mdash; in systems, in institutions, in the hidden places &mdash; is not here to destroy you. It is here to activate your heroic nature. Every shadow that surfaces, in the world and in yourself, is an invitation to rise. Not in spite of the darkness. <em>Through</em> it.</p>
+      <div style="border-left: 2px solid var(--gold-dark); padding-left: 20px; margin: 40px auto; max-width: 540px; text-align: left;">
+        <p style="font-family: var(--font-heading); font-style: italic; font-size: 20px; color: var(--gold-light); line-height: 1.6; margin-bottom: 16px;">The ancient Greeks called her Ananke &mdash; the Goddess of Necessity. She is the force that makes heroism unavoidable. Not motivation. Not inspiration. The burning that will not let you stay where you are.</p>
+        <p style="font-family: var(--font-heading); font-style: italic; font-size: 20px; color: var(--gold-light); line-height: 1.6;">You feel her. You have felt her for months, maybe years. The dissatisfaction that cannot be outrun. The knowing that will not be silenced. That is not restlessness. That is Necessity herself, telling you it is time.</p>
+      </div>
+      <p style="color: var(--parchment); margin-bottom: 24px;">ARISE is built on this alchemy. Every day of the challenge takes what you thought was in your way and turns it into fuel. Your fear becomes your frequency. Your isolation becomes your tribe. Your confusion becomes clarity through Seraph &mdash; technology that was built from the ground up for people who carry transformation.</p>
+      <p style="font-family: var(--font-heading); font-size: 22px; color: var(--gold); font-weight: 300;">This is not a self-improvement challenge.<br>This is a Hero's Journey &mdash; compressed into 7 days.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== WHO THIS IS FOR ===== -->
+<section class="who section-pad fade-in">
+  <div class="container-wide">
+    <p class="eyebrow text-center">Is This For You?</p>
+    <div class="who-grid">
+      <div class="who-col yes">
+        <h3>This Is For You If:</h3>
+        <ul>
+          <li>You've done deep inner work and you're ready to translate it into income</li>
+          <li>You know you're meant to lead but don't have a clear offer yet</li>
+          <li>You're a coach, healer, speaker, or thought leader &mdash; not a hobbyist</li>
+          <li>You crave a community of equals, not another course with no container</li>
+          <li>You want to experience AI that was built for transformation leaders &mdash; not marketers</li>
+          <li>You're willing to be seen, even when it's uncomfortable</li>
+          <li>You want structure that meets your soul &mdash; not one or the other</li>
+          <li>You are done waiting for permission to build</li>
+        </ul>
+      </div>
+      <div class="who-col no">
+        <h3>This Is Not For You If:</h3>
+        <ul>
+          <li>You're looking for a passive, watch-the-replays experience</li>
+          <li>You want someone to do the work for you</li>
+          <li>You're not willing to show up live and engage</li>
+          <li>You think marketing and money are "unspiritual"</li>
+          <li>You're in active crisis and need clinical support, not a challenge</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== STAKES ===== -->
+<section class="stakes section-pad fade-in">
+  <div class="container">
+    <div class="stakes-dont">
+      <h3>Here Is What Happens If You Don't</h3>
+      <p>Another season passes. The gifts stay inside. The people who need your transformation never find you. The gap between who you are and who you know you're meant to be gets wider &mdash; not because you're failing, but because you're waiting for something that only action can give you. The Goddess of Necessity keeps burning. The shadows keep surfacing. And the hero inside you waits another season for you to stop asking for permission and start answering the call.</p>
+    </div>
+    <div class="gold-divider"></div>
+    <div class="stakes-do">
+      <h3>Here Is What Happens If You Do</h3>
+      <p>In 7 days, you have accessed the frequency of your highest self. You have a genius statement, a co-creator pod matched to your design, an identity anchored in your body, a real offer with a live landing page built inside Seraph, content in the world, a regulated nervous system, and a tribe of builders beside you. You have experienced AI that was built for you &mdash; not against you.</p>
+      <p>You are no longer preparing.<br>You are no longer waiting.<br>You are no longer explaining why "the timing isn't right."</p>
+      <p>You are building.<br>And the people who need you can finally find you.</p>
+      <p class="closer">And you'll know something that no course or certification could teach you: that the fear, the shadows, the darkness &mdash; in you and in the world &mdash; were never the enemy. They were the forge. And you just walked through it. Not in spite of who you are. Because of it.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section class="faq section-pad">
+  <div class="container">
+    <p class="eyebrow text-center">Questions</p>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">What time are the live calls? <span class="toggle">+</span></div>
+      <div class="faq-a">[TIME + TIMEZONE]. All calls are recorded, but the magic happens live. Show up if you can.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Is this really free? <span class="toggle">+</span></div>
+      <div class="faq-a">Yes. No credit card. No hidden upsell wall. You will be invited to continue the journey with AUREA Leaders at the end, but the 7 days are complete on their own. You will walk away with real assets &mdash; a real offer, a live landing page, content in the world.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Is Jackson going to try to sell me something? <span class="toggle">+</span></div>
+      <div class="faq-a">Yes &mdash; and I'm going to be transparent about it. On Day 7, you'll be invited to continue the journey inside AUREA Builders, our community for mission-driven leaders. It's a paid membership. But here's what I won't do: manufacture pressure, use countdown timers, or make you feel like the 7 days were just a setup. The challenge delivers standalone value. You will walk away with real assets whether you join or not. I'd rather you trust me and say no than feel manipulated and say yes.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">What is Seraph? <span class="toggle">+</span></div>
+      <div class="faq-a">Seraph is the world's first sovereign operating system for transformation leaders. It includes Serafina (a soul-aligned AI guide that knows your journey and builds with you), the Sacred Alarm (personalized morning activations), HD Penta tribe matching (co-creator pods based on your Human Design profile), a Pathfinder Panel (daily command center), Gain Tracker (neurological retraining away from deficit thinking), and a 12-month Leader's Journey curriculum mapped to the Hero's Journey. Nothing like it exists. During ARISE, you experience it firsthand &mdash; and your feedback directly shapes what it becomes. You're not a beta tester. You're a co-creator.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">I'm not sure I'm "ready" &mdash; should I wait? <span class="toggle">+</span></div>
+      <div class="faq-a">The people who feel least ready are the ones this was built for. You don't need to have it figured out. You need to start.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">What if I miss a day? <span class="toggle">+</span></div>
+      <div class="faq-a">Recordings are available. But this challenge is designed to be experienced live, in community, in real time. The container matters. Your co-creator pod is counting on you &mdash; and you'll get more from the week if they can count on you showing up.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Do I need to have a business already? <span class="toggle">+</span></div>
+      <div class="faq-a">No. You need a gift, a transformation you've lived, and a willingness to build. That's it.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Will there be an opportunity to continue after the 7 days? <span class="toggle">+</span></div>
+      <div class="faq-a">Yes. Day 7 includes an invitation to join the AUREA Leaders ecosystem &mdash; the community, the AI platform, and the ongoing container for leaders building at this level. But there is zero pressure. The challenge delivers standalone value.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FINAL CTA ===== -->
+<section class="final-cta" id="register">
+  <h2>Spring Is Here.<br>So Is the Version of You<br>That's Done Waiting.</h2>
+  <p class="sub">7 days. Live calls. Daily meditations. First access to Seraph.<br>Your frequency. Your tribe. Your technology.</p>
+  <a href="#" class="btn btn-large">Join the Challenge &mdash; Free</a>
+  <p class="details">Starts Monday, April 20, 2026 &middot; Zero cost, full commitment</p>
+  <p class="closing-quote">"The hero inside you is not waiting for the fear to pass. They are waiting for you to move anyway. That is the alchemy. That is the call. ARISE."</p>
+</section>
+
+<footer>
+  <div class="logo"><img src="aurea-logo.png" alt="AUREA" style="height: 60px; width: auto;"></div>
+  <p><a href="#">Privacy</a> <a href="#">Terms</a> <a href="#">Contact</a></p>
+  <p style="margin-top: 12px;">&copy; 2026 Aurea Leaders. All rights reserved.<br>Architected for the Golden Age.</p>
+</footer>
+
+<script>
+function toggleFaq(el) {
+  const item = el.parentElement;
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+  if (!isOpen) item.classList.add('open');
+}
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) entry.target.classList.add('visible');
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
