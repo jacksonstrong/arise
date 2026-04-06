@@ -220,52 +220,25 @@ export default function Home() {
             style={{
               position: "relative",
               width: "100%",
-              aspectRatio: "16/9",
-              background: "var(--ash-dark)",
+              paddingBottom: "56.25%",
               borderRadius: 4,
               overflow: "hidden",
               border: "1px solid var(--ash-dark)",
             }}
           >
-            <div
+            <iframe
+              src="https://player.vimeo.com/video/1011664596?h=0&autoplay=1&muted=1&title=0&byline=0&portrait=0"
               style={{
                 position: "absolute",
-                inset: 0,
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                justifyContent: "center",
-                gap: 12,
+                top: 0,
+                left: 0,
+                width: "100%",
+                height: "100%",
+                border: 0,
               }}
-            >
-              <div
-                style={{
-                  width: 64,
-                  height: 64,
-                  borderRadius: "50%",
-                  border: "2px solid var(--gold)",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  background: "rgba(201, 168, 76, 0.1)",
-                  cursor: "pointer",
-                }}
-              >
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="var(--gold)">
-                  <polygon points="8,5 19,12 8,19" />
-                </svg>
-              </div>
-              <p
-                style={{
-                  fontSize: 12,
-                  color: "var(--ash)",
-                  textTransform: "uppercase",
-                  letterSpacing: ".15em",
-                }}
-              >
-                Watch &amp; Join the Challenge
-              </p>
-            </div>
+              allow="autoplay; fullscreen; picture-in-picture"
+              allowFullScreen
+            />
           </div>
         </div>
 
