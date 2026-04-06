@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req: NextRequest) {
-  const { name, email } = await req.json();
+  const { name, email, phone } = await req.json();
 
   if (!name || !email) {
     return NextResponse.json(
@@ -31,6 +31,7 @@ export async function POST(req: NextRequest) {
       response_data: {
         "field-name": name,
         "field-email": email,
+        ...(phone ? { "field-phone": phone } : {}),
       },
       source_url: req.headers.get("referer") || undefined,
     }),

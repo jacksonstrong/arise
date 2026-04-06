@@ -11,6 +11,7 @@ function RegistrationModal({
 }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [errorMsg, setErrorMsg] = useState("");
 
@@ -23,7 +24,7 @@ function RegistrationModal({
       const res = await fetch("/api/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email }),
+        body: JSON.stringify({ name, email, phone: phone || undefined }),
       });
 
       if (!res.ok) {
@@ -47,6 +48,7 @@ function RegistrationModal({
       setTimeout(() => {
         setName("");
         setEmail("");
+        setPhone("");
         setStatus("idle");
         setErrorMsg("");
       }, 300);
@@ -117,6 +119,12 @@ function RegistrationModal({
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
+            />
+            <input
+              type="tel"
+              placeholder="Phone number (optional)"
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
             />
             <button
               type="submit"
