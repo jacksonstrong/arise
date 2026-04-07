@@ -298,7 +298,7 @@ export default function Home() {
         >
           <div style={{ textAlign: "left", display: "flex", alignItems: "stretch" }}>
             <h1 style={{ textAlign: "left", fontSize: "clamp(30px, 3.5vw, 48px)", margin: 0 }}>
-              You Have The Gifts, But You Don&rsquo;t Yet Have The Identity, AI Systems, or Tribe That Matches Their Value&hellip;
+              You Know You Have The Gift, But Do You Have The Identity, AI Infrastructure, and Tribe To Fully Unleash Its Potential?
               <br />
               <em>That Changes in 7 Days.</em>
             </h1>
