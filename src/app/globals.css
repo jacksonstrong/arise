@@ -61,6 +61,11 @@ body {
   background: rgba(201, 168, 76, 0.18);
   box-shadow: 0 0 30px rgba(201, 168, 76, 0.15);
 }
+.btn:active {
+  transform: scale(0.97);
+  background: rgba(201, 168, 76, 0.25);
+  transition: transform 0.1s, background 0.1s;
+}
 .btn-large { padding: 22px 56px; font-size: 14px; }
 
 .hero {
@@ -297,7 +302,7 @@ body {
 .block-card:hover {
   border-color: var(--gold);
   box-shadow: 0 0 30px rgba(201, 168, 76, 0.12), 0 0 60px rgba(201, 168, 76, 0.04);
-  transform: translateY(-4px);
+  transform: translateY(-3px);
 }
 .block-card .block-num {
   font-family: var(--font-heading-stack);
@@ -392,7 +397,8 @@ body {
 
 .outcomes { background: var(--ink-deep); }
 .outcomes-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin-top: 48px; }
-.outcome-card { border: 1px solid var(--ash-dark); border-radius: 2px; padding: 32px; }
+.outcome-card { border: 1px solid var(--ash-dark); border-radius: 2px; padding: 32px; transition: border-color 0.3s ease; }
+.outcome-card:hover { border-color: var(--gold-dark); }
 .outcome-card .symbol { font-size: 18px; color: var(--gold); margin-bottom: 12px; }
 .outcome-card h4 { font-family: var(--font-heading-stack); font-weight: 400; font-size: 20px; margin-bottom: 8px; }
 .outcome-card p { font-size: 15px; color: var(--ash); }
@@ -595,7 +601,7 @@ footer .logo { font-family: var(--font-heading-stack); font-size: 18px; color: v
   transition: border-color 0.3s;
   margin-bottom: 16px;
 }
-.modal input:focus { border-color: var(--gold-dark); }
+.modal input:focus { border-color: var(--gold-dark); box-shadow: 0 0 0 1px var(--gold-dark); }
 .modal input::placeholder { color: var(--ash); }
 .modal .btn { width: 100%; text-align: center; margin-top: 8px; }
 .modal .btn:disabled { opacity: 0.5; cursor: not-allowed; }

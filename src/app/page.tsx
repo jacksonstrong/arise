@@ -64,8 +64,9 @@ function RegistrationModal({
       return;
     }
 
-    // Save currently focused element
+    // Save currently focused element and lock body scroll
     previousFocusRef.current = document.activeElement as HTMLElement;
+    document.body.style.overflow = "hidden";
 
     // Focus the modal after it opens
     const timer = setTimeout(() => {
@@ -100,6 +101,7 @@ function RegistrationModal({
     return () => {
       clearTimeout(timer);
       document.removeEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = "";
     };
   }, [isOpen, onClose]);
 
@@ -334,7 +336,7 @@ export default function Home() {
                 color: "var(--ash)",
                 textTransform: "uppercase",
                 letterSpacing: ".15em",
-                marginTop: 5,
+                marginTop: 8,
                 textAlign: "center",
               }}
             >
@@ -365,7 +367,7 @@ export default function Home() {
         >
           <div style={{ display: "flex", gap: 4 }}>
             {[...Array(5)].map((_, i) => (
-              <svg key={i} width="18" height="18" viewBox="0 0 24 24" fill="#C9A84C">
+              <svg key={i} width="18" height="18" viewBox="0 0 24 24" fill="var(--gold)" aria-hidden="true">
                 <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26" />
               </svg>
             ))}
@@ -454,7 +456,7 @@ export default function Home() {
               ["\u201cIt has renewed my vision and resolve around expanding my endeavors.\u201d", "Anamaria Aristizabal, Master Coach & Author"],
               ["\u201cIf you do the work, you will get the results.\u201d", "Fernando Subirats, Founder, The Manifestival"],
             ].map(([quote, name], i) => (
-              <span key={i} className="ticker-item">
+              <span key={i} className="ticker-item" aria-hidden={i >= 3 ? "true" : undefined}>
                 {quote} &mdash; <span className="name">{name}</span>
               </span>
             ))}
