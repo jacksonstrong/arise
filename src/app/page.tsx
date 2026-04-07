@@ -469,7 +469,7 @@ export default function Home() {
         </p>
         <div style={{ margin: "0 0 12px" }}>
           <button onClick={openModal} className="btn btn-large">
-            Build What My Gift Deserves &mdash; Free
+            Enter the 7-Day Challenge &mdash; Free
           </button>
         </div>
         <div
@@ -778,7 +778,7 @@ export default function Home() {
 
           <div className="gold-divider" />
           <button onClick={openModal} className="btn">
-            Build What My Gift Deserves &mdash; Free
+            Enter the 7-Day Challenge &mdash; Free
           </button>
         </div>
       </section>
@@ -977,7 +977,7 @@ export default function Home() {
 
           <div className="text-center" style={{ marginTop: 48 }}>
             <button onClick={openModal} className="btn">
-              Build What My Gift Deserves &mdash; Free
+              Enter the 7-Day Challenge &mdash; Free
             </button>
           </div>
         </div>
@@ -1398,7 +1398,7 @@ export default function Home() {
           Your frequency. Your tribe. Your technology.
         </p>
         <button onClick={openModal} className="btn btn-large">
-          Build What My Gift Deserves &mdash; Free
+          Enter the 7-Day Challenge &mdash; Free
         </button>
         <p className="details">
           Starts Monday, April 21, 2026 &middot; Zero cost, full commitment
@@ -1429,7 +1429,7 @@ export default function Home() {
       <div className={`sticky-cta ${showSticky && !modalOpen ? "visible" : ""}`}>
         <p>Join the 7-Day ARISE Breakthrough &mdash; Free</p>
         <button onClick={openModal} className="btn">
-          Build What My Gift Deserves &mdash; Free
+          Enter the 7-Day Challenge &mdash; Free
         </button>
       </div>
     </>
