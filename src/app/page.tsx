@@ -270,6 +270,89 @@ export default function Home() {
     return () => observer.disconnect();
   }, []);
 
+  // Cursor glow + hero parallax tracking
+  useEffect(() => {
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const isTouchDevice = window.matchMedia("(pointer: coarse)").matches;
+    if (prefersReducedMotion || isTouchDevice) return;
+
+    // Create cursor glow element
+    const glow = document.createElement("div");
+    glow.className = "cursor-glow";
+    document.body.appendChild(glow);
+
+    const heroEl = document.querySelector(".hero") as HTMLElement | null;
+
+    let mouseX = 0, mouseY = 0;
+    let glowX = 0, glowY = 0;
+    let rafId: number;
+
+    const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
+
+    const animate = () => {
+      glowX = lerp(glowX, mouseX, 0.08);
+      glowY = lerp(glowY, mouseY, 0.08);
+      glow.style.transform = `translate(${glowX - 200}px, ${glowY - 200}px)`;
+
+      // Shift hero glow toward cursor
+      if (heroEl) {
+        const rect = heroEl.getBoundingClientRect();
+        if (rect.bottom > 0 && rect.top < window.innerHeight) {
+          const cx = ((mouseX - rect.left) / rect.width - 0.5) * 30;
+          const cy = ((mouseY - rect.top) / rect.height - 0.5) * 30;
+          heroEl.style.setProperty("--glow-x", `${cx}px`);
+          heroEl.style.setProperty("--glow-y", `${cy}px`);
+        }
+      }
+
+      rafId = requestAnimationFrame(animate);
+    };
+
+    const handleMouseMove = (e: MouseEvent) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+    };
+
+    window.addEventListener("mousemove", handleMouseMove, { passive: true });
+    rafId = requestAnimationFrame(animate);
+
+    // 3D tilt on cards
+    const tiltCards = document.querySelectorAll<HTMLElement>(".card-tilt");
+    const handleTiltEnter = (e: MouseEvent) => {
+      const el = e.currentTarget as HTMLElement;
+      el.style.transition = "transform 0.1s ease";
+    };
+    const handleTiltMove = (e: MouseEvent) => {
+      const el = e.currentTarget as HTMLElement;
+      const rect = el.getBoundingClientRect();
+      const x = (e.clientX - rect.left) / rect.width - 0.5;
+      const y = (e.clientY - rect.top) / rect.height - 0.5;
+      el.style.transform = `perspective(600px) rotateY(${x * 8}deg) rotateX(${-y * 8}deg) scale(1.02)`;
+    };
+    const handleTiltLeave = (e: MouseEvent) => {
+      const el = e.currentTarget as HTMLElement;
+      el.style.transition = "transform 0.4s ease";
+      el.style.transform = "perspective(600px) rotateY(0) rotateX(0) scale(1)";
+    };
+
+    tiltCards.forEach((card) => {
+      card.addEventListener("mouseenter", handleTiltEnter);
+      card.addEventListener("mousemove", handleTiltMove);
+      card.addEventListener("mouseleave", handleTiltLeave);
+    });
+
+    return () => {
+      cancelAnimationFrame(rafId);
+      window.removeEventListener("mousemove", handleMouseMove);
+      glow.remove();
+      tiltCards.forEach((card) => {
+        card.removeEventListener("mouseenter", handleTiltEnter);
+        card.removeEventListener("mousemove", handleTiltMove);
+        card.removeEventListener("mouseleave", handleTiltLeave);
+      });
+    };
+  }, []);
+
   return (
     <>
       <RegistrationModal isOpen={modalOpen} onClose={closeModal} />
@@ -400,7 +483,7 @@ export default function Home() {
             ].map((item, i) => (
               <div
                 key={i}
-                className="card-hover"
+                className="card-hover card-tilt"
                 style={{
                   flex: 1,
                   minWidth: 240,
@@ -479,7 +562,7 @@ export default function Home() {
           </p>
 
           <div className="blocks-grid">
-            <div className="block-card fade-in" data-stagger>
+            <div className="block-card fade-in card-tilt" data-stagger>
               <div className="block-num">Block One</div>
               <h3>Frequency</h3>
               <p>
@@ -491,7 +574,7 @@ export default function Home() {
                 here, in a group, and embed your greatness into your field.
               </p>
             </div>
-            <div className="block-card fade-in" data-stagger>
+            <div className="block-card fade-in card-tilt" data-stagger>
               <div className="block-num">Block Two</div>
               <h3>Tribe</h3>
               <p>
@@ -503,7 +586,7 @@ export default function Home() {
                 fire &mdash; and match it. You need a tribe that makes expansion feel safe.
               </p>
             </div>
-            <div className="block-card fade-in" data-stagger>
+            <div className="block-card fade-in card-tilt" data-stagger>
               <div className="block-num">Block Three</div>
               <h3>Strategy</h3>
               <p>
@@ -986,7 +1069,7 @@ export default function Home() {
             ].map((item, i) => (
               <div
                 key={i}
-                className="feature-card-hover fade-in"
+                className="feature-card-hover fade-in card-tilt"
                 data-stagger
                 style={{
                   border: "1px solid var(--ash-dark)",

@@ -466,6 +466,30 @@ footer a { color: var(--ash); text-decoration: none; margin: 0 12px; }
 footer a:hover { color: var(--gold-dark); }
 footer .logo { font-family: var(--font-heading-stack); font-size: 18px; color: var(--gold-dark); letter-spacing: .15em; margin-bottom: 16px; }
 
+/* ---- CURSOR GLOW ---- */
+.cursor-glow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(201, 168, 76, 0.04) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+  will-change: transform;
+}
+
+/* Hero glow responds to cursor position */
+.hero::before {
+  transform: translate(calc(-50% + var(--glow-x, 0px)), calc(-50% + var(--glow-y, 0px)));
+}
+
+/* 3D tilt card base */
+.card-tilt {
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
 /* ---- INTERACTIVE CARD HOVER ---- */
 .card-hover {
   transition: border-color 0.4s ease, box-shadow 0.4s ease, transform 0.4s ease;
