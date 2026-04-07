@@ -249,12 +249,22 @@ export default function Home() {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) entry.target.classList.add("visible");
+          if (entry.isIntersecting) {
+            // Stagger children with [data-stagger] attribute
+            const staggerChildren = entry.target.querySelectorAll("[data-stagger]");
+            if (staggerChildren.length > 0) {
+              staggerChildren.forEach((child, i) => {
+                (child as HTMLElement).style.transitionDelay = `${i * 120}ms`;
+                child.classList.add("visible");
+              });
+            }
+            entry.target.classList.add("visible");
+          }
         });
       },
-      { threshold: 0.1 }
+      { threshold: 0.08 }
     );
-    document.querySelectorAll(".fade-in").forEach((el) => observer.observe(el));
+    document.querySelectorAll(".fade-in, .fade-in-left, .fade-in-scale, .gold-divider").forEach((el) => observer.observe(el));
     return () => observer.disconnect();
   }, []);
 
@@ -467,7 +477,7 @@ export default function Home() {
           </p>
 
           <div className="blocks-grid">
-            <div className="block-card">
+            <div className="block-card fade-in" data-stagger>
               <div className="block-num">Block One</div>
               <h3>Frequency</h3>
               <p>
@@ -479,7 +489,7 @@ export default function Home() {
                 here, in a group, and embed your greatness into your field.
               </p>
             </div>
-            <div className="block-card">
+            <div className="block-card fade-in" data-stagger>
               <div className="block-num">Block Two</div>
               <h3>Tribe</h3>
               <p>
@@ -491,7 +501,7 @@ export default function Home() {
                 fire &mdash; and match it. You need a tribe that makes expansion feel safe.
               </p>
             </div>
-            <div className="block-card">
+            <div className="block-card fade-in" data-stagger>
               <div className="block-num">Block Three</div>
               <h3>Strategy</h3>
               <p>
@@ -660,8 +670,8 @@ export default function Home() {
         <div className="container-wide">
           <p className="eyebrow text-center" style={{ fontSize: 22 }}>Your Guide</p>
           <div className="guide-grid">
-            <Image src="/jackson-headshot.jpg" alt="Jackson Strong" width={397} height={389} className="guide-photo" style={{ objectFit: "cover" }} />
-            <div className="guide-text">
+            <Image src="/jackson-headshot.jpg" alt="Jackson Strong" width={397} height={389} className="guide-photo fade-in-left" style={{ objectFit: "cover" }} />
+            <div className="guide-text fade-in">
               <h2>Jackson Strong</h2>
               <p className="title-sub">
                 Founder of AUREA Leaders &middot; Creator of Stage Secrets
@@ -714,7 +724,7 @@ export default function Home() {
           </div>
 
           <div className="testimonials-row fade-in">
-            <div className="test-card">
+            <div className="test-card fade-in" data-stagger>
               <p className="quote">
                 &ldquo;Jackson&rsquo;s guidance has been nothing short of transformative. His unique
                 blend of expertise and compassion empowered me to step into my true potential.&rdquo;
@@ -722,7 +732,7 @@ export default function Home() {
               <p className="attr">&mdash; Lakia Meadan</p>
               <p className="attr-org">Sacred Earth Travels</p>
             </div>
-            <div className="test-card">
+            <div className="test-card fade-in" data-stagger>
               <p className="quote">
                 &ldquo;It&rsquo;s truly a deep dive into your soul&rsquo;s purpose. Being in a group
                 container with Jackson and other vibrant souls is so expansive. 11 out of 10!&rdquo;
@@ -730,7 +740,7 @@ export default function Home() {
               <p className="attr">&mdash; Daniela Sardi &amp; Tyler Schraeder</p>
               <p className="attr-org">Stage Secrets Alumni</p>
             </div>
-            <div className="test-card">
+            <div className="test-card fade-in" data-stagger>
               <p className="quote">
                 &ldquo;Jackson knows how to bring your authenticity to life and break through the
                 blocks to speaking your truth.&rdquo;
@@ -974,7 +984,8 @@ export default function Home() {
             ].map((item, i) => (
               <div
                 key={i}
-                className="feature-card-hover"
+                className="feature-card-hover fade-in"
+                data-stagger
                 style={{
                   border: "1px solid var(--ash-dark)",
                   borderRadius: 2,
@@ -1055,7 +1066,8 @@ export default function Home() {
             ].map(([title, desc], i) => (
               <div
                 key={i}
-                className="outcome-card"
+                className="outcome-card fade-in"
+                data-stagger
                 style={i === 7 ? { borderColor: "var(--gold-dark)" } : undefined}
               >
                 <div className="symbol">&#10022;</div>
@@ -1145,7 +1157,7 @@ export default function Home() {
         <div className="container-wide">
           <p className="eyebrow text-center" style={{ fontSize: 22 }}>Is This For You?</p>
           <div className="who-grid">
-            <div className="who-col yes">
+            <div className="who-col yes fade-in" data-stagger>
               <h3>This Is For You If:</h3>
               <ul>
                 {[
@@ -1162,7 +1174,7 @@ export default function Home() {
                 ))}
               </ul>
             </div>
-            <div className="who-col no">
+            <div className="who-col no fade-in" data-stagger>
               <h3>This Is Not For You If:</h3>
               <ul>
                 {[
