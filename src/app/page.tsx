@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useEffect, useCallback, FormEvent } from "react";
+import { useState, useEffect, useCallback, useRef, FormEvent } from "react";
+import Image from "next/image";
 
 function RegistrationModal({
   isOpen,
@@ -14,6 +15,8 @@ function RegistrationModal({
   const [phone, setPhone] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [errorMsg, setErrorMsg] = useState("");
+  const modalRef = useRef<HTMLDivElement>(null);
+  const previousFocusRef = useRef<HTMLElement | null>(null);
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -43,6 +46,7 @@ function RegistrationModal({
     if (e.target === e.currentTarget) onClose();
   };
 
+  // Focus trap and Escape key
   useEffect(() => {
     if (!isOpen) {
       setTimeout(() => {
@@ -52,24 +56,72 @@ function RegistrationModal({
         setStatus("idle");
         setErrorMsg("");
       }, 300);
+      // Restore focus to previously focused element
+      if (previousFocusRef.current) {
+        previousFocusRef.current.focus();
+        previousFocusRef.current = null;
+      }
+      return;
     }
-  }, [isOpen]);
+
+    // Save currently focused element
+    previousFocusRef.current = document.activeElement as HTMLElement;
+
+    // Focus the modal after it opens
+    const timer = setTimeout(() => {
+      const firstInput = modalRef.current?.querySelector<HTMLElement>(
+        "input, button:not(.modal-close)"
+      );
+      firstInput?.focus();
+    }, 100);
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        onClose();
+        return;
+      }
+      if (e.key === "Tab" && modalRef.current) {
+        const focusable = modalRef.current.querySelectorAll<HTMLElement>(
+          'button, input, [tabindex]:not([tabindex="-1"])'
+        );
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+    return () => {
+      clearTimeout(timer);
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [isOpen, onClose]);
 
   return (
     <div
       className={`modal-overlay ${isOpen ? "active" : ""}`}
       onClick={handleOverlayClick}
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="modal-title"
     >
-      <div className="modal">
-        <button className="modal-close" onClick={onClose}>
+      <div className="modal" ref={modalRef}>
+        <button className="modal-close" onClick={onClose} aria-label="Close registration form">
           &times;
         </button>
 
         {status === "success" ? (
           <div style={{ textAlign: "center", padding: "20px 0" }}>
             <h3
+              id="modal-title"
               style={{
-                fontFamily: "var(--font-heading)",
+                fontFamily: "var(--font-heading-stack)",
                 fontWeight: 300,
                 fontSize: 28,
                 color: "var(--gold)",
@@ -89,7 +141,7 @@ function RegistrationModal({
             </p>
             <p
               style={{
-                fontFamily: "var(--font-heading)",
+                fontFamily: "var(--font-heading-stack)",
                 fontStyle: "italic",
                 color: "var(--gold-dark)",
                 fontSize: 16,
@@ -102,25 +154,31 @@ function RegistrationModal({
           </div>
         ) : (
           <form onSubmit={handleSubmit}>
-            <h3>Join the ARISE Challenge</h3>
+            <h3 id="modal-title">Join the ARISE Challenge</h3>
             <p className="modal-sub">
               7 days. Free. Live coaching. First access to Seraph.
             </p>
+            <label htmlFor="reg-name" className="sr-only">Full name</label>
             <input
+              id="reg-name"
               type="text"
               placeholder="Your full name"
               value={name}
               onChange={(e) => setName(e.target.value)}
               required
             />
+            <label htmlFor="reg-email" className="sr-only">Email address</label>
             <input
+              id="reg-email"
               type="email"
               placeholder="Your best email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
             />
+            <label htmlFor="reg-phone" className="sr-only">Phone number (optional)</label>
             <input
+              id="reg-phone"
               type="tel"
               placeholder="Phone number (optional)"
               value={phone}
@@ -135,7 +193,7 @@ function RegistrationModal({
                 ? "Securing Your Spot..."
                 : "Yes, I\u2019m Ready"}
             </button>
-            {status === "error" && <p className="error-msg">{errorMsg}</p>}
+            {status === "error" && <p className="error-msg" role="alert">{errorMsg}</p>}
             <p
               style={{
                 fontSize: 12,
@@ -144,7 +202,7 @@ function RegistrationModal({
                 marginTop: 16,
               }}
             >
-              Starts Monday, April 20, 2026 &middot; Zero cost, full commitment
+              Starts Monday, April 21, 2026 &middot; Zero cost, full commitment
             </p>
           </form>
         )}
@@ -155,13 +213,19 @@ function RegistrationModal({
 
 function FaqItem({ question, answer }: { question: string; answer: string }) {
   const [open, setOpen] = useState(false);
+  const answerId = `faq-answer-${question.slice(0, 20).replace(/\W/g, "")}`;
   return (
     <div className={`faq-item ${open ? "open" : ""}`}>
-      <div className="faq-q" onClick={() => setOpen(!open)}>
-        <span dangerouslySetInnerHTML={{ __html: question }} />
-        <span className="toggle">+</span>
-      </div>
-      <div className="faq-a">{answer}</div>
+      <button
+        className="faq-q"
+        onClick={() => setOpen(!open)}
+        aria-expanded={open}
+        aria-controls={answerId}
+      >
+        <span>{question}</span>
+        <span className="toggle" aria-hidden="true">+</span>
+      </button>
+      <div className="faq-a" id={answerId} role="region" aria-hidden={!open}>{answer}</div>
     </div>
   );
 }
@@ -198,10 +262,11 @@ export default function Home() {
     <>
       <RegistrationModal isOpen={modalOpen} onClose={closeModal} />
 
+      <main>
       {/* ===== HERO ===== */}
       <section className="hero">
         <div style={{ marginBottom: 16 }}>
-          <img src="/aurea-logo.png" alt="AUREA" style={{ height: 120, width: "auto" }} />
+          <Image src="/aurea-logo.png" alt="AUREA" width={156} height={120} priority />
         </div>
         <p className="eyebrow">
           Join the 7-Day ARISE Breakthrough &middot; Launching Monday, April 21, 2026
@@ -239,6 +304,8 @@ export default function Home() {
             >
               <iframe
                 src="https://player.vimeo.com/video/1011664596?h=0&autoplay=1&muted=1&title=0&byline=0&portrait=0"
+                title="ARISE 7-Day Challenge introduction video"
+                loading="lazy"
                 style={{
                   position: "absolute",
                   top: 0,
@@ -321,6 +388,7 @@ export default function Home() {
             ].map((item, i) => (
               <div
                 key={i}
+                className="card-hover"
                 style={{
                   flex: 1,
                   minWidth: 240,
@@ -329,20 +397,9 @@ export default function Home() {
                   borderRadius: 4,
                   padding: "32px 24px",
                   textAlign: "center",
-                  transition: "all 0.4s ease",
                   background: "linear-gradient(180deg, rgba(201, 168, 76, 0.06) 0%, rgba(201, 168, 76, 0) 100%)",
                   position: "relative",
                   overflow: "hidden",
-                }}
-                onMouseOver={(e) => {
-                  e.currentTarget.style.borderColor = "var(--gold)";
-                  e.currentTarget.style.boxShadow = "0 0 30px rgba(201, 168, 76, 0.15), 0 0 60px rgba(201, 168, 76, 0.05)";
-                  e.currentTarget.style.transform = "translateY(-4px)";
-                }}
-                onMouseOut={(e) => {
-                  e.currentTarget.style.borderColor = "var(--gold-dark)";
-                  e.currentTarget.style.boxShadow = "none";
-                  e.currentTarget.style.transform = "translateY(0)";
                 }}
               >
                 <div style={{
@@ -353,7 +410,7 @@ export default function Home() {
                 }}>{item.icon}</div>
                 <p
                   style={{
-                    fontFamily: "var(--font-heading)",
+                    fontFamily: "var(--font-heading-stack)",
                     fontSize: 22,
                     fontWeight: 400,
                     color: "var(--gold-light)",
@@ -456,7 +513,7 @@ export default function Home() {
       <div style={{
         position: "relative",
         padding: "80px 24px",
-        background: "linear-gradient(180deg, #000000 0%, var(--ink) 100%)",
+        background: "linear-gradient(180deg, var(--black) 0%, var(--ink) 100%)",
         textAlign: "center",
         overflow: "hidden",
       }}>
@@ -487,7 +544,7 @@ export default function Home() {
         </div>
         {/* Pull quote */}
         <p className="fade-in" style={{
-          fontFamily: "var(--font-heading)",
+          fontFamily: "var(--font-heading-stack)",
           fontStyle: "italic",
           fontSize: "clamp(22px, 3vw, 32px)",
           fontWeight: 300,
@@ -530,7 +587,7 @@ export default function Home() {
         }} />
         <div className="content" style={{ position: "relative" }}>
           <p style={{
-            fontFamily: "var(--font-body)",
+            fontFamily: "var(--font-body-stack)",
             fontSize: 22,
             fontWeight: 400,
             color: "var(--gold-dark)",
@@ -603,7 +660,7 @@ export default function Home() {
         <div className="container-wide">
           <p className="eyebrow text-center" style={{ fontSize: 22 }}>Your Guide</p>
           <div className="guide-grid">
-            <img src="/jackson-headshot.jpg" alt="Jackson Strong" className="guide-photo" style={{ objectFit: "cover" }} />
+            <Image src="/jackson-headshot.jpg" alt="Jackson Strong" width={397} height={389} className="guide-photo" style={{ objectFit: "cover" }} />
             <div className="guide-text">
               <h2>Jackson Strong</h2>
               <p className="title-sub">
@@ -806,7 +863,7 @@ export default function Home() {
           </p>
           <h2
             style={{
-              fontFamily: "var(--font-heading)",
+              fontFamily: "var(--font-heading-stack)",
               fontWeight: 300,
               fontSize: "clamp(32px, 5vw, 52px)",
               textAlign: "center",
@@ -833,7 +890,7 @@ export default function Home() {
           <p
             style={{
               textAlign: "center",
-              fontFamily: "var(--font-heading)",
+              fontFamily: "var(--font-heading-stack)",
               fontStyle: "italic",
               fontSize: 18,
               color: "var(--gold-dark)",
@@ -917,19 +974,17 @@ export default function Home() {
             ].map((item, i) => (
               <div
                 key={i}
+                className="feature-card-hover"
                 style={{
                   border: "1px solid var(--ash-dark)",
                   borderRadius: 2,
                   padding: "32px 24px",
-                  transition: "border-color 0.3s",
                 }}
-                onMouseOver={(e) => (e.currentTarget.style.borderColor = "var(--gold-dark)")}
-                onMouseOut={(e) => (e.currentTarget.style.borderColor = "var(--ash-dark)")}
               >
                 <p style={{ fontSize: 24, marginBottom: 12 }}>{item.icon}</p>
                 <h4
                   style={{
-                    fontFamily: "var(--font-heading)",
+                    fontFamily: "var(--font-heading-stack)",
                     fontWeight: 400,
                     fontSize: 20,
                     color: "var(--gold-light)",
@@ -954,7 +1009,7 @@ export default function Home() {
             >
               <p
                 style={{
-                  fontFamily: "var(--font-heading)",
+                  fontFamily: "var(--font-heading-stack)",
                   fontSize: 22,
                   fontWeight: 300,
                   color: "var(--parchment)",
@@ -970,7 +1025,7 @@ export default function Home() {
               </p>
               <p
                 style={{
-                  fontFamily: "var(--font-heading)",
+                  fontFamily: "var(--font-heading-stack)",
                   fontStyle: "italic",
                   fontSize: 18,
                   color: "var(--gold)",
@@ -1019,7 +1074,7 @@ export default function Home() {
           <div style={{ textAlign: "center", maxWidth: 660, margin: "0 auto" }}>
             <h2
               style={{
-                fontFamily: "var(--font-heading)",
+                fontFamily: "var(--font-heading-stack)",
                 fontWeight: 300,
                 fontSize: "clamp(26px, 4vw, 38px)",
                 lineHeight: 1.3,
@@ -1045,7 +1100,7 @@ export default function Home() {
             >
               <p
                 style={{
-                  fontFamily: "var(--font-heading)",
+                  fontFamily: "var(--font-heading-stack)",
                   fontStyle: "italic",
                   fontSize: 20,
                   color: "var(--gold-light)",
@@ -1058,7 +1113,7 @@ export default function Home() {
               </p>
               <p
                 style={{
-                  fontFamily: "var(--font-heading)",
+                  fontFamily: "var(--font-heading-stack)",
                   fontStyle: "italic",
                   fontSize: 20,
                   color: "var(--gold-light)",
@@ -1071,7 +1126,7 @@ export default function Home() {
             </div>
             <p
               style={{
-                fontFamily: "var(--font-heading)",
+                fontFamily: "var(--font-heading-stack)",
                 fontSize: 22,
                 color: "var(--gold)",
                 fontWeight: 300,
@@ -1216,7 +1271,7 @@ export default function Home() {
           Build What My Gift Deserves &mdash; Free
         </button>
         <p className="details">
-          Starts Monday, April 20, 2026 &middot; Zero cost, full commitment
+          Starts Monday, April 21, 2026 &middot; Zero cost, full commitment
         </p>
         <p className="closing-quote">
           &ldquo;The hero inside you is not waiting for the fear to pass. They are waiting for you to
@@ -1224,12 +1279,14 @@ export default function Home() {
         </p>
       </section>
 
+      </main>
+
       <footer>
         <div className="logo">
-          <img src="/aurea-logo.png" alt="AUREA" style={{ height: 60, width: "auto" }} />
+          <Image src="/aurea-logo.png" alt="AUREA" width={78} height={60} />
         </div>
         <p>
-          <a href="#">Privacy</a> <a href="#">Terms</a> <a href="#">Contact</a>
+          <a href="/privacy">Privacy</a> <a href="/terms">Terms</a> <a href="mailto:hello@aurealeaders.com">Contact</a>
         </p>
         <p style={{ marginTop: 12 }}>
           &copy; 2026 Aurea Leaders. All rights reserved.
