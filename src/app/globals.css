@@ -638,6 +638,92 @@ footer .logo { font-family: var(--font-heading-stack); font-size: 18px; color: v
   .phase-label::after { left: calc(50% + 50px); }
 }
 
+/* ---- SCROLL-DRIVEN ANIMATIONS (Progressive enhancement) ---- */
+@supports (animation-timeline: view()) {
+
+  /* Hero glow drifts with parallax as you scroll away */
+  .hero::before {
+    animation: hero-glow-drift linear both;
+    animation-timeline: view();
+    animation-range: exit 0% exit 100%;
+  }
+  @keyframes hero-glow-drift {
+    from { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+    to { transform: translate(-50%, -30%) scale(1.3); opacity: 0; }
+  }
+
+  /* Transition bridge: quote floats with parallax depth */
+  .transition-bridge-quote {
+    animation: parallax-float linear both;
+    animation-timeline: view();
+    animation-range: entry 0% exit 100%;
+  }
+  @keyframes parallax-float {
+    0% { transform: translateY(40px); }
+    50% { transform: translateY(0); }
+    100% { transform: translateY(-40px); }
+  }
+
+  /* Phase label lines expand as they scroll into view */
+  .phase-label::before, .phase-label::after {
+    animation: line-expand linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 100%;
+  }
+  @keyframes line-expand {
+    from { transform: scaleX(0); opacity: 0; }
+    to { transform: scaleX(1); opacity: 1; }
+  }
+
+  /* Gold divider draws itself in sync with scroll */
+  .gold-divider {
+    animation: divider-draw linear both;
+    animation-timeline: view();
+    animation-range: entry 20% entry 80%;
+    /* Override the JS-based transition */
+    transform: scaleX(1);
+    transition: none;
+  }
+  @keyframes divider-draw {
+    from { transform: scaleX(0); }
+    to { transform: scaleX(1); }
+  }
+
+  /* Final CTA glow grows as you approach */
+  .final-cta::before {
+    animation: cta-glow-grow linear both;
+    animation-timeline: view();
+    animation-range: entry 0% cover 60%;
+  }
+  @keyframes cta-glow-grow {
+    from { transform: translate(-50%, -50%) scale(0.5); opacity: 0; }
+    to { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+  }
+
+  /* Day numbers count up with a subtle scale pulse on entry */
+  .day-num {
+    animation: day-num-enter linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 60%;
+  }
+  @keyframes day-num-enter {
+    0% { transform: scale(0.7); opacity: 0; }
+    70% { transform: scale(1.08); }
+    100% { transform: scale(1); opacity: 1; }
+  }
+
+  /* Section headings rise with scroll parallax */
+  .blocks-heading, .journey h2, .final-cta h2 {
+    animation: heading-rise linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 80%;
+  }
+  @keyframes heading-rise {
+    from { transform: translateY(30px); opacity: 0; filter: blur(4px); }
+    to { transform: translateY(0); opacity: 1; filter: blur(0); }
+  }
+}
+
 /* ---- SMALL MOBILE ---- */
 @media (max-width: 380px) {
   .sticky-cta { flex-direction: column; gap: 8px; padding: 10px 12px; }

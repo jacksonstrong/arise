@@ -555,7 +555,7 @@ export default function Home() {
           <div style={{ flex: 1, height: 1, background: "linear-gradient(90deg, var(--gold-dark), transparent)" }} />
         </div>
         {/* Pull quote */}
-        <p className="fade-in" style={{
+        <p className="fade-in transition-bridge-quote" style={{
           fontFamily: "var(--font-heading-stack)",
           fontStyle: "italic",
           fontSize: "clamp(22px, 3vw, 32px)",
