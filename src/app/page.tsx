@@ -187,7 +187,7 @@ function RegistrationModal({
           <form onSubmit={handleSubmit}>
             <h3 id="modal-title">Join the ARISE Challenge</h3>
             <p className="modal-sub">
-              7 days. Free. Live coaching. First access to Seraph.
+              Everything you need to break through &mdash; the coaching, the technology, the tribe &mdash; delivered in 7 days.
             </p>
             <label htmlFor="reg-name" className="sr-only">Full name</label>
             <input
@@ -265,6 +265,8 @@ export default function Home() {
   const [modalOpen, setModalOpen] = useState(false);
   const [showSticky, setShowSticky] = useState(false);
   const [modalOrigin, setModalOrigin] = useState<DOMRect | null>(null);
+  const [scrollProgress, setScrollProgress] = useState(0);
+  const [showBackToTop, setShowBackToTop] = useState(false);
 
   const openModal = useCallback((e: React.MouseEvent<HTMLButtonElement>) => {
     setModalOrigin(e.currentTarget.getBoundingClientRect());
@@ -275,9 +277,16 @@ export default function Home() {
   useEffect(() => {
     const handleScroll = () => {
       setShowSticky(window.scrollY > 600);
+      setShowBackToTop(window.scrollY > 1200);
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      setScrollProgress(docHeight > 0 ? window.scrollY / docHeight : 0);
     };
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const scrollToTop = useCallback(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
 
   useEffect(() => {
@@ -390,11 +399,14 @@ export default function Home() {
     <>
       <RegistrationModal isOpen={modalOpen} onClose={closeModal} originRect={modalOrigin} />
 
+      {/* Scroll progress bar */}
+      <div className="scroll-progress" style={{ transform: `scaleX(${scrollProgress})` }} aria-hidden="true" />
+
       <main>
       {/* ===== HERO ===== */}
       <section className="hero">
-        <div style={{ marginBottom: 16 }}>
-          <Image src="/aurea-logo.png" alt="AUREA" width={156} height={120} priority />
+        <div style={{ marginBottom: 8 }}>
+          <Image src="/aurea-logo.png" alt="AUREA" width={130} height={100} priority />
         </div>
         <p className="eyebrow">
           Join the 7-Day ARISE Breakthrough &middot; Launching Monday, April 21, 2026
@@ -413,10 +425,8 @@ export default function Home() {
           }}
         >
           <div style={{ textAlign: "left", display: "flex", alignItems: "stretch" }}>
-            <h1 style={{ textAlign: "left", fontSize: "clamp(30px, 3.5vw, 48px)", margin: 0 }}>
-              You Know You Have The Gift, But Do You Have The Identity, AI Infrastructure, and Tribe To Fully Unleash Its Potential?
-              <br />
-              <em>That Changes in 7 Days.</em>
+            <h1 style={{ textAlign: "left", fontSize: "clamp(32px, 4.2vw, 56px)", margin: 0 }}>
+              You Know You Have <em>The Gift</em>, But Do You Have <em>The Identity</em>, <em>AI Infrastructure</em>, and <em>Tribe</em> To Fully Unleash It?
             </h1>
           </div>
           <div style={{ display: "flex", flexDirection: "column", width: "100%" }}>
@@ -462,14 +472,25 @@ export default function Home() {
         </div>
 
         <p
-          className="arena-line"
-          style={{ maxWidth: 1060, fontSize: 27, lineHeight: 1.65, margin: "16px auto 20px", padding: "0 20px" }}
+          style={{
+            maxWidth: 1100,
+            fontSize: 18,
+            fontFamily: "var(--font-body-stack)",
+            fontWeight: 400,
+            letterSpacing: ".14em",
+            textTransform: "uppercase",
+            lineHeight: 1.9,
+            margin: "20px auto 24px",
+            padding: "0 20px",
+            color: "var(--parchment)",
+            opacity: 0.85,
+          }}
         >
-          Embody your Highest Frequency. Run an AI engine that builds your offers, your content, and your systems while you sleep. Build with a tribe of leaders who make your next level feel inevitable.
+          In 7 days, you will have the live coaching, somatic activations, AI systems, and tribe of co-creators that make breaking through inevitable
         </p>
         <div style={{ margin: "0 0 12px" }}>
           <button onClick={openModal} className="btn btn-large">
-            Enter the 7-Day Challenge &mdash; Free
+            Enter the 7-Day ARISE Challenge &mdash; Free
           </button>
         </div>
         <div
@@ -488,9 +509,33 @@ export default function Home() {
               </svg>
             ))}
           </div>
-          <p style={{ fontSize: 12, color: "var(--ash)", letterSpacing: ".05em" }}>
-            5.0 on Google &middot; Trusted by 1,000+ coaches and entrepreneurs
+          <p style={{ fontSize: 12, color: "var(--parchment)", letterSpacing: ".05em" }}>
+            5 Stars on Google &middot; Trusted by 1,000&rsquo;s of coaches and entrepreneurs
           </p>
+        </div>
+
+        {/* Testimonial Ticker */}
+        <div className="ticker-wrap">
+          <div className="ticker">
+            {[
+              ["\u201cTHIS is the community I\u2019ve been searching for over the last decade.\u201d", "Michelle Hori, Executive Coach"],
+              ["\u201cJackson\u2019s guidance has been nothing short of transformative.\u201d", "Lakia Meadan, Sacred Earth Travels"],
+              ["\u201cIf you do the work, you will get the results.\u201d", "Fernando Subirats, Founder, The Manifestival"],
+              ["\u201cIt\u2019s truly a deep dive into your soul\u2019s purpose. 11 out of 10!\u201d", "Daniela Sardi & Tyler Schraeder"],
+              ["\u201cIt has renewed my vision and resolve around expanding my endeavors.\u201d", "Anamaria Aristizabal, Master Coach & Author"],
+              ["\u201cJackson knows how to bring your authenticity to life.\u201d", "Kim Kong, Founder, Movement University"],
+              ["\u201cThe quality of the content shared is priceless.\u201d", "Melly Anton, Entrepreneur"],
+              ["\u201cHe will help you break free from your limiting beliefs.\u201d", "Christine Lee, Entrepreneur"],
+              ["\u201cTHIS is the community I\u2019ve been searching for over the last decade.\u201d", "Michelle Hori, Executive Coach"],
+              ["\u201cJackson\u2019s guidance has been nothing short of transformative.\u201d", "Lakia Meadan, Sacred Earth Travels"],
+              ["\u201cIf you do the work, you will get the results.\u201d", "Fernando Subirats, Founder, The Manifestival"],
+              ["\u201cIt\u2019s truly a deep dive into your soul\u2019s purpose. 11 out of 10!\u201d", "Daniela Sardi & Tyler Schraeder"],
+            ].map(([quote, name], i) => (
+              <span key={i} className="ticker-item" aria-hidden={i >= 8 ? "true" : undefined}>
+                {quote} &mdash; <span className="name">{name}</span>
+              </span>
+            ))}
+          </div>
         </div>
 
         {/* What You Get Snapshot */}
@@ -561,23 +606,6 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Ticker */}
-        <div className="ticker-wrap">
-          <div className="ticker">
-            {[
-              ["\u201cTHIS is the community I\u2019ve been searching for over the last decade.\u201d", "Michelle Hori, Executive Coach"],
-              ["\u201cIt has renewed my vision and resolve around expanding my endeavors.\u201d", "Anamaria Aristizabal, Master Coach & Author"],
-              ["\u201cIf you do the work, you will get the results.\u201d", "Fernando Subirats, Founder, The Manifestival"],
-              ["\u201cTHIS is the community I\u2019ve been searching for over the last decade.\u201d", "Michelle Hori, Executive Coach"],
-              ["\u201cIt has renewed my vision and resolve around expanding my endeavors.\u201d", "Anamaria Aristizabal, Master Coach & Author"],
-              ["\u201cIf you do the work, you will get the results.\u201d", "Fernando Subirats, Founder, The Manifestival"],
-            ].map(([quote, name], i) => (
-              <span key={i} className="ticker-item" aria-hidden={i >= 3 ? "true" : undefined}>
-                {quote} &mdash; <span className="name">{name}</span>
-              </span>
-            ))}
-          </div>
-        </div>
       </section>
 
       {/* ===== THREE BLOCKS ===== */}
@@ -585,9 +613,9 @@ export default function Home() {
         <div className="container-wide">
           <p className="eyebrow text-center" style={{ fontSize: 22 }}>What&rsquo;s Actually In Your Way</p>
           <h2 className="blocks-heading">
-            Three Blocks Between You
+            The Three Thresholds You Must Cross
             <br />
-            and Your Mission at Full Volume
+            to Live Your Mission at Full Volume
           </h2>
           <p className="blocks-sub">
             Every course you&rsquo;ve taken tried to solve one of these. ARISE addresses all three
@@ -596,7 +624,7 @@ export default function Home() {
 
           <div className="blocks-grid">
             <div className="block-card fade-in card-tilt" data-stagger>
-              <div className="block-num">Block One</div>
+              <div className="block-num">One</div>
               <h3>Frequency</h3>
               <p>
                 Most creators on the verge of a breakthrough know intellectually that they&rsquo;re
@@ -608,7 +636,7 @@ export default function Home() {
               </p>
             </div>
             <div className="block-card fade-in card-tilt" data-stagger>
-              <div className="block-num">Block Two</div>
+              <div className="block-num">Two</div>
               <h3>Tribe</h3>
               <p>
                 Do you feel like you&rsquo;re building alone? If so, somewhere in your nervous system
@@ -620,7 +648,7 @@ export default function Home() {
               </p>
             </div>
             <div className="block-card fade-in card-tilt" data-stagger>
-              <div className="block-num">Block Three</div>
+              <div className="block-num">Three</div>
               <h3>Strategy</h3>
               <p>
                 Vision without a plan stays a dream. You have the gift, but without a clear path
@@ -682,7 +710,7 @@ export default function Home() {
           lineHeight: 1.5,
           position: "relative",
         }}>
-          Gifted leaders stay stuck not because they lack talent &mdash; but because they lack the infrastructure and identity to hold what&rsquo;s next.
+          Gifted leaders don&rsquo;t break through until they build the infrastructure, tribe, and identity to hold their full power.
         </p>
         {/* Bottom gold divider */}
         <div style={{
@@ -778,66 +806,121 @@ export default function Home() {
 
           <div className="gold-divider" />
           <button onClick={openModal} className="btn">
-            Enter the 7-Day Challenge &mdash; Free
+            Enter the 7-Day ARISE Challenge &mdash; Free
           </button>
         </div>
       </section>
 
-      {/* ===== GUIDE ===== */}
+      {/* ===== GUIDES ===== */}
       <section className="guide section-pad">
         <div className="container-wide">
-          <p className="eyebrow text-center" style={{ fontSize: 22 }}>Your Guide</p>
-          <div className="guide-grid">
-            <Image src="/jackson-headshot.jpg" alt="Jackson Strong" width={397} height={389} className="guide-photo fade-in-left" style={{ objectFit: "cover" }} />
-            <div className="guide-text fade-in">
-              <h2>Jackson Strong</h2>
-              <p className="title-sub">
-                Founder of AUREA Leaders &middot; Creator of Stage Secrets
-              </p>
-              <p>
-                My career began in high-tech private equity and the startup world. I worked for
-                multiple companies valued over $300M. I was good at it.
-              </p>
-              <p>But I was dying in the matrix.</p>
-              <p>
-                In 2016, the tension between my corporate life and my soul&rsquo;s work snapped. I
-                had a legitimate nervous breakdown. I got divorced, quit the corporate life, and
-                founded my first company serving purpose-driven entrepreneurs.
-              </p>
-              <p>
-                Since then, I&rsquo;ve generated over $600,000 helping transformational leaders find
-                their message, build their offer, and monetize their mission. I&rsquo;ve spent 10,000+
-                hours in the room with people just like you.
-              </p>
-              <div className="vulnerability">
+          <p className="eyebrow text-center" style={{ fontSize: 22 }}>Your Guides</p>
+
+          <div style={{
+            display: "grid",
+            gridTemplateColumns: "1fr 1fr",
+            gap: 48,
+          }} className="guides-row">
+
+            {/* Jackson */}
+            <div className="fade-in">
+              <Image src="/jackson-headshot.jpg" alt="Jackson Strong" width={397} height={389} style={{ width: "100%", height: "auto", aspectRatio: "1/1", objectFit: "cover", borderRadius: 2, marginBottom: 24 }} />
+              <div className="guide-text">
+                <h2>Jackson Strong</h2>
+                <p className="title-sub">
+                  Founder of AUREA Leaders &middot; Creator of Stage Secrets
+                </p>
                 <p>
-                  I need to tell you something that people in my position aren&rsquo;t supposed to
-                  say: this past year has been one of the hardest of my life. I have felt the same
-                  fear, the same contraction, the same voice whispering &ldquo;who are you to do
-                  this&rdquo; that I know you&rsquo;re feeling right now.
+                  My career began in high-tech private equity and the startup world. I worked for
+                  multiple companies valued over $300M. I was good at it.
+                </p>
+                <p>But I was dying in the matrix.</p>
+                <p>
+                  In 2016, the tension between my corporate life and my soul&rsquo;s work snapped. I
+                  had a legitimate nervous breakdown. I got divorced, quit the corporate life, and
+                  founded my first company serving purpose-driven entrepreneurs.
+                </p>
+                <p>
+                  Since then, I&rsquo;ve generated over $600,000 helping transformational leaders find
+                  their message, build their offer, and monetize their mission. I&rsquo;ve spent 10,000+
+                  hours in the room with people just like you.
+                </p>
+                <div className="vulnerability">
+                  <p>
+                    I need to tell you something that people in my position aren&rsquo;t supposed to
+                    say: this past year has been one of the hardest of my life. I have felt the same
+                    fear, the same contraction, the same voice whispering &ldquo;who are you to do
+                    this&rdquo; that I know you&rsquo;re feeling right now.
+                  </p>
+                </div>
+                <p>But the hardest year of my life was also the deepest work I&rsquo;ve ever done.</p>
+                <p>
+                  I went into seclusion in the forests of East Texas. I sat with deep medicines. I
+                  consulted with guides and allies I trust with my life. I confronted every shadow that
+                  has been holding me back &mdash; not to bypass it, not to transcend it, but to{" "}
+                  <em>alchemize</em> it.
+                </p>
+                <p>
+                  ARISE is what I found at the bottom. The bone broth. The most concentrated, distilled
+                  essence of everything I&rsquo;ve heard, everything I&rsquo;ve lived, and everything I
+                  know works. Seven days. Three blocks. No filler.
+                </p>
+                <p>
+                  And we&rsquo;re not done listening. During ARISE, your feedback directly shapes what
+                  we build next.
+                </p>
+                <p>
+                  I&rsquo;m not here as a guru. I&rsquo;m here as a builder who went into the fire
+                  &mdash; mine and yours &mdash; and came back with something real. Not from a
+                  mountaintop. From the arena. And the arena is still where I live.
                 </p>
               </div>
-              <p>But the hardest year of my life was also the deepest work I&rsquo;ve ever done.</p>
-              <p>
-                I went into seclusion in the forests of East Texas. I sat with deep medicines. I
-                consulted with guides and allies I trust with my life. I confronted every shadow that
-                has been holding me back &mdash; not to bypass it, not to transcend it, but to{" "}
-                <em>alchemize</em> it.
-              </p>
-              <p>
-                ARISE is what I found at the bottom. The bone broth. The most concentrated, distilled
-                essence of everything I&rsquo;ve heard, everything I&rsquo;ve lived, and everything I
-                know works. Seven days. Three blocks. No filler.
-              </p>
-              <p>
-                And we&rsquo;re not done listening. During ARISE, your feedback directly shapes what
-                we build next.
-              </p>
-              <p>
-                I&rsquo;m not here as a guru. I&rsquo;m here as a builder who went into the fire
-                &mdash; mine and yours &mdash; and came back with something real. Not from a
-                mountaintop. From the arena. And the arena is still where I live.
-              </p>
+            </div>
+
+            {/* Patrick */}
+            <div className="fade-in">
+              <Image src="/patrick-headshot.jpg" alt="Patrick Farrell" width={397} height={397} style={{ width: "100%", height: "auto", aspectRatio: "1/1", objectFit: "cover", borderRadius: 2, marginBottom: 24 }} />
+              <div className="guide-text">
+                <h2>Patrick Farrell</h2>
+                <p className="title-sub">
+                  AI &amp; Software Architect &middot; Creator of the Adhara Framework
+                </p>
+                <p>
+                  Two engineering degrees from Virginia Tech. Senior Software Engineer in
+                  New York. A decade building systems for companies that didn&rsquo;t need
+                  my help.
+                </p>
+                <p>
+                  The turning point wasn&rsquo;t dramatic &mdash; it was quiet. I kept meeting
+                  coaches, healers, and creators who had transformational gifts and absolutely
+                  no infrastructure to deliver them. They were duct-taping together twelve
+                  different tools and losing hours every week to tech that fought them at
+                  every step.
+                </p>
+                <p>
+                  So I stopped building for corporations and started building for them. 50+
+                  projects launched. 800+ community members. Over $1M generated for the
+                  founders I serve.
+                </p>
+                <div className="vulnerability">
+                  <p>
+                    Here&rsquo;s what I&rsquo;ve learned: the technology most entrepreneurs
+                    are using was never designed for the work they&rsquo;re doing. It was
+                    designed for marketers selling products &mdash; not leaders carrying
+                    a message.
+                  </p>
+                </div>
+                <p>
+                  That gap is why I created the Adhara Framework and why I built the technology
+                  behind Serafina. AI that doesn&rsquo;t just automate &mdash; it understands
+                  the kind of work you do and builds alongside you.
+                </p>
+                <p>
+                  During ARISE, the systems you&rsquo;ll use have my fingerprints on every
+                  layer. I&rsquo;m not here to teach you to code. I&rsquo;m here to make sure
+                  the technology under your mission is as strong as the mission itself.
+                </p>
+              </div>
             </div>
           </div>
 
@@ -876,7 +959,7 @@ export default function Home() {
           <p className="eyebrow text-center" style={{ fontSize: 22 }}>The 7-Day Journey</p>
           <p style={{ fontSize: 13, letterSpacing: ".06em", color: "var(--ash)", textAlign: "center", marginBottom: 24 }}>
             Live Coaching &middot; Daily Somatic Meditations &middot; First Access to{" "}
-            <strong style={{ color: "var(--gold)" }}>Seraph</strong> &mdash; the AI Platform Built
+            <strong style={{ color: "var(--gold)" }}>Serafina</strong> &mdash; the AI Platform Built
             for Transformation Leaders
           </p>
           <h2>
@@ -929,10 +1012,10 @@ export default function Home() {
           <div className="day-card fade-in">
             <div className="day-num">5</div>
             <div className="day-content">
-              <h3>Build Your Offer &mdash; With Seraph</h3>
+              <h3>Build Your Offer &mdash; With Serafina</h3>
               <p>
                 Your gifts become a structure: a name, a promise, a price, a format. Today you step
-                into <strong style={{ color: "var(--gold-light)" }}>Seraph</strong> for the first
+                into <strong style={{ color: "var(--gold-light)" }}>Serafina</strong> for the first
                 time &mdash; and experience what it feels like to build with AI that understands
                 sacred work.
               </p>
@@ -977,7 +1060,7 @@ export default function Home() {
 
           <div className="text-center" style={{ marginTop: 48 }}>
             <button onClick={openModal} className="btn">
-              Enter the 7-Day Challenge &mdash; Free
+              Enter the 7-Day ARISE Challenge &mdash; Free
             </button>
           </div>
         </div>
@@ -987,7 +1070,7 @@ export default function Home() {
       <section className="seraph section-pad fade-in">
         <div className="container-wide">
           <p className="eyebrow text-center" style={{ fontSize: 22, color: "var(--gold)" }}>
-            Introducing Seraph
+            Introducing Serafina
           </p>
           <h2
             style={{
@@ -1013,7 +1096,7 @@ export default function Home() {
               lineHeight: 1.7,
             }}
           >
-            Every tool on the market was built for marketers. Seraph was built for <em>you</em>.
+            Every tool on the market was built for marketers. Serafina was built for <em>you</em>.
           </p>
           <p
             style={{
@@ -1028,7 +1111,7 @@ export default function Home() {
             During ARISE, you experience it first. Your feedback shapes what it becomes.
           </p>
 
-          {/* Seraph Video */}
+          {/* Serafina Video */}
           <div
             style={{
               position: "relative",
@@ -1077,7 +1160,7 @@ export default function Home() {
                   letterSpacing: ".15em",
                 }}
               >
-                Seraph Video Coming Soon
+                Serafina Video Coming Soon
               </p>
             </div>
           </div>
@@ -1149,7 +1232,7 @@ export default function Home() {
                 Nothing like this exists. We checked.
               </p>
               <p style={{ color: "var(--ash)", fontSize: 15, lineHeight: 1.7, marginBottom: 16 }}>
-                Seraph is not another CRM with a chatbot bolted on. It is a sovereign operating
+                Serafina is not another CRM with a chatbot bolted on. It is a sovereign operating
                 system for identity, nervous system regulation, and wealth transformation.
               </p>
               <p
@@ -1177,10 +1260,10 @@ export default function Home() {
               ["Your Genius Statement", "The 1-2 sentence distillation of the transformation only you can deliver."],
               ["Your Co-Creator Pod", "A matched tribe of builders at your level \u2014 people who see your fire and refuse to let you shrink."],
               ["Your Identity Declarations", "5 present-tense statements about who you are becoming \u2014 anchored somatically."],
-              ["Your First Offer + Landing Page", "Named, priced, structured, and LIVE \u2014 built inside Seraph with Serafina guiding the process."],
+              ["Your First Offer + Landing Page", "Named, priced, structured, and LIVE \u2014 built inside Serafina with Serafina guiding the process."],
               ["Your First Piece of Content", "Something real, shared with a real audience. The ice is broken forever."],
               ["Your Regulation Practice", "A nervous system protocol for YOUR wiring \u2014 so you can hold the wealth, visibility, and impact that\u2019s coming."],
-              ["Hands-On Seraph Experience", "You will have used the platform no one else has seen \u2014 and your feedback will shape its future."],
+              ["Hands-On Serafina Experience", "You will have used the platform no one else has seen \u2014 and your feedback will shape its future."],
             ].map(([title, desc], i) => (
               <div
                 key={i}
@@ -1361,8 +1444,8 @@ export default function Home() {
             answer="Yes \u2014 and I\u2019m going to be transparent about it. On Day 7, you\u2019ll be invited to continue inside AUREA Builders. But the challenge delivers standalone value. I\u2019d rather you trust me and say no than feel manipulated and say yes."
           />
           <FaqItem
-            question="What is Seraph?"
-            answer="Seraph is the world\u2019s first sovereign operating system for transformation leaders. During ARISE, you experience it firsthand \u2014 and your feedback directly shapes what it becomes."
+            question="What is Serafina?"
+            answer="Serafina is the world\u2019s first sovereign operating system for transformation leaders. During ARISE, you experience it firsthand \u2014 and your feedback directly shapes what it becomes."
           />
           <FaqItem
             question="I'm not sure I'm &quot;ready&quot; \u2014 should I wait?"
@@ -1393,12 +1476,12 @@ export default function Home() {
           That&rsquo;s Done Waiting.
         </h2>
         <p className="sub">
-          7 days. Live calls. Daily meditations. First access to Seraph.
+          7 days. Live calls. Daily meditations. First access to Serafina.
           <br />
           Your frequency. Your tribe. Your technology.
         </p>
         <button onClick={openModal} className="btn btn-large">
-          Enter the 7-Day Challenge &mdash; Free
+          Enter the 7-Day ARISE Challenge &mdash; Free
         </button>
         <p className="details">
           Starts Monday, April 21, 2026 &middot; Zero cost, full commitment
@@ -1429,9 +1512,20 @@ export default function Home() {
       <div className={`sticky-cta ${showSticky && !modalOpen ? "visible" : ""}`}>
         <p>Join the 7-Day ARISE Breakthrough &mdash; Free</p>
         <button onClick={openModal} className="btn">
-          Enter the 7-Day Challenge &mdash; Free
+          Enter the 7-Day ARISE Challenge &mdash; Free
         </button>
       </div>
+
+      {/* Back to top */}
+      <button
+        className={`back-to-top ${showBackToTop ? "visible" : ""}`}
+        onClick={scrollToTop}
+        aria-label="Back to top"
+      >
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <polyline points="18,15 12,9 6,15" />
+        </svg>
+      </button>
     </>
   );
 }
