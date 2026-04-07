@@ -168,9 +168,18 @@ function FaqItem({ question, answer }: { question: string; answer: string }) {
 
 export default function Home() {
   const [modalOpen, setModalOpen] = useState(false);
+  const [showSticky, setShowSticky] = useState(false);
 
   const openModal = useCallback(() => setModalOpen(true), []);
   const closeModal = useCallback(() => setModalOpen(false), []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowSticky(window.scrollY > 600);
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -191,11 +200,11 @@ export default function Home() {
 
       {/* ===== HERO ===== */}
       <section className="hero">
-        <div style={{ marginBottom: 40 }}>
+        <div style={{ marginBottom: 16 }}>
           <img src="/aurea-logo.png" alt="AUREA" style={{ height: 120, width: "auto" }} />
         </div>
         <p className="eyebrow">
-          Free 7-Day Breakthrough Experience &middot; Launching Monday, April 20, 2026
+          Join the 7-Day ARISE Breakthrough &middot; Launching Monday, April 21, 2026
         </p>
 
         <div
@@ -203,71 +212,101 @@ export default function Home() {
           style={{
             display: "grid",
             gridTemplateColumns: "1fr 1fr",
-            gap: 48,
-            alignItems: "center",
+            gap: 32,
+            alignItems: "start",
             maxWidth: 1080,
             width: "100%",
             margin: "0 auto",
           }}
         >
-          <div style={{ textAlign: "left" }}>
-            <h1 style={{ textAlign: "left" }}>
-              7 Days to Clear What&rsquo;s Blocking You, Build What&rsquo;s Calling You, and
-              Get <em>the Tribe and Technology to Sustain It</em>
+          <div style={{ textAlign: "left", display: "flex", alignItems: "stretch" }}>
+            <h1 style={{ textAlign: "left", fontSize: "clamp(30px, 3.5vw, 48px)", margin: 0 }}>
+              You Have The Gifts, But You Don&rsquo;t Yet Have The Identity, AI Systems, or Tribe That Matches Their Value&hellip;
+              <br />
+              <em>That Changes in 7 Days.</em>
             </h1>
           </div>
-          <div
-            style={{
-              position: "relative",
-              width: "100%",
-              paddingBottom: "56.25%",
-              borderRadius: 4,
-              overflow: "hidden",
-              border: "1px solid var(--ash-dark)",
-            }}
-          >
-            <iframe
-              src="https://player.vimeo.com/video/1011664596?h=0&autoplay=1&muted=1&title=0&byline=0&portrait=0"
+          <div style={{ display: "flex", flexDirection: "column", width: "100%" }}>
+            <div
               style={{
-                position: "absolute",
-                top: 0,
-                left: 0,
+                position: "relative",
                 width: "100%",
-                height: "100%",
-                border: 0,
+                paddingBottom: "56.25%",
+                borderRadius: 4,
+                overflow: "hidden",
+                border: "1px solid var(--ash-dark)",
               }}
-              allow="autoplay; fullscreen; picture-in-picture"
-              allowFullScreen
-            />
+            >
+              <iframe
+                src="https://player.vimeo.com/video/1011664596?h=0&autoplay=1&muted=1&title=0&byline=0&portrait=0"
+                style={{
+                  position: "absolute",
+                  top: 0,
+                  left: 0,
+                  width: "100%",
+                  height: "100%",
+                  border: 0,
+                }}
+                allow="autoplay; fullscreen; picture-in-picture"
+                allowFullScreen
+              />
+            </div>
+            <p
+              style={{
+                fontSize: 12,
+                color: "var(--ash)",
+                textTransform: "uppercase",
+                letterSpacing: ".15em",
+                marginTop: 5,
+                textAlign: "center",
+              }}
+            >
+              Watch &amp; Join the Challenge
+            </p>
           </div>
         </div>
 
         <p
           className="arena-line"
-          style={{ maxWidth: 640, fontSize: 17, lineHeight: 1.65, margin: "36px auto 20px" }}
+          style={{ maxWidth: 1060, fontSize: 27, lineHeight: 1.65, margin: "16px auto 20px", padding: "0 20px" }}
         >
-          For those who sense it&rsquo;s not just their shadow holding them back &mdash; but the
-          full light of who they&rsquo;re here to become.
+          Embody your Highest Frequency. Run an AI engine that builds your offers, your content, and your systems while you sleep. Build with a tribe of leaders who make your next level feel inevitable.
         </p>
-        <div style={{ margin: "0 0 20px" }}>
+        <div style={{ margin: "0 0 12px" }}>
           <button onClick={openModal} className="btn btn-large">
-            Yes, I&rsquo;m Ready for a Breakthrough
+            Build What My Gift Deserves &mdash; Free
           </button>
         </div>
-        <p style={{ fontSize: 13, letterSpacing: ".06em", color: "var(--ash)" }}>
-          Live Coaching &middot; Daily Somatic Meditations &middot; First Access to{" "}
-          <strong style={{ color: "var(--gold)" }}>Seraph</strong> &mdash; the AI Platform Built
-          for Transformation Leaders
-        </p>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            gap: 6,
+            marginBottom: 20,
+          }}
+        >
+          <div style={{ display: "flex", gap: 4 }}>
+            {[...Array(5)].map((_, i) => (
+              <svg key={i} width="18" height="18" viewBox="0 0 24 24" fill="#C9A84C">
+                <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26" />
+              </svg>
+            ))}
+          </div>
+          <p style={{ fontSize: 12, color: "var(--ash)", letterSpacing: ".05em" }}>
+            5.0 on Google &middot; Trusted by 1,000+ coaches and entrepreneurs
+          </p>
+        </div>
 
         {/* What You Get Snapshot */}
-        <div style={{ margin: "0 auto 40px", maxWidth: 820, width: "100%" }}>
+        <div style={{ margin: "0 auto 16px", maxWidth: 820, width: "100%" }}>
           <p
             style={{
-              fontSize: 11,
+              fontSize: 22,
               textTransform: "uppercase",
               letterSpacing: ".22em",
               color: "var(--gold-dark)",
+              marginTop: 40,
               marginBottom: 20,
               textAlign: "center",
             }}
@@ -313,76 +352,6 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Bonus */}
-        <div style={{ margin: "8px auto 0", maxWidth: 620, textAlign: "center" }}>
-          <div
-            style={{
-              border: "1px solid var(--gold-dark)",
-              borderRadius: 2,
-              padding: "16px 28px",
-              background: "rgba(201, 168, 76, 0.04)",
-              display: "inline-block",
-            }}
-          >
-            <p
-              style={{
-                fontSize: 12,
-                textTransform: "uppercase",
-                letterSpacing: ".2em",
-                color: "var(--gold)",
-                marginBottom: 4,
-              }}
-            >
-              Bonus
-            </p>
-            <p
-              style={{
-                fontFamily: "var(--font-heading)",
-                fontSize: 18,
-                fontWeight: 400,
-                color: "var(--parchment)",
-                lineHeight: 1.4,
-                margin: 0,
-              }}
-            >
-              First Access to the AUREA Seraph Ecosystem
-              <br />
-              <span
-                style={{
-                  fontSize: 13,
-                  color: "var(--gold-dark)",
-                  fontFamily: "var(--font-body)",
-                  fontWeight: 300,
-                }}
-              >
-                The AI Platform Built for Transformation Leaders
-              </span>
-            </p>
-          </div>
-        </div>
-
-        {/* Credibility */}
-        <div
-          style={{
-            marginTop: 24,
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            gap: 6,
-          }}
-        >
-          <div style={{ display: "flex", gap: 4 }}>
-            {[...Array(5)].map((_, i) => (
-              <svg key={i} width="18" height="18" viewBox="0 0 24 24" fill="#C9A84C">
-                <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26" />
-              </svg>
-            ))}
-          </div>
-          <p style={{ fontSize: 12, color: "var(--ash)", letterSpacing: ".05em" }}>
-            5.0 on Google &middot; Trusted by 1,000+ coaches and entrepreneurs
-          </p>
-        </div>
-
         {/* Ticker */}
         <div className="ticker-wrap">
           <div className="ticker">
@@ -405,7 +374,7 @@ export default function Home() {
       {/* ===== THREE BLOCKS ===== */}
       <section className="blocks section-pad fade-in">
         <div className="container-wide">
-          <p className="eyebrow text-center">What&rsquo;s Actually In Your Way</p>
+          <p className="eyebrow text-center" style={{ fontSize: 22 }}>What&rsquo;s Actually In Your Way</p>
           <h2 className="blocks-heading">
             Three Blocks Between You
             <br />
@@ -421,92 +390,199 @@ export default function Home() {
               <div className="block-num">Block One</div>
               <h3>Frequency</h3>
               <p>
-                You know intellectually that you&rsquo;re gifted. But you cannot consistently access
-                the <em>feeling</em> of your own greatness. Without that felt sense alive in your
-                body, every offer you build, every piece of content you create, every price you set
-                comes from a contracted version of you &mdash; not the sovereign one. The strategy
-                doesn&rsquo;t work until the frequency is right.
+                Most creators on the verge of a breakthrough know intellectually that they&rsquo;re
+                gifted. But often cannot consistently access the feeling of your greatness. Without
+                that felt sense alive in your body, every offer you build, every piece of content you
+                create, every price you set comes from a state of contraction &mdash; not your
+                sovereign power. The strategy won&rsquo;t work until the frequency is right. We start
+                here, in a group, and embed your greatness into your field.
               </p>
             </div>
             <div className="block-card">
               <div className="block-num">Block Two</div>
               <h3>Tribe</h3>
               <p>
-                You are building alone. And somewhere in your nervous system lives a primal fear:
-                that if you fully become who you are, you will be ostracized. Persecuted for being
-                different. Abandoned by the people you love. This fear keeps you small. It only
-                dissolves in the presence of co-creators who see your fire &mdash; and match it. You
-                need a tribe that makes expansion feel safe.
+                Do you feel like you&rsquo;re building alone? If so, somewhere in your nervous system
+                lives a primal fear holding you back. Too often it whispers, &ldquo;If you fully
+                express yourself and speak your truth, you will be abandoned. Persecuted for being
+                different. Abandoned by the people you love.&rdquo; This fear keeps you beneath your
+                potential. It only dissolves in the presence of co-creators who see your
+                fire &mdash; and match it. You need a tribe that makes expansion feel safe.
               </p>
             </div>
-            <div className="block-card" style={{ borderColor: "var(--gold-dark)" }}>
+            <div className="block-card">
               <div className="block-num">Block Three</div>
-              <h3>Technology</h3>
+              <h3>Strategy</h3>
               <p>
-                AI is rewriting the rules of business in real time. You know it matters. You
-                don&rsquo;t know how to use it. The tools were built for marketers and growth hackers
-                &mdash; not for people who think in transformation. So we built something different:{" "}
-                <strong style={{ color: "var(--gold-light)" }}>Seraph</strong> &mdash; an AI
-                operating system with a soul-aligned guide, personalized morning activations, tribe
-                matching based on your actual design, offer building, and daily command center. All
-                built for YOUR kind of work. During ARISE, you experience it first.
+                Vision without a plan stays a dream. You have the gift, but without a clear path
+                from where you are to where you&rsquo;re meant to be, even the most powerful
+                calling stalls out. Most strategy out there was designed for people selling
+                products &mdash; not for leaders carrying a message. In this challenge, we give you
+                a real roadmap: a validated offer, a living landing page, content in the world, and
+                a 30-day plan to your first $10,000 &mdash; all built from your truth, not someone
+                else&rsquo;s template.
               </p>
             </div>
           </div>
+
         </div>
       </section>
 
       {/* ===== PROBLEM ===== */}
-      <section className="problem section-pad fade-in">
-        <div className="content">
-          <div className="lines">
-            You <strong>KNOW</strong> you are meant to lead.
-            <br />
-            You <strong>KNOW</strong> your story could change lives.
-            <br />
-            You <strong>KNOW</strong> there are people out there who need exactly what you carry.
-            <br /><br />
-            <em>And yet &mdash;</em>
-            <br /><br />
-            You can&rsquo;t access the <strong>feeling</strong> of your own greatness long enough to
-            build from it.
-            <br />
-            You are <strong>alone</strong> &mdash; without a tribe of co-creators who see your fire
-            and refuse to let you shrink.
-            <br />
-            You are <strong>overwhelmed</strong> by technology that was built for marketers, not for
-            people who think in transformation.
-            <br /><br />
-            And underneath all of it &mdash; a deeper knowing you can&rsquo;t shake:
-            <br /><br />
-            <strong>Something is being revealed in the world right now.</strong>
-            <br />
-            Darkness that has been hidden for generations is surfacing.
-            <br />
-            In systems. In institutions. In the people we were told to trust.
-            <br />
-            And it is not random. It is a mirror.
-            <br /><br />
-            What is being exposed out there is the same shadow
-            <br />
-            that lives in here &mdash; in your patterns, your fears,
-            <br />
-            your reasons for staying small.
-            <br /><br />
-            The question is not <em>why is this happening.</em>
-            <br />
-            The question is <em>what is it activating in you?</em>
-            <br /><br />
-            Not because you&rsquo;re not ready.
-            <br />
-            Because no one gave you the bridge between your transformation
-            <br />
-            and the business that should exist around it.
+      <section className="problem section-pad fade-in" style={{ position: "relative", overflow: "hidden" }}>
+        {/* Background glow */}
+        <div style={{
+          position: "absolute",
+          top: "-10%",
+          left: "50%",
+          transform: "translateX(-50%)",
+          width: 800,
+          height: 800,
+          background: "radial-gradient(circle, rgba(201, 168, 76, 0.07) 0%, transparent 65%)",
+          pointerEvents: "none",
+        }} />
+        <div className="content" style={{ position: "relative" }}>
+          <p className="bridge" style={{ marginTop: 0 }}>You don&rsquo;t need to shrink your vision.</p>
+          <p className="bridge" style={{ marginTop: 0 }}>You need to build something that can hold it.</p>
+          <p className="bridge-sub" style={{ marginTop: 24 }}>
+            In 7 days, you&rsquo;ll clarify your positioning, activate the right audience,
+            and install the foundation for real scale.
+          </p>
+          <p className="bridge-sub" style={{ marginTop: 0, marginBottom: 40 }}>7 days. Free. Built for leaders.</p>
+          {/* Decorative divider */}
+          <div style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            gap: 16,
+            margin: "0 auto 36px",
+            maxWidth: 300,
+          }}>
+            <div style={{ flex: 1, height: 1, background: "linear-gradient(90deg, transparent, var(--gold-dark))" }} />
+            <div style={{ color: "var(--gold)", fontSize: 14 }}>&#10022;</div>
+            <div style={{ flex: 1, height: 1, background: "linear-gradient(90deg, var(--gold-dark), transparent)" }} />
           </div>
-          <p className="bridge">This is that bridge.</p>
-          <p className="bridge-sub">7 days. Free. Everything changes.</p>
+          <p style={{
+            fontFamily: "var(--font-heading)",
+            fontSize: 24,
+            fontWeight: 300,
+            color: "var(--parchment)",
+            textAlign: "center",
+            lineHeight: 1.6,
+            marginBottom: 8,
+          }}>
+            You&rsquo;re not starting from zero.
+          </p>
+          <p style={{
+            fontSize: 20,
+            color: "var(--ash)",
+            textAlign: "center",
+            marginBottom: 40,
+          }}>
+            You&rsquo;ve built something. You&rsquo;ve served people. You&rsquo;ve proven it works.
+          </p>
+          <div className="lines">
+            But you&rsquo;ve hit a ceiling &mdash; and you can feel it.
+            <br /><br />
+            You&rsquo;ve <em>outgrown</em> the version of yourself that got you here.
+            <br />
+            The identity that carried you this far <strong>can&rsquo;t carry you to what&rsquo;s next</strong>.
+            <br /><br />
+            Your nervous system isn&rsquo;t calibrated for the level you&rsquo;re stepping into.
+            <br />
+            Your systems weren&rsquo;t built to scale.
+            <br />
+            And the people around you &mdash; as much as they love you &mdash;
+            <br />
+            aren&rsquo;t operating where you&rsquo;re going.
+            <br /><br />
+            So you keep producing. Keep pushing. Keep showing up.
+            <br />
+            But the <strong>growth has plateaued</strong>.
+            <br />
+            And you know it&rsquo;s not a talent problem.
+            <br /><br />
+            It&rsquo;s an <strong>infrastructure</strong> problem.
+            <br /><br />
+            The world needs you operating at full capacity &mdash; <em>now</em>.
+            <br />
+            The people you&rsquo;re meant to serve are waiting.
+            <br />
+            And every day you stay at this level is a day
+            <br />
+            your mission doesn&rsquo;t reach who it&rsquo;s meant to reach.
+            <br /><br />
+            You don&rsquo;t need more inspiration.
+            <br />
+            You don&rsquo;t need another course.
+            <br />
+            You don&rsquo;t need to start over.
+            <br /><br />
+            You need:
+          </div>
+
+          <div style={{
+            display: "flex",
+            justifyContent: "center",
+            gap: 24,
+            margin: "32px auto",
+            maxWidth: 680,
+            flexWrap: "wrap",
+          }}>
+            {["Clear Positioning", "A Defined Audience", "Scalable Systems"].map((item, i) => (
+              <div key={i} style={{
+                border: "1px solid var(--gold-dark)",
+                borderRadius: 2,
+                padding: "16px 28px",
+                background: "rgba(201, 168, 76, 0.04)",
+                flex: 1,
+                minWidth: 180,
+                textAlign: "center",
+              }}>
+                <p style={{
+                  fontFamily: "var(--font-heading)",
+                  fontSize: 18,
+                  fontWeight: 400,
+                  color: "var(--gold)",
+                  margin: 0,
+                }}>{item}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="lines">
+            Because right now?
+            <br /><br />
+            Your business depends on you too much.
+            <br />
+            Your message isn&rsquo;t landing as powerfully as it should.
+            <br />
+            And your growth is slower than your vision.
+            <br /><br />
+            And that gap? It&rsquo;s costing you:
+          </div>
+
+          <div style={{
+            display: "flex",
+            justifyContent: "center",
+            gap: 40,
+            margin: "32px auto 48px",
+          }}>
+            {["Momentum", "Income", "Impact"].map((item, i) => (
+              <p key={i} style={{
+                fontFamily: "var(--font-heading)",
+                fontSize: 24,
+                fontWeight: 300,
+                color: i === 2 ? "var(--gold)" : "var(--parchment)",
+                margin: 0,
+                letterSpacing: ".05em",
+              }}>{item}.</p>
+            ))}
+          </div>
+
+          <div className="gold-divider" />
           <button onClick={openModal} className="btn">
-            I&rsquo;m Ready &mdash; Save My Spot
+            Build What My Gift Deserves &mdash; Free
           </button>
         </div>
       </section>
@@ -514,9 +590,9 @@ export default function Home() {
       {/* ===== GUIDE ===== */}
       <section className="guide section-pad">
         <div className="container-wide">
-          <p className="eyebrow text-center">Your Guide</p>
+          <p className="eyebrow text-center" style={{ fontSize: 22 }}>Your Guide</p>
           <div className="guide-grid">
-            <div className="guide-photo">[ Jackson Strong Photo ]</div>
+            <img src="/jackson-headshot.jpg" alt="Jackson Strong" className="guide-photo" style={{ objectFit: "cover" }} />
             <div className="guide-text">
               <h2>Jackson Strong</h2>
               <p className="title-sub">
@@ -601,7 +677,12 @@ export default function Home() {
       {/* ===== 7-DAY JOURNEY ===== */}
       <section className="journey section-pad">
         <div className="container-wide">
-          <p className="eyebrow text-center">The 7-Day Journey</p>
+          <p className="eyebrow text-center" style={{ fontSize: 22 }}>The 7-Day Journey</p>
+          <p style={{ fontSize: 13, letterSpacing: ".06em", color: "var(--ash)", textAlign: "center", marginBottom: 24 }}>
+            Live Coaching &middot; Daily Somatic Meditations &middot; First Access to{" "}
+            <strong style={{ color: "var(--gold)" }}>Seraph</strong> &mdash; the AI Platform Built
+            for Transformation Leaders
+          </p>
           <h2>
             Simple Enough to Follow.
             <br />
@@ -700,7 +781,7 @@ export default function Home() {
 
           <div className="text-center" style={{ marginTop: 48 }}>
             <button onClick={openModal} className="btn">
-              Join the Challenge &mdash; Free
+              Build What My Gift Deserves &mdash; Free
             </button>
           </div>
         </div>
@@ -709,14 +790,14 @@ export default function Home() {
       {/* ===== SERAPH SECTION ===== */}
       <section className="seraph section-pad fade-in">
         <div className="container-wide">
-          <p className="eyebrow text-center" style={{ color: "var(--gold)" }}>
+          <p className="eyebrow text-center" style={{ fontSize: 22, color: "var(--gold)" }}>
             Introducing Seraph
           </p>
           <h2
             style={{
               fontFamily: "var(--font-heading)",
               fontWeight: 300,
-              fontSize: "clamp(28px, 4vw, 42px)",
+              fontSize: "clamp(32px, 5vw, 52px)",
               textAlign: "center",
               marginBottom: 12,
               lineHeight: 1.25,
@@ -750,6 +831,60 @@ export default function Home() {
           >
             During ARISE, you experience it first. Your feedback shapes what it becomes.
           </p>
+
+          {/* Seraph Video */}
+          <div
+            style={{
+              position: "relative",
+              width: "100%",
+              maxWidth: 720,
+              margin: "0 auto 56px",
+              paddingBottom: "40.5%",
+              borderRadius: 4,
+              overflow: "hidden",
+              border: "1px solid var(--ash-dark)",
+              background: "var(--ash-dark)",
+            }}
+          >
+            <div
+              style={{
+                position: "absolute",
+                inset: 0,
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
+                gap: 12,
+              }}
+            >
+              <div
+                style={{
+                  width: 64,
+                  height: 64,
+                  borderRadius: "50%",
+                  border: "2px solid var(--gold)",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  background: "rgba(201, 168, 76, 0.1)",
+                }}
+              >
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="var(--gold)">
+                  <polygon points="8,5 19,12 8,19" />
+                </svg>
+              </div>
+              <p
+                style={{
+                  fontSize: 12,
+                  color: "var(--ash)",
+                  textTransform: "uppercase",
+                  letterSpacing: ".15em",
+                }}
+              >
+                Seraph Video Coming Soon
+              </p>
+            </div>
+          </div>
 
           <div
             className="seraph-features-grid"
@@ -840,7 +975,7 @@ export default function Home() {
       {/* ===== OUTCOMES ===== */}
       <section className="outcomes section-pad fade-in">
         <div className="container-wide">
-          <p className="eyebrow text-center">After 7 Days, You Will Have</p>
+          <p className="eyebrow text-center" style={{ fontSize: 22 }}>In 7 Days, You Will Have...</p>
           <div className="outcomes-grid">
             {[
               ["Your Frequency", "The felt sense of your highest self \u2014 activated in your body, not just your mind."],
@@ -869,7 +1004,7 @@ export default function Home() {
       {/* ===== ALCHEMY ===== */}
       <section className="section-pad fade-in" style={{ background: "var(--ink)" }}>
         <div className="container">
-          <p className="eyebrow text-center">The Alchemy</p>
+          <p className="eyebrow text-center" style={{ fontSize: 22 }}>The Alchemy</p>
           <div style={{ textAlign: "center", maxWidth: 660, margin: "0 auto" }}>
             <h2
               style={{
@@ -942,7 +1077,7 @@ export default function Home() {
       {/* ===== WHO THIS IS FOR ===== */}
       <section className="who section-pad fade-in">
         <div className="container-wide">
-          <p className="eyebrow text-center">Is This For You?</p>
+          <p className="eyebrow text-center" style={{ fontSize: 22 }}>Is This For You?</p>
           <div className="who-grid">
             <div className="who-col yes">
               <h3>This Is For You If:</h3>
@@ -1067,7 +1202,7 @@ export default function Home() {
           Your frequency. Your tribe. Your technology.
         </p>
         <button onClick={openModal} className="btn btn-large">
-          Join the Challenge &mdash; Free
+          Build What My Gift Deserves &mdash; Free
         </button>
         <p className="details">
           Starts Monday, April 20, 2026 &middot; Zero cost, full commitment
@@ -1091,6 +1226,14 @@ export default function Home() {
           Architected for the Golden Age.
         </p>
       </footer>
+
+      {/* Sticky CTA */}
+      <div className={`sticky-cta ${showSticky && !modalOpen ? "visible" : ""}`}>
+        <p>Join the 7-Day ARISE Breakthrough &mdash; Free</p>
+        <button onClick={openModal} className="btn">
+          Build What My Gift Deserves &mdash; Free
+        </button>
+      </div>
     </>
   );
 }
