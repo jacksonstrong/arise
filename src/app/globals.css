@@ -96,7 +96,7 @@ body {
   z-index: 0;
 }
 .hero > * { position: relative; z-index: 1; }
-.hero .eyebrow { margin-bottom: 32px; font-size: 11px; }
+.hero .eyebrow { margin-bottom: 32px; font-size: 14px; }
 .hero h1 {
   font-family: var(--font-heading);
   font-weight: 300;
@@ -239,8 +239,8 @@ body {
 }
 
 .problem { background: var(--ink); }
-.problem .content { max-width: 700px; margin: 0 auto; text-align: center; }
-.problem .lines { font-size: 20px; line-height: 2.4; color: var(--ash); }
+.problem .content { max-width: 860px; margin: 0 auto; text-align: center; }
+.problem .lines { font-size: 20px; line-height: 2.4; color: var(--parchment); opacity: 0.85; }
 .problem .lines strong { color: var(--parchment); font-weight: 500; }
 .problem .lines em { color: var(--gold-dark); }
 .problem .bridge {
@@ -272,13 +272,30 @@ body {
 .blocks-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
 @media (max-width: 768px) { .blocks-grid { grid-template-columns: 1fr; } }
 .block-card {
-  border: 1px solid var(--ash-dark);
-  border-radius: 2px;
-  padding: 40px 32px;
+  border: 1px solid var(--gold-dark);
+  border-radius: 4px;
+  padding: 48px 32px 40px;
   text-align: center;
-  transition: border-color 0.3s;
+  transition: all 0.4s ease;
+  background: linear-gradient(180deg, rgba(201, 168, 76, 0.06) 0%, rgba(201, 168, 76, 0) 100%);
+  position: relative;
+  overflow: hidden;
 }
-.block-card:hover { border-color: var(--gold-dark); }
+.block-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+.block-card:hover {
+  border-color: var(--gold);
+  box-shadow: 0 0 30px rgba(201, 168, 76, 0.12), 0 0 60px rgba(201, 168, 76, 0.04);
+  transform: translateY(-4px);
+}
 .block-card .block-num {
   font-family: var(--font-heading);
   font-size: 14px;
@@ -290,11 +307,21 @@ body {
 .block-card h3 {
   font-family: var(--font-heading);
   font-weight: 300;
-  font-size: 28px;
+  font-size: 32px;
   color: var(--gold);
-  margin-bottom: 16px;
+  margin-bottom: 8px;
+  position: relative;
+  display: inline-block;
 }
-.block-card p { font-size: 15px; color: var(--ash); line-height: 1.7; }
+.block-card h3::after {
+  content: '';
+  display: block;
+  width: 40px;
+  height: 1px;
+  background: var(--gold-dark);
+  margin: 12px auto 16px;
+}
+.block-card p { font-size: 15px; color: var(--parchment); opacity: 0.8; line-height: 1.8; }
 
 .guide { background: linear-gradient(180deg, var(--ink) 0%, #110f0b 100%); }
 .guide-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 64px; align-items: start; }

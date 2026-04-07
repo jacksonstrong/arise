@@ -313,40 +313,64 @@ export default function Home() {
           >
             In 7 Days, You Will Have
           </p>
-          <div style={{ display: "flex", justifyContent: "center", gap: 16, flexWrap: "wrap" }}>
+          <div style={{ display: "flex", justifyContent: "center", gap: 20, flexWrap: "wrap" }}>
             {[
-              ["An Experience of", "Your Highest Self"],
-              ["An Aligned Offer", "From Your Truth"],
-              ["A 30-Day Roadmap", "to $10,000"],
-            ].map(([l1, l2], i) => (
+              { icon: "\u2666", title: "A Nervous System", subtitle: "That Scales", desc: "Feel your next-level self in your body" },
+              { icon: "\u2699", title: "An AI Business", subtitle: "Engine", desc: "This goes way beyond ChatGPT." },
+              { icon: "\u2726", title: "A Tribe That", subtitle: "Elevates You", desc: "People who make staying small impossible" },
+            ].map((item, i) => (
               <div
                 key={i}
                 style={{
                   flex: 1,
-                  minWidth: 220,
-                  maxWidth: 260,
-                  border: "1px solid var(--ash-dark)",
-                  borderRadius: 2,
-                  padding: "24px 20px",
+                  minWidth: 240,
+                  maxWidth: 280,
+                  border: "1px solid var(--gold-dark)",
+                  borderRadius: 4,
+                  padding: "32px 24px",
                   textAlign: "center",
-                  transition: "border-color 0.3s",
+                  transition: "all 0.4s ease",
+                  background: "linear-gradient(180deg, rgba(201, 168, 76, 0.06) 0%, rgba(201, 168, 76, 0) 100%)",
+                  position: "relative",
+                  overflow: "hidden",
+                }}
+                onMouseOver={(e) => {
+                  e.currentTarget.style.borderColor = "var(--gold)";
+                  e.currentTarget.style.boxShadow = "0 0 30px rgba(201, 168, 76, 0.15), 0 0 60px rgba(201, 168, 76, 0.05)";
+                  e.currentTarget.style.transform = "translateY(-4px)";
+                }}
+                onMouseOut={(e) => {
+                  e.currentTarget.style.borderColor = "var(--gold-dark)";
+                  e.currentTarget.style.boxShadow = "none";
+                  e.currentTarget.style.transform = "translateY(0)";
                 }}
               >
-                <div style={{ color: "var(--gold)", fontSize: 20, marginBottom: 10 }}>&#10022;</div>
+                <div style={{
+                  color: "var(--gold)",
+                  fontSize: 28,
+                  marginBottom: 14,
+                  filter: "drop-shadow(0 0 8px rgba(201, 168, 76, 0.4))",
+                }}>{item.icon}</div>
                 <p
                   style={{
                     fontFamily: "var(--font-heading)",
-                    fontSize: 18,
+                    fontSize: 22,
                     fontWeight: 400,
-                    color: "var(--parchment)",
-                    lineHeight: 1.4,
-                    margin: 0,
+                    color: "var(--gold-light)",
+                    lineHeight: 1.3,
+                    margin: "0 0 10px",
                   }}
                 >
-                  {l1}
+                  {item.title}
                   <br />
-                  {l2}
+                  {item.subtitle}
                 </p>
+                <p style={{
+                  fontSize: 17,
+                  color: "var(--ash)",
+                  lineHeight: 1.5,
+                  margin: 0,
+                }}>{item.desc}</p>
               </div>
             ))}
           </div>
@@ -428,6 +452,69 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ===== TRANSITION BRIDGE ===== */}
+      <div style={{
+        position: "relative",
+        padding: "80px 24px",
+        background: "linear-gradient(180deg, #000000 0%, var(--ink) 100%)",
+        textAlign: "center",
+        overflow: "hidden",
+      }}>
+        {/* Radial glow */}
+        <div style={{
+          position: "absolute",
+          top: "50%",
+          left: "50%",
+          transform: "translate(-50%, -50%)",
+          width: 600,
+          height: 600,
+          background: "radial-gradient(circle, rgba(201, 168, 76, 0.06) 0%, transparent 70%)",
+          pointerEvents: "none",
+        }} />
+        {/* Gold divider with diamond */}
+        <div style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          gap: 16,
+          maxWidth: 400,
+          margin: "0 auto 40px",
+          position: "relative",
+        }}>
+          <div style={{ flex: 1, height: 1, background: "linear-gradient(90deg, transparent, var(--gold-dark))" }} />
+          <div style={{ color: "var(--gold)", fontSize: 16 }}>&#10022;</div>
+          <div style={{ flex: 1, height: 1, background: "linear-gradient(90deg, var(--gold-dark), transparent)" }} />
+        </div>
+        {/* Pull quote */}
+        <p className="fade-in" style={{
+          fontFamily: "var(--font-heading)",
+          fontStyle: "italic",
+          fontSize: "clamp(22px, 3vw, 32px)",
+          fontWeight: 300,
+          color: "var(--gold-light)",
+          maxWidth: 700,
+          margin: "0 auto 40px",
+          lineHeight: 1.5,
+          position: "relative",
+        }}>
+          Gifted leaders stay stuck not because they lack talent &mdash; but because they lack the infrastructure and identity to hold what&rsquo;s next.
+        </p>
+        {/* Bottom gold divider */}
+        <div style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          gap: 16,
+          maxWidth: 400,
+          margin: "0 auto",
+          position: "relative",
+        }}>
+          <div style={{ flex: 1, height: 1, background: "linear-gradient(90deg, transparent, var(--gold-dark))" }} />
+          <div style={{ color: "var(--gold)", fontSize: 16 }}>&#10022;</div>
+          <div style={{ flex: 1, height: 1, background: "linear-gradient(90deg, var(--gold-dark), transparent)" }} />
+        </div>
+      </div>
+
       {/* ===== PROBLEM ===== */}
       <section className="problem section-pad fade-in" style={{ position: "relative", overflow: "hidden" }}>
         {/* Background glow */}
@@ -442,47 +529,21 @@ export default function Home() {
           pointerEvents: "none",
         }} />
         <div className="content" style={{ position: "relative" }}>
-          <p className="bridge" style={{ marginTop: 0 }}>You don&rsquo;t need to shrink your vision.</p>
-          <p className="bridge" style={{ marginTop: 0 }}>You need to build something that can hold it.</p>
-          <p className="bridge-sub" style={{ marginTop: 24 }}>
-            In 7 days, you&rsquo;ll clarify your positioning, activate the right audience,
-            and install the foundation for real scale.
-          </p>
-          <p className="bridge-sub" style={{ marginTop: 0, marginBottom: 40 }}>7 days. Free. Built for leaders.</p>
-          {/* Decorative divider */}
-          <div style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            gap: 16,
-            margin: "0 auto 36px",
-            maxWidth: 300,
-          }}>
-            <div style={{ flex: 1, height: 1, background: "linear-gradient(90deg, transparent, var(--gold-dark))" }} />
-            <div style={{ color: "var(--gold)", fontSize: 14 }}>&#10022;</div>
-            <div style={{ flex: 1, height: 1, background: "linear-gradient(90deg, var(--gold-dark), transparent)" }} />
-          </div>
           <p style={{
-            fontFamily: "var(--font-heading)",
-            fontSize: 24,
-            fontWeight: 300,
-            color: "var(--parchment)",
+            fontFamily: "var(--font-body)",
+            fontSize: 22,
+            fontWeight: 400,
+            color: "var(--gold-dark)",
             textAlign: "center",
-            lineHeight: 1.6,
-            marginBottom: 8,
-          }}>
-            You&rsquo;re not starting from zero.
-          </p>
-          <p style={{
-            fontSize: 20,
-            color: "var(--ash)",
-            textAlign: "center",
+            lineHeight: 1.4,
+            textTransform: "uppercase",
+            letterSpacing: ".22em",
             marginBottom: 40,
           }}>
-            You&rsquo;ve built something. You&rsquo;ve served people. You&rsquo;ve proven it works.
+            You can feel it &mdash; something massive is trying to come through you
           </p>
           <div className="lines">
-            But you&rsquo;ve hit a ceiling &mdash; and you can feel it.
+            But you&rsquo;ve hit a ceiling &mdash; and you know it.
             <br /><br />
             You&rsquo;ve <em>outgrown</em> the version of yourself that got you here.
             <br />
@@ -490,27 +551,32 @@ export default function Home() {
             <br /><br />
             Your nervous system isn&rsquo;t calibrated for the level you&rsquo;re stepping into.
             <br />
-            Your systems weren&rsquo;t built to scale.
+            Your systems aren&rsquo;t yet built to scale &mdash; so you consciously or subconsciously play small.
             <br />
-            And the people around you &mdash; as much as they love you &mdash;
-            <br />
-            aren&rsquo;t operating where you&rsquo;re going.
+            And most of the people around you &mdash; as much as they love you
+            or doubt you &mdash; cannot get you where you&rsquo;re meant to go.
             <br /><br />
-            So you keep producing. Keep pushing. Keep showing up.
+            So you keep striving. Keep pressing on. Keep showing up doing what <strong>USED TO</strong> work.
+            What <strong>USED TO</strong> feel safe. Being who you <strong>USED TO</strong> be.
             <br />
             But the <strong>growth has plateaued</strong>.
             <br />
+            The money isn&rsquo;t enough.
+            <br />
+            Or if it is, you don&rsquo;t <em>FEEL</em> like it&rsquo;s enough.
+            <br />
             And you know it&rsquo;s not a talent problem.
             <br /><br />
-            It&rsquo;s an <strong>infrastructure</strong> problem.
+            It&rsquo;s an <strong>infrastructure and identity</strong> problem.
             <br /><br />
-            The world needs you operating at full capacity &mdash; <em>now</em>.
+            And here&rsquo;s the kicker &mdash; we all see that the world is being shaken to its core,
+            and your people don&rsquo;t need you &ldquo;someday.&rdquo;
             <br />
-            The people you&rsquo;re meant to serve are waiting.
+            They need you <em>now</em>. Fully operational.
             <br />
-            And every day you stay at this level is a day
-            <br />
-            your mission doesn&rsquo;t reach who it&rsquo;s meant to reach.
+            At a level you haven&rsquo;t given yourself permission to reach yet.
+            <br /><br />
+            <strong>Every day you stay here in the status quo is a day someone who needed your medicine&hellip; didn&rsquo;t find it.</strong>
             <br /><br />
             You don&rsquo;t need more inspiration.
             <br />
@@ -518,66 +584,11 @@ export default function Home() {
             <br />
             You don&rsquo;t need to start over.
             <br /><br />
-            You need:
-          </div>
-
-          <div style={{
-            display: "flex",
-            justifyContent: "center",
-            gap: 24,
-            margin: "32px auto",
-            maxWidth: 680,
-            flexWrap: "wrap",
-          }}>
-            {["Clear Positioning", "A Defined Audience", "Scalable Systems"].map((item, i) => (
-              <div key={i} style={{
-                border: "1px solid var(--gold-dark)",
-                borderRadius: 2,
-                padding: "16px 28px",
-                background: "rgba(201, 168, 76, 0.04)",
-                flex: 1,
-                minWidth: 180,
-                textAlign: "center",
-              }}>
-                <p style={{
-                  fontFamily: "var(--font-heading)",
-                  fontSize: 18,
-                  fontWeight: 400,
-                  color: "var(--gold)",
-                  margin: 0,
-                }}>{item}</p>
-              </div>
-            ))}
-          </div>
-
-          <div className="lines">
-            Because right now?
-            <br /><br />
-            Your business depends on you too much.
+            <strong>You need to feel your next-level self in your body.</strong>
             <br />
-            Your message isn&rsquo;t landing as powerfully as it should.
+            <strong>You need to know WTF to do with AI before you get left in the dust or burnout trying to hold 1,000 things solo.</strong>
             <br />
-            And your growth is slower than your vision.
-            <br /><br />
-            And that gap? It&rsquo;s costing you:
-          </div>
-
-          <div style={{
-            display: "flex",
-            justifyContent: "center",
-            gap: 40,
-            margin: "32px auto 48px",
-          }}>
-            {["Momentum", "Income", "Impact"].map((item, i) => (
-              <p key={i} style={{
-                fontFamily: "var(--font-heading)",
-                fontSize: 24,
-                fontWeight: 300,
-                color: i === 2 ? "var(--gold)" : "var(--parchment)",
-                margin: 0,
-                letterSpacing: ".05em",
-              }}>{item}.</p>
-            ))}
+            <strong>You need to surround yourself with people who make your subconscious feel safe to shine so that staying small is impossible.</strong>
           </div>
 
           <div className="gold-divider" />
