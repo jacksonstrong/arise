@@ -6,9 +6,11 @@ import Image from "next/image";
 function RegistrationModal({
   isOpen,
   onClose,
+  originRect,
 }: {
   isOpen: boolean;
   onClose: () => void;
+  originRect: DOMRect | null;
 }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -113,7 +115,13 @@ function RegistrationModal({
       aria-modal="true"
       aria-labelledby="modal-title"
     >
-      <div className="modal" ref={modalRef}>
+      <div
+        className="modal"
+        ref={modalRef}
+        style={originRect && !isOpen ? {
+          transformOrigin: `${originRect.left + originRect.width / 2}px ${originRect.top + originRect.height / 2}px`,
+        } : undefined}
+      >
         <button className="modal-close" onClick={onClose} aria-label="Close registration form">
           &times;
         </button>
@@ -235,8 +243,12 @@ function FaqItem({ question, answer }: { question: string; answer: string }) {
 export default function Home() {
   const [modalOpen, setModalOpen] = useState(false);
   const [showSticky, setShowSticky] = useState(false);
+  const [modalOrigin, setModalOrigin] = useState<DOMRect | null>(null);
 
-  const openModal = useCallback(() => setModalOpen(true), []);
+  const openModal = useCallback((e: React.MouseEvent<HTMLButtonElement>) => {
+    setModalOrigin(e.currentTarget.getBoundingClientRect());
+    setModalOpen(true);
+  }, []);
   const closeModal = useCallback(() => setModalOpen(false), []);
 
   useEffect(() => {
@@ -355,7 +367,7 @@ export default function Home() {
 
   return (
     <>
-      <RegistrationModal isOpen={modalOpen} onClose={closeModal} />
+      <RegistrationModal isOpen={modalOpen} onClose={closeModal} originRect={modalOrigin} />
 
       <main>
       {/* ===== HERO ===== */}
