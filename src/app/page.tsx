@@ -127,9 +127,28 @@ function RegistrationModal({
         </button>
 
         {status === "success" ? (
-          <div style={{ textAlign: "center", padding: "20px 0" }}>
+          <div className="success-celebration" style={{ textAlign: "center", padding: "20px 0", position: "relative", overflow: "hidden" }}>
+            {/* Gold particle burst */}
+            <div className="particle-burst" aria-hidden="true">
+              {[...Array(12)].map((_, i) => (
+                <span
+                  key={i}
+                  className="particle"
+                  style={{
+                    "--angle": `${i * 30}deg`,
+                    "--delay": `${i * 0.04}s`,
+                  } as React.CSSProperties}
+                />
+              ))}
+            </div>
+            {/* Animated checkmark */}
+            <svg className="success-check" width="48" height="48" viewBox="0 0 48 48" aria-hidden="true">
+              <circle cx="24" cy="24" r="22" fill="none" stroke="var(--gold)" strokeWidth="1.5" className="check-circle" />
+              <polyline points="15,25 22,32 34,18" fill="none" stroke="var(--gold)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="check-mark" />
+            </svg>
             <h3
               id="modal-title"
+              className="success-stagger success-stagger-1"
               style={{
                 fontFamily: "var(--font-heading-stack)",
                 fontWeight: 300,
@@ -141,6 +160,7 @@ function RegistrationModal({
               You&rsquo;re In.
             </h3>
             <p
+              className="success-stagger success-stagger-2"
               style={{
                 color: "var(--ash)",
                 fontSize: 15,
@@ -150,6 +170,7 @@ function RegistrationModal({
               Welcome to ARISE. Check your email for details.
             </p>
             <p
+              className="success-stagger success-stagger-3"
               style={{
                 fontFamily: "var(--font-heading-stack)",
                 fontStyle: "italic",
