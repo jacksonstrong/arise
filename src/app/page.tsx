@@ -1251,6 +1251,15 @@ export default function Home() {
               >
                 ARISE participants are co-creators, not customers.
               </p>
+              <div style={{ marginTop: 28 }}>
+                <a
+                  href="https://seraphina-gateway.vercel.app/"
+                  className="btn btn-large"
+                  style={{ textDecoration: "none", display: "inline-block" }}
+                >
+                  Meet Serafina Now
+                </a>
+              </div>
             </div>
           </div>
         </div>
