@@ -561,11 +561,11 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="hero-cta-row" style={{ display: "flex", flexDirection: "column", gap: 12, margin: "32px auto 20px", width: "100%", maxWidth: 480, alignItems: "stretch", padding: "0 16px" }}>
-          <button onClick={openModal} className="btn btn-large">
+        <div className="hero-cta-row" style={{ display: "flex", gap: 16, margin: "32px auto 20px", width: "100%", maxWidth: 960, justifyContent: "center", padding: "0 16px", flexWrap: "wrap" }}>
+          <button onClick={openModal} className="btn btn-large" style={{ flex: "1 1 280px", maxWidth: 440 }}>
             Enter the 7-Day ARISE Challenge &mdash; Free
           </button>
-          <a href="https://serafina.aurealeaders.com" className="btn btn-large btn-secondary" style={{ textAlign: "center" }}>
+          <a href="https://serafina.aurealeaders.com" className="btn btn-large btn-secondary" style={{ flex: "1 1 280px", maxWidth: 440, textAlign: "center" }}>
             Try the AI Built to Manifest Your Mission
           </a>
         </div>
