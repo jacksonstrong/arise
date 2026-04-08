@@ -516,7 +516,7 @@ export default function Home() {
         >
           <div style={{ textAlign: "left", display: "flex", alignItems: "stretch" }}>
             <h1 style={{ textAlign: "left", fontSize: "clamp(32px, 4.2vw, 56px)", margin: 0, lineHeight: 1.15 }}>
-              You Know You Have <em>The Gift</em>, But Do You Have <em>The Identity</em>, <em>AI Tools</em>, and <em>Tribe</em> To <em>Fully Unleash</em> It?
+              You Know You Have <em>The Gift</em>, But Do You Have <em>The Identity</em>, <em>Sovereign AI</em>, and <em>Tribe</em> To <em>Fully Unleash</em> It?
             </h1>
           </div>
           <div style={{ display: "flex", flexDirection: "column", width: "100%" }}>
