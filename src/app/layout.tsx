@@ -20,7 +20,19 @@ const jost = Jost({
 export const metadata: Metadata = {
   title: "ARISE — 7 Days to Clear, Build, and Sustain | AUREA Leaders",
   description:
-    "Free 7-day challenge for coaches, healers, speakers, and thought leaders. Break through the 3 blocks to your mission — and get first access to Seraph, the AI platform built for transformation leaders.",
+    "Free 7-day challenge for coaches, healers, speakers, and thought leaders. Break through the 3 blocks to your mission — and get first access to Serafina, the sovereign intelligence platform for Golden Age Leaders.",
+  openGraph: {
+    title: "ARISE — 7-Day Breakthrough Experience | AUREA Leaders",
+    description: "Free 7-day challenge for coaches, healers, speakers, and thought leaders. Break through the 3 blocks to your mission.",
+    images: [{ url: "/og-image.png", width: 1200, height: 630 }],
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "ARISE — 7-Day Breakthrough Experience | AUREA Leaders",
+    description: "Free 7-day challenge for coaches, healers, speakers, and thought leaders.",
+    images: ["/og-image.png"],
+  },
 };
 
 export default function RootLayout({
