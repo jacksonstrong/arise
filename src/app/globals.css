@@ -67,6 +67,14 @@ body {
   transition: transform 0.1s, background 0.1s;
 }
 .btn-large { padding: 22px 56px; font-size: 14px; }
+.btn-secondary {
+  background: transparent;
+  border: 1px solid var(--gold);
+  color: var(--gold);
+}
+.btn-secondary:hover {
+  background: rgba(201, 168, 76, 0.12);
+}
 
 .hero {
   min-height: auto;
@@ -226,7 +234,7 @@ body {
   .hero-grid-50 .arena-line { text-align: center !important; }
 }
 
-.ticker-wrap { width: 100%; overflow: hidden; padding: 40px 0 0; }
+.ticker-wrap { width: 100%; overflow: hidden; padding: 20px 0 0; }
 .ticker {
   display: flex;
   gap: 60px;
@@ -307,7 +315,7 @@ body {
 }
 .block-card .block-num {
   font-family: var(--font-heading-stack);
-  font-size: 14px;
+  font-size: 42px;
   color: var(--gold-dark);
   letter-spacing: .2em;
   text-transform: uppercase;
@@ -330,7 +338,10 @@ body {
   background: var(--gold-dark);
   margin: 12px auto 16px;
 }
-.block-card p { font-size: 15px; color: var(--parchment); opacity: 0.8; line-height: 1.8; }
+.block-card p { font-size: 15px; color: var(--parchment); opacity: 0.8; line-height: 1.8; margin-bottom: 12px; }
+.block-card p:last-child { margin-bottom: 0; }
+.block-card p em { color: var(--gold); font-style: italic; }
+.block-card p strong { color: var(--parchment); opacity: 1; }
 
 .guide { background: linear-gradient(180deg, var(--ink) 0%, var(--ink-deep) 100%); }
 .guide-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 64px; align-items: start; }

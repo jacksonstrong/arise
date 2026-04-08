@@ -425,8 +425,8 @@ export default function Home() {
           }}
         >
           <div style={{ textAlign: "left", display: "flex", alignItems: "stretch" }}>
-            <h1 style={{ textAlign: "left", fontSize: "clamp(32px, 4.2vw, 56px)", margin: 0 }}>
-              You Know You Have <em>The Gift</em>, But Do You Have <em>The Identity</em>, <em>AI Infrastructure</em>, and <em>Tribe</em> To Fully Unleash It?
+            <h1 style={{ textAlign: "left", fontSize: "clamp(32px, 4.2vw, 56px)", margin: 0, lineHeight: 1.15 }}>
+              You Know You Have <em>The Gift</em>, But Do You Have <em>The Identity</em>, <em>AI Tools</em>, and <em>Tribe</em> To <em>Fully Unleash</em> It?
             </h1>
           </div>
           <div style={{ display: "flex", flexDirection: "column", width: "100%" }}>
@@ -466,32 +466,18 @@ export default function Home() {
                 textAlign: "center",
               }}
             >
-              Watch &amp; Join the Challenge
+              Watch and Join Us for the Breakthrough
             </p>
           </div>
         </div>
 
-        <p
-          style={{
-            maxWidth: 1100,
-            fontSize: 18,
-            fontFamily: "var(--font-body-stack)",
-            fontWeight: 400,
-            letterSpacing: ".14em",
-            textTransform: "uppercase",
-            lineHeight: 1.9,
-            margin: "20px auto 24px",
-            padding: "0 20px",
-            color: "var(--parchment)",
-            opacity: 0.85,
-          }}
-        >
-          In 7 days, you will have the live coaching, somatic activations, AI systems, and tribe of co-creators that make breaking through inevitable
-        </p>
-        <div style={{ margin: "0 0 12px" }}>
-          <button onClick={openModal} className="btn btn-large">
+        <div style={{ display: "flex", gap: 16, margin: "32px 0 20px", justifyContent: "center", width: "100%", maxWidth: 960 }}>
+          <button onClick={openModal} className="btn btn-large" style={{ flex: "1 1 0", whiteSpace: "nowrap" }}>
             Enter the 7-Day ARISE Challenge &mdash; Free
           </button>
+          <a href="/serafina-trial" className="btn btn-large btn-secondary" style={{ flex: "1 1 0", whiteSpace: "nowrap" }}>
+            Try the AI Built to Manifest Your Mission
+          </a>
         </div>
         <div
           style={{
@@ -499,7 +485,7 @@ export default function Home() {
             flexDirection: "column",
             alignItems: "center",
             gap: 6,
-            marginBottom: 20,
+            marginBottom: 16,
           }}
         >
           <div style={{ display: "flex", gap: 4 }}>
@@ -546,12 +532,12 @@ export default function Home() {
               textTransform: "uppercase",
               letterSpacing: ".22em",
               color: "var(--gold-dark)",
-              marginTop: 40,
-              marginBottom: 20,
+              marginTop: 64,
+              marginBottom: 32,
               textAlign: "center",
             }}
           >
-            In 7 Days, You Will Have
+            Access Live Coaching, Transformational Meditations, Advanced AI Insights, &amp; a Tribe of Co-Creators That Make Your Next Breakthrough an Inevitability
           </p>
           <div style={{ display: "flex", justifyContent: "center", gap: 20, flexWrap: "wrap" }}>
             {[
@@ -624,40 +610,42 @@ export default function Home() {
 
           <div className="blocks-grid">
             <div className="block-card fade-in card-tilt" data-stagger>
-              <div className="block-num">One</div>
+              <div className="block-num">I</div>
               <h3>Frequency</h3>
               <p>
-                Most creators on the verge of a breakthrough know intellectually that they&rsquo;re
-                gifted. But often cannot consistently access the feeling of your greatness. Without
-                that felt sense alive in your body, every offer you build, every piece of content you
-                create, every price you set comes from a state of contraction &mdash; not your
-                sovereign power. The strategy won&rsquo;t work until the frequency is right. We start
-                here, in a group, and embed your greatness into your field.
+                You know you&rsquo;re gifted &mdash; but can you <em>feel</em> it?
+              </p>
+              <p>
+                Without that felt sense alive in your body, every offer, every price, every piece of content comes from contraction &mdash; not sovereign power.
+              </p>
+              <p>
+                <strong>We start here.</strong> Strategy doesn&rsquo;t work until the frequency is right.
               </p>
             </div>
             <div className="block-card fade-in card-tilt" data-stagger>
-              <div className="block-num">Two</div>
+              <div className="block-num">II</div>
               <h3>Tribe</h3>
               <p>
-                Do you feel like you&rsquo;re building alone? If so, somewhere in your nervous system
-                lives a primal fear holding you back. Too often it whispers, &ldquo;If you fully
-                express yourself and speak your truth, you will be abandoned. Persecuted for being
-                different. Abandoned by the people you love.&rdquo; This fear keeps you beneath your
-                potential. It only dissolves in the presence of co-creators who see your
-                fire &mdash; and match it. You need a tribe that makes expansion feel safe.
+                You&rsquo;re building alone. And somewhere in your nervous system lives a primal fear: <em>if I fully become who I am, I&rsquo;ll be abandoned.</em>
+              </p>
+              <p>
+                That fear only dissolves in the presence of co-creators who see your fire &mdash; and match it.
+              </p>
+              <p>
+                <strong>You need a tribe that makes expansion feel safe.</strong>
               </p>
             </div>
             <div className="block-card fade-in card-tilt" data-stagger>
-              <div className="block-num">Three</div>
+              <div className="block-num">III</div>
               <h3>Strategy</h3>
               <p>
-                Vision without a plan stays a dream. You have the gift, but without a clear path
-                from where you are to where you&rsquo;re meant to be, even the most powerful
-                calling stalls out. Most strategy out there was designed for people selling
-                products &mdash; not for leaders carrying a message. In this challenge, we give you
-                a real roadmap: a validated offer, a living landing page, content in the world, and
-                a 30-day plan to your first $10,000 &mdash; all built from your truth, not someone
-                else&rsquo;s template.
+                Vision without a plan stays a dream. Most strategy was designed for people selling products &mdash; not leaders carrying a message.
+              </p>
+              <p>
+                We give you the roadmap: a validated offer, a live landing page, content in the world, and a 30-day plan to your first $10,000.
+              </p>
+              <p>
+                <strong>All built from your truth &mdash; not someone else&rsquo;s template.</strong>
               </p>
             </div>
           </div>
@@ -711,6 +699,24 @@ export default function Home() {
           position: "relative",
         }}>
           Gifted leaders don&rsquo;t break through until they build the infrastructure, tribe, and identity to hold their full power.
+        </p>
+        <p className="fade-in" style={{
+          fontFamily: "var(--font-body-stack)",
+          fontSize: 15,
+          fontWeight: 300,
+          color: "var(--parchment)",
+          opacity: 0.6,
+          maxWidth: 700,
+          margin: "0 auto 48px",
+          lineHeight: 1.6,
+          letterSpacing: ".04em",
+          position: "relative",
+        }}>
+          &ldquo;If you want to change your personal reality, you have to change your personality.&rdquo;
+          <br />
+          <span style={{ color: "var(--gold-dark)", fontSize: 13, letterSpacing: ".12em", textTransform: "uppercase" }}>
+            &mdash; Dr. Joe Dispenza
+          </span>
         </p>
         {/* Bottom gold divider */}
         <div style={{
