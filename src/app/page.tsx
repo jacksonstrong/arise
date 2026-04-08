@@ -475,7 +475,7 @@ export default function Home() {
           <button onClick={openModal} className="btn btn-large" style={{ flex: "1 1 0", whiteSpace: "nowrap" }}>
             Enter the 7-Day ARISE Challenge &mdash; Free
           </button>
-          <a href="https://seraphina-gateway.vercel.app/trial" className="btn btn-large btn-secondary" style={{ flex: "1 1 0", whiteSpace: "nowrap" }}>
+          <a href="/serafina" className="btn btn-large btn-secondary" style={{ flex: "1 1 0", whiteSpace: "nowrap" }}>
             Try the AI Built to Manifest Your Mission
           </a>
         </div>
@@ -1253,7 +1253,7 @@ export default function Home() {
               </p>
               <div style={{ marginTop: 28 }}>
                 <a
-                  href="https://seraphina-gateway.vercel.app/"
+                  href="/serafina"
                   className="btn btn-large"
                   style={{ textDecoration: "none", display: "inline-block" }}
                 >
