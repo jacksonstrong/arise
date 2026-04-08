@@ -475,7 +475,7 @@ export default function Home() {
           <button onClick={openModal} className="btn btn-large" style={{ flex: "1 1 0", whiteSpace: "nowrap" }}>
             Enter the 7-Day ARISE Challenge &mdash; Free
           </button>
-          <a href="https://serafina.aurealeaders.com/trial" className="btn btn-large btn-secondary" style={{ flex: "1 1 0", whiteSpace: "nowrap" }}>
+          <a href="https://serafina.aurealeaders.com" className="btn btn-large btn-secondary" style={{ flex: "1 1 0", whiteSpace: "nowrap" }}>
             Try the AI Built to Manifest Your Mission
           </a>
         </div>
@@ -736,129 +736,132 @@ export default function Home() {
 
       {/* ===== PROBLEM ===== */}
       <section className="problem section-pad fade-in" style={{ position: "relative", overflow: "hidden" }}>
-        {/* Background glow */}
+        {/* Background glow — top */}
         <div style={{
           position: "absolute",
-          top: "-10%",
-          left: "50%",
-          transform: "translateX(-50%)",
-          width: 800,
-          height: 800,
-          background: "radial-gradient(circle, rgba(201, 168, 76, 0.07) 0%, transparent 65%)",
+          top: "-5%",
+          left: "30%",
+          width: 900,
+          height: 900,
+          background: "radial-gradient(circle, rgba(201, 168, 76, 0.06) 0%, transparent 60%)",
           pointerEvents: "none",
         }} />
+        {/* Background glow — bottom */}
+        <div style={{
+          position: "absolute",
+          bottom: "-5%",
+          right: "20%",
+          width: 700,
+          height: 700,
+          background: "radial-gradient(circle, rgba(201, 168, 76, 0.04) 0%, transparent 60%)",
+          pointerEvents: "none",
+        }} />
+
         <div className="content" style={{ position: "relative", maxWidth: 1100, margin: "0 auto" }}>
 
-          {/* Row 1: Text left, Image right */}
+          {/* ——— Row 1: Text left, Image right ——— */}
           <div style={{
             display: "grid",
             gridTemplateColumns: "1fr 1fr",
-            gap: 48,
+            gap: 56,
             alignItems: "center",
-            marginBottom: 64,
           }}>
             <div>
               <p style={{
-                fontFamily: "var(--font-body-stack)",
-                fontSize: 22,
-                fontWeight: 400,
-                color: "var(--gold-dark)",
-                lineHeight: 1.4,
+                fontFamily: "var(--font-heading-stack)",
+                fontSize: "clamp(20px, 2.4vw, 26px)",
+                fontWeight: 300,
+                color: "var(--gold)",
+                lineHeight: 1.35,
                 textTransform: "uppercase",
-                letterSpacing: ".22em",
-                marginBottom: 32,
+                letterSpacing: ".18em",
+                marginBottom: 36,
               }}>
                 You can feel it &mdash; something massive is trying to come through you
               </p>
               <div className="lines" style={{ textAlign: "left" }}>
-                But you&rsquo;ve hit a ceiling &mdash; and you know it.
-                <br /><br />
-                You&rsquo;ve <em>outgrown</em> the version of yourself that got you here.
-                <br />
-                The identity that carried you this far <strong>can&rsquo;t carry you to what&rsquo;s next</strong>.
-                <br /><br />
-                Your nervous system isn&rsquo;t calibrated for the level you&rsquo;re stepping into.
-                <br />
-                Your systems aren&rsquo;t yet built to scale &mdash; so you consciously or subconsciously play small.
-                <br />
-                And most of the people around you &mdash; as much as they love you
-                or doubt you &mdash; cannot get you where you&rsquo;re meant to go.
+                <p>But you&rsquo;ve hit a ceiling &mdash; and you know it.</p>
+                <p>You&rsquo;ve <em>outgrown</em> the version of yourself that got you here.</p>
+                <p className="gap">The identity that carried you this far <strong>can&rsquo;t carry you to what&rsquo;s next</strong>.</p>
+                <p>Your nervous system isn&rsquo;t calibrated for the level you&rsquo;re stepping into.</p>
+                <p>Your systems aren&rsquo;t yet built to scale &mdash; so you consciously or subconsciously play small.</p>
+                <p>And most of the people around you &mdash; as much as they love you or doubt you &mdash; cannot get you where you&rsquo;re meant to go.</p>
               </div>
             </div>
-            <div style={{ borderRadius: 12, overflow: "hidden" }}>
+            <div style={{ borderRadius: 6, overflow: "hidden", boxShadow: "0 12px 48px rgba(0,0,0,0.5), 0 0 80px rgba(201, 168, 76, 0.06)" }}>
               <img
-                src="/touch-the-void.jpg"
-                alt="Hand reaching toward golden light"
+                src="/woman-horizon.jpg"
+                alt="Woman silhouetted against golden horizon"
                 style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
               />
             </div>
           </div>
 
-          {/* Row 2: Image left, Text right */}
+          {/* Centered diamond divider */}
+          <div className="row-divider">
+            <div className="line line-left" />
+            <div className="diamond">&#10022;</div>
+            <div className="line line-right" />
+          </div>
+
+          {/* ——— Row 2: Image left, Text right ——— */}
           <div style={{
             display: "grid",
             gridTemplateColumns: "1fr 1fr",
-            gap: 48,
+            gap: 56,
             alignItems: "center",
-            marginBottom: 64,
           }}>
-            <div style={{ borderRadius: 12, overflow: "hidden" }}>
+            <div style={{ borderRadius: 6, overflow: "hidden", boxShadow: "0 12px 48px rgba(0,0,0,0.5), 0 0 80px rgba(201, 168, 76, 0.06)" }}>
               <img
-                src="/the-doorway.jpg"
-                alt="Person stepping through golden doorway"
+                src="/woman-doorway.jpg"
+                alt="Woman stepping through cosmic doorway"
                 style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
               />
             </div>
-            <div className="lines" style={{ textAlign: "left" }}>
-              So you keep striving. Keep pressing on. Keep showing up doing what <strong>USED TO</strong> work.
-              What <strong>USED TO</strong> feel safe. Being who you <strong>USED TO</strong> be.
-              <br />
-              But the <strong>growth has plateaued</strong>.
-              <br />
-              The money isn&rsquo;t enough.
-              <br />
-              Or if it is, you don&rsquo;t <em>FEEL</em> like it&rsquo;s enough.
-              <br />
-              And you know it&rsquo;s not a talent problem.
-              <br /><br />
-              It&rsquo;s an <strong>infrastructure and identity</strong> problem.
-              <br /><br />
-              And here&rsquo;s the kicker &mdash; we all see that the world is being shaken to its core,
-              and your people don&rsquo;t need you &ldquo;someday.&rdquo;
-              <br />
-              They need you <em>now</em>. Fully operational.
-              <br />
-              At a level you haven&rsquo;t given yourself permission to reach yet.
+            <div>
+              <div className="lines" style={{ textAlign: "left" }}>
+                <p>So you keep striving. Keep pressing on. Keep showing up doing what <strong>USED TO</strong> work. What <strong>USED TO</strong> feel safe. Being who you <strong>USED TO</strong> be.</p>
+                <p>But the <strong>growth has plateaued</strong>.</p>
+                <p>The money isn&rsquo;t enough.</p>
+                <p>Or if it is, you don&rsquo;t <em>FEEL</em> like it&rsquo;s enough.</p>
+                <p className="gap">And you know it&rsquo;s not a talent problem.</p>
+                <p className="standout">It&rsquo;s an <strong style={{ color: "var(--gold)" }}>infrastructure</strong> and <strong style={{ color: "var(--gold)" }}>identity</strong> problem.</p>
+                <p style={{ marginTop: 18 }}>And here&rsquo;s the kicker &mdash; we all see that the world is being shaken to its core, and your people don&rsquo;t need you &ldquo;someday.&rdquo;</p>
+                <p>They need you <em>now</em>. Fully operational.</p>
+                <p>At a level you haven&rsquo;t given yourself permission to reach yet.</p>
+              </div>
             </div>
           </div>
 
-          {/* Row 3: Text left, Image right */}
+          {/* Centered diamond divider */}
+          <div className="row-divider">
+            <div className="line line-left" />
+            <div className="diamond">&#10022;</div>
+            <div className="line line-right" />
+          </div>
+
+          {/* ——— Row 3: Text left, Image right ——— */}
           <div style={{
             display: "grid",
             gridTemplateColumns: "1fr 1fr",
-            gap: 48,
+            gap: 56,
             alignItems: "center",
-            marginBottom: 48,
           }}>
-            <div className="lines" style={{ textAlign: "left" }}>
-              <strong>Every day you stay here in the status quo is a day someone who needed your medicine&hellip; didn&rsquo;t find it.</strong>
-              <br /><br />
-              You don&rsquo;t need more inspiration.
-              <br />
-              You don&rsquo;t need another course.
-              <br />
-              You don&rsquo;t need to start over.
-              <br /><br />
-              <strong>You need to feel your next-level self in your body.</strong>
-              <br />
-              <strong>You need to know WTF to do with AI before you get left in the dust or burnout trying to hold 1,000 things solo.</strong>
-              <br />
-              <strong>You need to surround yourself with people who make your subconscious feel safe to shine so that staying small is impossible.</strong>
+            <div>
+              <div className="lines" style={{ textAlign: "left" }}>
+                <p className="standout" style={{ marginBottom: 20 }}><strong style={{ color: "var(--gold-light)" }}>Every day you stay here in the status quo is a day someone who needed your medicine&hellip; didn&rsquo;t find it.</strong></p>
+                <p>You don&rsquo;t need more inspiration.</p>
+                <p>You don&rsquo;t need another course.</p>
+                <p className="gap">You don&rsquo;t need to start over.</p>
+                <p><strong>You need to feel your next-level self in your body.</strong></p>
+                <p><strong>You need to know WTF to do with AI before you get left in the dust or burnout trying to hold 1,000 things solo.</strong></p>
+                <p><strong>You need to surround yourself with people who make your subconscious feel safe to shine so that staying small is impossible.</strong></p>
+              </div>
             </div>
-            <div style={{ borderRadius: 12, overflow: "hidden" }}>
+            <div style={{ borderRadius: 6, overflow: "hidden", boxShadow: "0 12px 48px rgba(0,0,0,0.5), 0 0 80px rgba(201, 168, 76, 0.06)" }}>
               <img
-                src="/touch-the-void.jpg"
-                alt="Hand reaching toward golden light"
+                src="/the-cosmic-boob.jpg"
+                alt="Hand reaching toward golden constellation"
                 style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
               />
             </div>
@@ -1307,7 +1310,7 @@ export default function Home() {
               </p>
               <div style={{ marginTop: 28 }}>
                 <a
-                  href="https://serafina.aurealeaders.com/trial"
+                  href="https://serafina.aurealeaders.com"
                   className="btn btn-large"
                   style={{ textDecoration: "none", display: "inline-block" }}
                 >
