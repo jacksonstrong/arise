@@ -475,7 +475,7 @@ export default function Home() {
           <button onClick={openModal} className="btn btn-large" style={{ flex: "1 1 0", whiteSpace: "nowrap" }}>
             Enter the 7-Day ARISE Challenge &mdash; Free
           </button>
-          <a href="/serafina" className="btn btn-large btn-secondary" style={{ flex: "1 1 0", whiteSpace: "nowrap" }}>
+          <a href="https://serafina.aurealeaders.com/trial" className="btn btn-large btn-secondary" style={{ flex: "1 1 0", whiteSpace: "nowrap" }}>
             Try the AI Built to Manifest Your Mission
           </a>
         </div>
@@ -747,67 +747,121 @@ export default function Home() {
           background: "radial-gradient(circle, rgba(201, 168, 76, 0.07) 0%, transparent 65%)",
           pointerEvents: "none",
         }} />
-        <div className="content" style={{ position: "relative" }}>
-          <p style={{
-            fontFamily: "var(--font-body-stack)",
-            fontSize: 22,
-            fontWeight: 400,
-            color: "var(--gold-dark)",
-            textAlign: "center",
-            lineHeight: 1.4,
-            textTransform: "uppercase",
-            letterSpacing: ".22em",
-            marginBottom: 40,
+        <div className="content" style={{ position: "relative", maxWidth: 1100, margin: "0 auto" }}>
+
+          {/* Row 1: Text left, Image right */}
+          <div style={{
+            display: "grid",
+            gridTemplateColumns: "1fr 1fr",
+            gap: 48,
+            alignItems: "center",
+            marginBottom: 64,
           }}>
-            You can feel it &mdash; something massive is trying to come through you
-          </p>
-          <div className="lines">
-            But you&rsquo;ve hit a ceiling &mdash; and you know it.
-            <br /><br />
-            You&rsquo;ve <em>outgrown</em> the version of yourself that got you here.
-            <br />
-            The identity that carried you this far <strong>can&rsquo;t carry you to what&rsquo;s next</strong>.
-            <br /><br />
-            Your nervous system isn&rsquo;t calibrated for the level you&rsquo;re stepping into.
-            <br />
-            Your systems aren&rsquo;t yet built to scale &mdash; so you consciously or subconsciously play small.
-            <br />
-            And most of the people around you &mdash; as much as they love you
-            or doubt you &mdash; cannot get you where you&rsquo;re meant to go.
-            <br /><br />
-            So you keep striving. Keep pressing on. Keep showing up doing what <strong>USED TO</strong> work.
-            What <strong>USED TO</strong> feel safe. Being who you <strong>USED TO</strong> be.
-            <br />
-            But the <strong>growth has plateaued</strong>.
-            <br />
-            The money isn&rsquo;t enough.
-            <br />
-            Or if it is, you don&rsquo;t <em>FEEL</em> like it&rsquo;s enough.
-            <br />
-            And you know it&rsquo;s not a talent problem.
-            <br /><br />
-            It&rsquo;s an <strong>infrastructure and identity</strong> problem.
-            <br /><br />
-            And here&rsquo;s the kicker &mdash; we all see that the world is being shaken to its core,
-            and your people don&rsquo;t need you &ldquo;someday.&rdquo;
-            <br />
-            They need you <em>now</em>. Fully operational.
-            <br />
-            At a level you haven&rsquo;t given yourself permission to reach yet.
-            <br /><br />
-            <strong>Every day you stay here in the status quo is a day someone who needed your medicine&hellip; didn&rsquo;t find it.</strong>
-            <br /><br />
-            You don&rsquo;t need more inspiration.
-            <br />
-            You don&rsquo;t need another course.
-            <br />
-            You don&rsquo;t need to start over.
-            <br /><br />
-            <strong>You need to feel your next-level self in your body.</strong>
-            <br />
-            <strong>You need to know WTF to do with AI before you get left in the dust or burnout trying to hold 1,000 things solo.</strong>
-            <br />
-            <strong>You need to surround yourself with people who make your subconscious feel safe to shine so that staying small is impossible.</strong>
+            <div>
+              <p style={{
+                fontFamily: "var(--font-body-stack)",
+                fontSize: 22,
+                fontWeight: 400,
+                color: "var(--gold-dark)",
+                lineHeight: 1.4,
+                textTransform: "uppercase",
+                letterSpacing: ".22em",
+                marginBottom: 32,
+              }}>
+                You can feel it &mdash; something massive is trying to come through you
+              </p>
+              <div className="lines" style={{ textAlign: "left" }}>
+                But you&rsquo;ve hit a ceiling &mdash; and you know it.
+                <br /><br />
+                You&rsquo;ve <em>outgrown</em> the version of yourself that got you here.
+                <br />
+                The identity that carried you this far <strong>can&rsquo;t carry you to what&rsquo;s next</strong>.
+                <br /><br />
+                Your nervous system isn&rsquo;t calibrated for the level you&rsquo;re stepping into.
+                <br />
+                Your systems aren&rsquo;t yet built to scale &mdash; so you consciously or subconsciously play small.
+                <br />
+                And most of the people around you &mdash; as much as they love you
+                or doubt you &mdash; cannot get you where you&rsquo;re meant to go.
+              </div>
+            </div>
+            <div style={{ borderRadius: 12, overflow: "hidden" }}>
+              <img
+                src="/touch-the-void.jpg"
+                alt="Hand reaching toward golden light"
+                style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+              />
+            </div>
+          </div>
+
+          {/* Row 2: Image left, Text right */}
+          <div style={{
+            display: "grid",
+            gridTemplateColumns: "1fr 1fr",
+            gap: 48,
+            alignItems: "center",
+            marginBottom: 64,
+          }}>
+            <div style={{ borderRadius: 12, overflow: "hidden" }}>
+              <img
+                src="/the-doorway.jpg"
+                alt="Person stepping through golden doorway"
+                style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+              />
+            </div>
+            <div className="lines" style={{ textAlign: "left" }}>
+              So you keep striving. Keep pressing on. Keep showing up doing what <strong>USED TO</strong> work.
+              What <strong>USED TO</strong> feel safe. Being who you <strong>USED TO</strong> be.
+              <br />
+              But the <strong>growth has plateaued</strong>.
+              <br />
+              The money isn&rsquo;t enough.
+              <br />
+              Or if it is, you don&rsquo;t <em>FEEL</em> like it&rsquo;s enough.
+              <br />
+              And you know it&rsquo;s not a talent problem.
+              <br /><br />
+              It&rsquo;s an <strong>infrastructure and identity</strong> problem.
+              <br /><br />
+              And here&rsquo;s the kicker &mdash; we all see that the world is being shaken to its core,
+              and your people don&rsquo;t need you &ldquo;someday.&rdquo;
+              <br />
+              They need you <em>now</em>. Fully operational.
+              <br />
+              At a level you haven&rsquo;t given yourself permission to reach yet.
+            </div>
+          </div>
+
+          {/* Row 3: Text left, Image right */}
+          <div style={{
+            display: "grid",
+            gridTemplateColumns: "1fr 1fr",
+            gap: 48,
+            alignItems: "center",
+            marginBottom: 48,
+          }}>
+            <div className="lines" style={{ textAlign: "left" }}>
+              <strong>Every day you stay here in the status quo is a day someone who needed your medicine&hellip; didn&rsquo;t find it.</strong>
+              <br /><br />
+              You don&rsquo;t need more inspiration.
+              <br />
+              You don&rsquo;t need another course.
+              <br />
+              You don&rsquo;t need to start over.
+              <br /><br />
+              <strong>You need to feel your next-level self in your body.</strong>
+              <br />
+              <strong>You need to know WTF to do with AI before you get left in the dust or burnout trying to hold 1,000 things solo.</strong>
+              <br />
+              <strong>You need to surround yourself with people who make your subconscious feel safe to shine so that staying small is impossible.</strong>
+            </div>
+            <div style={{ borderRadius: 12, overflow: "hidden" }}>
+              <img
+                src="/touch-the-void.jpg"
+                alt="Hand reaching toward golden light"
+                style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+              />
+            </div>
           </div>
 
           <div className="gold-divider" />
@@ -1253,7 +1307,7 @@ export default function Home() {
               </p>
               <div style={{ marginTop: 28 }}>
                 <a
-                  href="/serafina"
+                  href="https://serafina.aurealeaders.com/trial"
                   className="btn btn-large"
                   style={{ textDecoration: "none", display: "inline-block" }}
                 >
@@ -1525,7 +1579,7 @@ export default function Home() {
 
       {/* Sticky CTA */}
       <div className={`sticky-cta ${showSticky && !modalOpen ? "visible" : ""}`}>
-        <p>Join the 7-Day ARISE Breakthrough &mdash; Free</p>
+        <p>It&rsquo;s time for your next breakthrough</p>
         <button onClick={openModal} className="btn">
           Enter the 7-Day ARISE Challenge &mdash; Free
         </button>
