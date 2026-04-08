@@ -222,7 +222,7 @@ function RegistrationModal({
             >
               {status === "loading"
                 ? "Securing Your Spot..."
-                : "Yes, I\u2019m Ready"}
+                : "Enter the 7-Day ARISE Challenge \u2014 Free"}
             </button>
             {status === "error" && <p className="error-msg" role="alert">{errorMsg}</p>}
             <p
@@ -610,7 +610,15 @@ export default function Home() {
 
           <div className="blocks-grid">
             <div className="block-card fade-in card-tilt" data-stagger>
-              <div className="block-num">I</div>
+              {/* Frequency icon — radiating soundwave */}
+              <div style={{ margin: "0 auto 20px", width: 56, height: 56, display: "flex", alignItems: "center", justifyContent: "center" }}>
+                <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="28" cy="28" r="6" fill="var(--gold)" opacity="0.9" />
+                  <circle cx="28" cy="28" r="14" stroke="var(--gold)" strokeWidth="1.2" opacity="0.5" />
+                  <circle cx="28" cy="28" r="22" stroke="var(--gold)" strokeWidth="0.8" opacity="0.3" />
+                  <circle cx="28" cy="28" r="27" stroke="var(--gold-dark)" strokeWidth="0.5" opacity="0.15" />
+                </svg>
+              </div>
               <h3>Frequency</h3>
               <p>
                 You know you&rsquo;re gifted &mdash; but can you <em>feel</em> it?
@@ -619,11 +627,25 @@ export default function Home() {
                 Without that felt sense alive in your body, every offer, every price, every piece of content comes from contraction &mdash; not sovereign power.
               </p>
               <p>
-                <strong>We start here.</strong> Strategy doesn&rsquo;t work until the frequency is right.
+                <strong>We start here.</strong>{" "}Strategy doesn&rsquo;t work until the frequency is right.
               </p>
             </div>
             <div className="block-card fade-in card-tilt" data-stagger>
-              <div className="block-num">II</div>
+              {/* Tribe icon — three connected flames */}
+              <div style={{ margin: "0 auto 20px", width: 56, height: 56, display: "flex", alignItems: "center", justifyContent: "center" }}>
+                <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M28 8c0 0-6 8-6 14s2.7 8 6 8 6-2 6-8S28 8 28 8z" fill="var(--gold)" opacity="0.85" />
+                  <path d="M14 20c0 0-4 6-4 10s2 6 4 6 4-1.5 4-6S14 20 14 20z" fill="var(--gold)" opacity="0.45" />
+                  <path d="M42 20c0 0-4 6-4 10s2 6 4 6 4-1.5 4-6S42 20 42 20z" fill="var(--gold)" opacity="0.45" />
+                  <line x1="18" y1="32" x2="24" y2="28" stroke="var(--gold-dark)" strokeWidth="0.8" opacity="0.4" />
+                  <line x1="38" y1="32" x2="32" y2="28" stroke="var(--gold-dark)" strokeWidth="0.8" opacity="0.4" />
+                  <circle cx="28" cy="44" r="3" stroke="var(--gold-dark)" strokeWidth="0.8" opacity="0.3" />
+                  <circle cx="16" cy="44" r="3" stroke="var(--gold-dark)" strokeWidth="0.8" opacity="0.3" />
+                  <circle cx="40" cy="44" r="3" stroke="var(--gold-dark)" strokeWidth="0.8" opacity="0.3" />
+                  <line x1="19" y1="44" x2="25" y2="44" stroke="var(--gold-dark)" strokeWidth="0.6" opacity="0.25" />
+                  <line x1="31" y1="44" x2="37" y2="44" stroke="var(--gold-dark)" strokeWidth="0.6" opacity="0.25" />
+                </svg>
+              </div>
               <h3>Tribe</h3>
               <p>
                 You&rsquo;re building alone. And somewhere in your nervous system lives a primal fear: <em>if I fully become who I am, I&rsquo;ll be abandoned.</em>
@@ -636,7 +658,21 @@ export default function Home() {
               </p>
             </div>
             <div className="block-card fade-in card-tilt" data-stagger>
-              <div className="block-num">III</div>
+              {/* Strategy icon — compass rose */}
+              <div style={{ margin: "0 auto 20px", width: 56, height: 56, display: "flex", alignItems: "center", justifyContent: "center" }}>
+                <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="28" cy="28" r="24" stroke="var(--gold-dark)" strokeWidth="0.8" opacity="0.35" />
+                  <circle cx="28" cy="28" r="3" fill="var(--gold)" opacity="0.9" />
+                  <polygon points="28,6 30,24 28,28 26,24" fill="var(--gold)" opacity="0.8" />
+                  <polygon points="28,50 26,32 28,28 30,32" fill="var(--gold-dark)" opacity="0.5" />
+                  <polygon points="6,28 24,26 28,28 24,30" fill="var(--gold-dark)" opacity="0.5" />
+                  <polygon points="50,28 32,30 28,28 32,26" fill="var(--gold-dark)" opacity="0.5" />
+                  <line x1="14" y1="14" x2="22" y2="22" stroke="var(--gold-dark)" strokeWidth="0.5" opacity="0.25" />
+                  <line x1="42" y1="14" x2="34" y2="22" stroke="var(--gold-dark)" strokeWidth="0.5" opacity="0.25" />
+                  <line x1="14" y1="42" x2="22" y2="34" stroke="var(--gold-dark)" strokeWidth="0.5" opacity="0.25" />
+                  <line x1="42" y1="42" x2="34" y2="34" stroke="var(--gold-dark)" strokeWidth="0.5" opacity="0.25" />
+                </svg>
+              </div>
               <h3>Strategy</h3>
               <p>
                 Vision without a plan stays a dream. Most strategy was designed for people selling products &mdash; not leaders carrying a message.
@@ -736,141 +772,97 @@ export default function Home() {
 
       {/* ===== PROBLEM ===== */}
       <section className="problem section-pad fade-in" style={{ position: "relative", overflow: "hidden" }}>
-        {/* Background glow — top */}
         <div style={{
           position: "absolute",
-          top: "-5%",
-          left: "30%",
+          top: "10%",
+          left: "50%",
+          transform: "translateX(-50%)",
           width: 900,
           height: 900,
-          background: "radial-gradient(circle, rgba(201, 168, 76, 0.06) 0%, transparent 60%)",
-          pointerEvents: "none",
-        }} />
-        {/* Background glow — bottom */}
-        <div style={{
-          position: "absolute",
-          bottom: "-5%",
-          right: "20%",
-          width: 700,
-          height: 700,
-          background: "radial-gradient(circle, rgba(201, 168, 76, 0.04) 0%, transparent 60%)",
+          background: "radial-gradient(circle, rgba(201, 168, 76, 0.05) 0%, transparent 60%)",
           pointerEvents: "none",
         }} />
 
         <div className="content" style={{ position: "relative", maxWidth: 1100, margin: "0 auto" }}>
 
-          {/* ——— Row 1: Text left, Image right ——— */}
-          <div style={{
-            display: "grid",
-            gridTemplateColumns: "1fr 1fr",
-            gap: 56,
-            alignItems: "center",
-          }}>
+          {/* ——— Row 1: Text left · Image right ——— */}
+          <div className="prob-row">
             <div>
-              <p style={{
-                fontFamily: "var(--font-heading-stack)",
-                fontSize: "clamp(20px, 2.4vw, 26px)",
-                fontWeight: 300,
-                color: "var(--gold)",
-                lineHeight: 1.35,
-                textTransform: "uppercase",
-                letterSpacing: ".18em",
-                marginBottom: 36,
-              }}>
-                You can feel it &mdash; something massive is trying to come through you
-              </p>
-              <div className="lines" style={{ textAlign: "left" }}>
+              <p className="prob-label">You can feel it &mdash; something massive is trying to come through you</p>
+              <div className="prob-text">
                 <p>But you&rsquo;ve hit a ceiling &mdash; and you know it.</p>
                 <p>You&rsquo;ve <em>outgrown</em> the version of yourself that got you here.</p>
-                <p className="gap">The identity that carried you this far <strong>can&rsquo;t carry you to what&rsquo;s next</strong>.</p>
+                <p className="break">The identity that carried you this far <strong>can&rsquo;t carry you to what&rsquo;s next</strong>.</p>
                 <p>Your nervous system isn&rsquo;t calibrated for the level you&rsquo;re stepping into.</p>
                 <p>Your systems aren&rsquo;t yet built to scale &mdash; so you consciously or subconsciously play small.</p>
                 <p>And most of the people around you &mdash; as much as they love you or doubt you &mdash; cannot get you where you&rsquo;re meant to go.</p>
               </div>
             </div>
-            <div style={{ borderRadius: 6, overflow: "hidden", boxShadow: "0 12px 48px rgba(0,0,0,0.5), 0 0 80px rgba(201, 168, 76, 0.06)" }}>
-              <img
-                src="/woman-horizon.jpg"
-                alt="Woman silhouetted against golden horizon"
-                style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
-              />
+            <div className="prob-img">
+              <img src="/woman-horizon.jpg" alt="Woman silhouetted against golden horizon" />
             </div>
           </div>
 
-          {/* Centered diamond divider */}
-          <div className="row-divider">
-            <div className="line line-left" />
-            <div className="diamond">&#10022;</div>
-            <div className="line line-right" />
+          {/* Divider */}
+          <div className="prob-divider">
+            <div className="dl" />
+            <div className="dd">&#10022;</div>
+            <div className="dr" />
           </div>
 
-          {/* ——— Row 2: Image left, Text right ——— */}
-          <div style={{
-            display: "grid",
-            gridTemplateColumns: "1fr 1fr",
-            gap: 56,
-            alignItems: "center",
-          }}>
-            <div style={{ borderRadius: 6, overflow: "hidden", boxShadow: "0 12px 48px rgba(0,0,0,0.5), 0 0 80px rgba(201, 168, 76, 0.06)" }}>
-              <img
-                src="/woman-doorway.jpg"
-                alt="Woman stepping through cosmic doorway"
-                style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
-              />
+          {/* ——— Row 2: Image left · Text right ——— */}
+          <div className="prob-row">
+            <div className="prob-img">
+              <img src="/woman-doorway.jpg" alt="Woman stepping through cosmic doorway" />
             </div>
             <div>
-              <div className="lines" style={{ textAlign: "left" }}>
+              <p className="prob-label">The pattern that got you here won&rsquo;t get you there</p>
+              <div className="prob-text">
                 <p>So you keep striving. Keep pressing on. Keep showing up doing what <strong>USED TO</strong> work. What <strong>USED TO</strong> feel safe. Being who you <strong>USED TO</strong> be.</p>
                 <p>But the <strong>growth has plateaued</strong>.</p>
                 <p>The money isn&rsquo;t enough.</p>
                 <p>Or if it is, you don&rsquo;t <em>FEEL</em> like it&rsquo;s enough.</p>
-                <p className="gap">And you know it&rsquo;s not a talent problem.</p>
-                <p className="standout">It&rsquo;s an <strong style={{ color: "var(--gold)" }}>infrastructure</strong> and <strong style={{ color: "var(--gold)" }}>identity</strong> problem.</p>
-                <p style={{ marginTop: 18 }}>And here&rsquo;s the kicker &mdash; we all see that the world is being shaken to its core, and your people don&rsquo;t need you &ldquo;someday.&rdquo;</p>
+                <p className="break">And you know it&rsquo;s not a talent problem.</p>
+                <p>It&rsquo;s an <strong>infrastructure</strong> and <strong>identity</strong> problem.</p>
+                <p className="break">And here&rsquo;s the kicker &mdash; we all see that the world is being shaken to its core, and your people don&rsquo;t need you &ldquo;someday.&rdquo;</p>
                 <p>They need you <em>now</em>. Fully operational.</p>
                 <p>At a level you haven&rsquo;t given yourself permission to reach yet.</p>
               </div>
             </div>
           </div>
 
-          {/* Centered diamond divider */}
-          <div className="row-divider">
-            <div className="line line-left" />
-            <div className="diamond">&#10022;</div>
-            <div className="line line-right" />
+          {/* Divider */}
+          <div className="prob-divider">
+            <div className="dl" />
+            <div className="dd">&#10022;</div>
+            <div className="dr" />
           </div>
 
-          {/* ——— Row 3: Text left, Image right ——— */}
-          <div style={{
-            display: "grid",
-            gridTemplateColumns: "1fr 1fr",
-            gap: 56,
-            alignItems: "center",
-          }}>
+          {/* ——— Row 3: Text left · Image right ——— */}
+          <div className="prob-row">
             <div>
-              <div className="lines" style={{ textAlign: "left" }}>
-                <p className="standout" style={{ marginBottom: 20 }}><strong style={{ color: "var(--gold-light)" }}>Every day you stay here in the status quo is a day someone who needed your medicine&hellip; didn&rsquo;t find it.</strong></p>
+              <p className="prob-label">The cost of staying here is someone else&rsquo;s healing</p>
+              <div className="prob-text">
+                <p className="break"><strong>Every day you stay in the status quo is a day someone who needed your medicine&hellip; didn&rsquo;t find it.</strong></p>
                 <p>You don&rsquo;t need more inspiration.</p>
                 <p>You don&rsquo;t need another course.</p>
-                <p className="gap">You don&rsquo;t need to start over.</p>
+                <p className="break">You don&rsquo;t need to start over.</p>
                 <p><strong>You need to feel your next-level self in your body.</strong></p>
                 <p><strong>You need to know WTF to do with AI before you get left in the dust or burnout trying to hold 1,000 things solo.</strong></p>
                 <p><strong>You need to surround yourself with people who make your subconscious feel safe to shine so that staying small is impossible.</strong></p>
               </div>
             </div>
-            <div style={{ borderRadius: 6, overflow: "hidden", boxShadow: "0 12px 48px rgba(0,0,0,0.5), 0 0 80px rgba(201, 168, 76, 0.06)" }}>
-              <img
-                src="/the-cosmic-boob.jpg"
-                alt="Hand reaching toward golden constellation"
-                style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
-              />
+            <div className="prob-img">
+              <img src="/the-cosmic-boob.jpg" alt="Hand reaching toward golden constellation" />
             </div>
           </div>
 
           <div className="gold-divider" />
-          <button onClick={openModal} className="btn">
-            Enter the 7-Day ARISE Challenge &mdash; Free
-          </button>
+          <div style={{ textAlign: "center" }}>
+            <button onClick={openModal} className="btn">
+              Enter the 7-Day ARISE Challenge &mdash; Free
+            </button>
+          </div>
         </div>
       </section>
 
