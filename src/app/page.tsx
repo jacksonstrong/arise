@@ -261,6 +261,96 @@ function FaqItem({ question, answer }: { question: string; answer: string }) {
   );
 }
 
+const TESTIMONIALS_DATA = [
+  {
+    quote: "Jackson\u2019s guidance has been nothing short of transformative. His unique blend of expertise and compassion empowered me to step into my true potential.",
+    name: "Lakia Meadan",
+    org: "Sacred Earth Travels",
+  },
+  {
+    quote: "It\u2019s truly a deep dive into your soul\u2019s purpose. Being in a group container with Jackson and other vibrant souls is so expansive. 11 out of 10!",
+    name: "Daniela Sardi & Tyler Schraeder",
+    org: "Stage Secrets Alumni",
+  },
+  {
+    quote: "Jackson knows how to bring your authenticity to life and break through the blocks to speaking your truth.",
+    name: "Kim Kong",
+    org: "Founder, Movement University",
+  },
+];
+
+function TestimonialCarousel() {
+  const [idx, setIdx] = useState(0);
+  const t = TESTIMONIALS_DATA[idx];
+  const prev = () => setIdx((i) => (i - 1 + TESTIMONIALS_DATA.length) % TESTIMONIALS_DATA.length);
+  const next = () => setIdx((i) => (i + 1) % TESTIMONIALS_DATA.length);
+
+  return (
+    <div style={{ marginTop: 64, position: "relative" }}>
+      <div style={{
+        display: "flex", alignItems: "center", gap: 16,
+        maxWidth: 700, margin: "0 auto",
+      }}>
+        <button
+          onClick={prev}
+          style={{
+            background: "none", border: "1px solid var(--ash-dark)", borderRadius: "50%",
+            width: 44, height: 44, color: "var(--gold)", fontSize: 18,
+            cursor: "pointer", flexShrink: 0, display: "flex",
+            alignItems: "center", justifyContent: "center",
+            transition: "border-color .3s",
+          }}
+          onMouseEnter={(e) => (e.currentTarget.style.borderColor = "var(--gold)")}
+          onMouseLeave={(e) => (e.currentTarget.style.borderColor = "var(--ash-dark)")}
+        >
+          ‹
+        </button>
+        <div className="test-card" style={{
+          flex: 1, textAlign: "center", padding: "32px 24px",
+          minHeight: 200, display: "flex", flexDirection: "column",
+          justifyContent: "center",
+        }}>
+          <p className="quote" style={{ marginBottom: 20 }}>
+            {"\u201C"}{t.quote}{"\u201D"}
+          </p>
+          <p className="attr">{"\u2014"} {t.name}</p>
+          <p className="attr-org">{t.org}</p>
+        </div>
+        <button
+          onClick={next}
+          style={{
+            background: "none", border: "1px solid var(--ash-dark)", borderRadius: "50%",
+            width: 44, height: 44, color: "var(--gold)", fontSize: 18,
+            cursor: "pointer", flexShrink: 0, display: "flex",
+            alignItems: "center", justifyContent: "center",
+            transition: "border-color .3s",
+          }}
+          onMouseEnter={(e) => (e.currentTarget.style.borderColor = "var(--gold)")}
+          onMouseLeave={(e) => (e.currentTarget.style.borderColor = "var(--ash-dark)")}
+        >
+          ›
+        </button>
+      </div>
+      <div style={{
+        display: "flex", justifyContent: "center", gap: 8, marginTop: 16,
+      }}>
+        {TESTIMONIALS_DATA.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => setIdx(i)}
+            style={{
+              width: 8, height: 8, borderRadius: "50%",
+              background: i === idx ? "var(--gold)" : "var(--ash-dark)",
+              border: "none", cursor: "pointer", padding: 0,
+              transition: "background .3s",
+            }}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export default function Home() {
   const [modalOpen, setModalOpen] = useState(false);
   const [showSticky, setShowSticky] = useState(false);
@@ -471,11 +561,11 @@ export default function Home() {
           </div>
         </div>
 
-        <div style={{ display: "flex", gap: 16, margin: "32px 0 20px", justifyContent: "center", width: "100%", maxWidth: 960 }}>
-          <button onClick={openModal} className="btn btn-large" style={{ flex: "1 1 0", whiteSpace: "nowrap" }}>
+        <div className="hero-cta-row" style={{ display: "flex", flexDirection: "column", gap: 12, margin: "32px auto 20px", width: "100%", maxWidth: 480, alignItems: "stretch", padding: "0 16px" }}>
+          <button onClick={openModal} className="btn btn-large">
             Enter the 7-Day ARISE Challenge &mdash; Free
           </button>
-          <a href="https://serafina.aurealeaders.com" className="btn btn-large btn-secondary" style={{ flex: "1 1 0", whiteSpace: "nowrap" }}>
+          <a href="https://serafina.aurealeaders.com" className="btn btn-large btn-secondary" style={{ textAlign: "center" }}>
             Try the AI Built to Manifest Your Mission
           </a>
         </div>
@@ -526,17 +616,7 @@ export default function Home() {
 
         {/* What You Get Snapshot */}
         <div style={{ margin: "0 auto 16px", maxWidth: 820, width: "100%" }}>
-          <p
-            style={{
-              fontSize: 22,
-              textTransform: "uppercase",
-              letterSpacing: ".22em",
-              color: "var(--gold-dark)",
-              marginTop: 64,
-              marginBottom: 32,
-              textAlign: "center",
-            }}
-          >
+          <p className="hero-snapshot-heading">
             Access Live Coaching, Transformational Meditations, Advanced AI Insights, &amp; a Tribe of Co-Creators That Make Your Next Breakthrough an Inevitability
           </p>
           <div style={{ display: "flex", justifyContent: "center", gap: 20, flexWrap: "wrap" }}>
@@ -567,16 +647,7 @@ export default function Home() {
                   marginBottom: 14,
                   filter: "drop-shadow(0 0 8px rgba(201, 168, 76, 0.4))",
                 }}>{item.icon}</div>
-                <p
-                  style={{
-                    fontFamily: "var(--font-heading-stack)",
-                    fontSize: 22,
-                    fontWeight: 400,
-                    color: "var(--gold-light)",
-                    lineHeight: 1.3,
-                    margin: "0 0 10px",
-                  }}
-                >
+                <p className="snapshot-card-title">
                   {item.title}
                   <br />
                   {item.subtitle}
@@ -597,7 +668,7 @@ export default function Home() {
       {/* ===== THREE BLOCKS ===== */}
       <section className="blocks section-pad fade-in">
         <div className="container-wide">
-          <p className="eyebrow text-center" style={{ fontSize: 22 }}>What&rsquo;s Actually In Your Way</p>
+          <p className="eyebrow eyebrow-lg text-center">What&rsquo;s Actually In Your Way</p>
           <h2 className="blocks-heading">
             The Three Thresholds You Must Cross
             <br />
@@ -869,7 +940,7 @@ export default function Home() {
       {/* ===== GUIDES ===== */}
       <section className="guide section-pad">
         <div className="container-wide">
-          <p className="eyebrow text-center" style={{ fontSize: 22 }}>Your Guides</p>
+          <p className="eyebrow eyebrow-lg text-center">Your Guides</p>
 
           <div style={{
             display: "grid",
@@ -979,39 +1050,14 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="testimonials-row fade-in">
-            <div className="test-card fade-in" data-stagger>
-              <p className="quote">
-                &ldquo;Jackson&rsquo;s guidance has been nothing short of transformative. His unique
-                blend of expertise and compassion empowered me to step into my true potential.&rdquo;
-              </p>
-              <p className="attr">&mdash; Lakia Meadan</p>
-              <p className="attr-org">Sacred Earth Travels</p>
-            </div>
-            <div className="test-card fade-in" data-stagger>
-              <p className="quote">
-                &ldquo;It&rsquo;s truly a deep dive into your soul&rsquo;s purpose. Being in a group
-                container with Jackson and other vibrant souls is so expansive. 11 out of 10!&rdquo;
-              </p>
-              <p className="attr">&mdash; Daniela Sardi &amp; Tyler Schraeder</p>
-              <p className="attr-org">Stage Secrets Alumni</p>
-            </div>
-            <div className="test-card fade-in" data-stagger>
-              <p className="quote">
-                &ldquo;Jackson knows how to bring your authenticity to life and break through the
-                blocks to speaking your truth.&rdquo;
-              </p>
-              <p className="attr">&mdash; Kim Kong</p>
-              <p className="attr-org">Founder, Movement University</p>
-            </div>
-          </div>
+          <TestimonialCarousel />
         </div>
       </section>
 
       {/* ===== 7-DAY JOURNEY ===== */}
       <section className="journey section-pad">
         <div className="container-wide">
-          <p className="eyebrow text-center" style={{ fontSize: 22 }}>The 7-Day Journey</p>
+          <p className="eyebrow eyebrow-lg text-center">The 7-Day Journey</p>
           <p style={{ fontSize: 13, letterSpacing: ".06em", color: "var(--ash)", textAlign: "center", marginBottom: 24 }}>
             Live Coaching &middot; Daily Somatic Meditations &middot; First Access to{" "}
             <strong style={{ color: "var(--gold)" }}>Serafina</strong> &mdash; the AI Platform Built
@@ -1124,7 +1170,7 @@ export default function Home() {
       {/* ===== SERAPH SECTION ===== */}
       <section className="seraph section-pad fade-in">
         <div className="container-wide">
-          <p className="eyebrow text-center" style={{ fontSize: 22, color: "var(--gold)" }}>
+          <p className="eyebrow eyebrow-lg text-center" style={{ color: "var(--gold)" }}>
             Introducing Serafina
           </p>
           <h2
@@ -1317,7 +1363,7 @@ export default function Home() {
       {/* ===== OUTCOMES ===== */}
       <section className="outcomes section-pad fade-in">
         <div className="container-wide">
-          <p className="eyebrow text-center" style={{ fontSize: 22 }}>In 7 Days, You Will Have...</p>
+          <p className="eyebrow eyebrow-lg text-center">In 7 Days, You Will Have...</p>
           <div className="outcomes-grid">
             {[
               ["Your Frequency", "The felt sense of your highest self \u2014 activated in your body, not just your mind."],
@@ -1347,7 +1393,7 @@ export default function Home() {
       {/* ===== ALCHEMY ===== */}
       <section className="section-pad fade-in" style={{ background: "var(--ink)" }}>
         <div className="container">
-          <p className="eyebrow text-center" style={{ fontSize: 22 }}>The Alchemy</p>
+          <p className="eyebrow eyebrow-lg text-center">The Alchemy</p>
           <div style={{ textAlign: "center", maxWidth: 660, margin: "0 auto" }}>
             <h2
               style={{
@@ -1420,7 +1466,7 @@ export default function Home() {
       {/* ===== WHO THIS IS FOR ===== */}
       <section className="who section-pad fade-in">
         <div className="container-wide">
-          <p className="eyebrow text-center" style={{ fontSize: 22 }}>Is This For You?</p>
+          <p className="eyebrow eyebrow-lg text-center">Is This For You?</p>
           <div className="who-grid">
             <div className="who-col yes fade-in" data-stagger>
               <h3>This Is For You If:</h3>
