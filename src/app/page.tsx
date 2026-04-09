@@ -898,6 +898,9 @@ export default function Home() {
           <div className="prob-row">
             <div>
               <p className="prob-label">You can feel it &mdash; something massive is trying to come through you</p>
+              <div className="prob-img prob-img-mobile">
+                <img src="/woman-horizon.jpg" alt="Woman silhouetted against golden horizon" />
+              </div>
               <div className="prob-text">
                 <p>But you&rsquo;ve hit a ceiling &mdash; and you know it.</p>
                 <p>You&rsquo;ve <em>outgrown</em> the version of yourself that got you here.</p>
@@ -907,7 +910,7 @@ export default function Home() {
                 <p>And most of the people around you &mdash; as much as they love you or doubt you &mdash; cannot get you where you&rsquo;re meant to go.</p>
               </div>
             </div>
-            <div className="prob-img">
+            <div className="prob-img prob-img-desktop">
               <img src="/woman-horizon.jpg" alt="Woman silhouetted against golden horizon" />
             </div>
           </div>
@@ -921,11 +924,14 @@ export default function Home() {
 
           {/* ——— Row 2: Image left · Text right ——— */}
           <div className="prob-row">
-            <div className="prob-img">
+            <div className="prob-img prob-img-desktop">
               <img src="/woman-doorway.jpg" alt="Woman stepping through cosmic doorway" />
             </div>
             <div>
               <p className="prob-label">The pattern that got you here won&rsquo;t get you there</p>
+              <div className="prob-img prob-img-mobile">
+                <img src="/woman-doorway.jpg" alt="Woman stepping through cosmic doorway" />
+              </div>
               <div className="prob-text">
                 <p>So you keep striving. Keep pressing on. Keep showing up doing what <strong>USED TO</strong> work. What <strong>USED TO</strong> feel safe. Being who you <strong>USED TO</strong> be.</p>
                 <p>But the <strong>growth has plateaued</strong>.</p>
@@ -951,6 +957,9 @@ export default function Home() {
           <div className="prob-row">
             <div>
               <p className="prob-label">The cost of staying here is someone else&rsquo;s healing</p>
+              <div className="prob-img prob-img-mobile">
+                <img src="/the-cosmic-boob.jpg" alt="Hand reaching toward golden constellation" />
+              </div>
               <div className="prob-text">
                 <p className="break"><strong>Every day you stay in the status quo is a day someone who needed your medicine&hellip; didn&rsquo;t find it.</strong></p>
                 <p>You don&rsquo;t need more inspiration.</p>
@@ -961,7 +970,7 @@ export default function Home() {
                 <p><strong>You need to surround yourself with people who make your subconscious feel safe to shine so that staying small is impossible.</strong></p>
               </div>
             </div>
-            <div className="prob-img">
+            <div className="prob-img prob-img-desktop">
               <img src="/the-cosmic-boob.jpg" alt="Hand reaching toward golden constellation" />
             </div>
           </div>

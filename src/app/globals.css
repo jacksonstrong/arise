@@ -266,6 +266,8 @@ body {
 
 .problem { background: var(--ink); }
 .problem .content { max-width: 1100px; margin: 0 auto; }
+.problem .prob-img-mobile { display: none; }
+.problem .prob-img-desktop { display: block; }
 
 /* Shared row layout */
 .problem .prob-row {
@@ -866,6 +868,8 @@ footer .logo { font-family: var(--font-heading-stack); font-size: 18px; color: v
   .problem .prob-label { font-size: 18px !important; }
   .problem .prob-text { font-size: 17px; }
   .problem .prob-img { height: 280px; }
+  .problem .prob-img-desktop { display: none !important; }
+  .problem .prob-img-mobile { display: block !important; margin-bottom: 20px; }
   .problem .prob-divider { margin: 36px auto; }
 
   /* Guides — stack */
