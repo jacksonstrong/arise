@@ -297,13 +297,54 @@ const TESTIMONIALS_DATA = [
     name: "Stage Secrets Graduate",
     org: "Stage Secrets Alumni",
   },
+  {
+    quote: "AUREA is a group unlike any I\u2019ve discovered before. Jackson has curated the most progressive minds, people who think far beyond the status quo and are actively creating the world they want to live in. Attending this event was a turning point for my own free thinking and molding a new understanding of what is possible.",
+    name: "Kim Ehardt",
+    org: "Google Review \u2605\u2605\u2605\u2605\u2605",
+  },
+  {
+    quote: "The curation of this event was amazing. I could tell that much thought went into the attendee experience. Each speaker had such conviction and care into what they were sharing. The diversity of topics truly made this event applicable to anyone that wants to be a better human.",
+    name: "Brandi Marek",
+    org: "Google Review \u2605\u2605\u2605\u2605\u2605",
+  },
+  {
+    quote: "This event stands out as the pinnacle of my experiences. The atmosphere was filled with love, acceptance, and genuine support. From the very beginning, it was evident that this event was designed to be interactive and transformative, unlike any I had attended in my 30 plus years of exploration.",
+    name: "Marc & Staci Kessler",
+    org: "Google Review \u2605\u2605\u2605\u2605\u2605",
+  },
+  {
+    quote: "Life changing event for me on soooo many levels. I was at a low point in life. Was invited to this event and it helped put me on a new life path trajectory. Met incredible heart-centered, giving, loving, like-minded tribe. Felt seen, heard, and understood.",
+    name: "Gabriel Maldonado",
+    org: "Google Review \u2605\u2605\u2605\u2605\u2605",
+  },
+  {
+    quote: "This event was epic!! The vibe was so high with many extraordinary moments. Aurea brought creative, talented, and love-filled beings together to create magic. I made new friends and found my soul tribe.",
+    name: "Lisa",
+    org: "Google Review \u2605\u2605\u2605\u2605\u2605",
+  },
+  {
+    quote: "I was very fortunate to attend one of their three-day events live in Miami, and bring 9 of my friends along with me! That was so transformational for me personally as well as each of the people I brought with. Following it up with a 21-day challenge group has produced amazing results in my life.",
+    name: "Eric Balas",
+    org: "Google Review \u2605\u2605\u2605\u2605\u2605",
+  },
+  {
+    quote: "AUREA seminar was an expectacular and very intensive 3-day event! It was full of amazing experiences, speakers, and wonderful crowd of participants! Great community! I will definitely come back next time!",
+    name: "Antonio Ponte",
+    org: "Google Review \u2605\u2605\u2605\u2605\u2605",
+  },
 ];
+
+const QUOTE_TRUNCATE_LENGTH = 200;
 
 function TestimonialCarousel() {
   const [idx, setIdx] = useState(0);
+  const [expanded, setExpanded] = useState(false);
   const t = TESTIMONIALS_DATA[idx];
-  const prev = () => setIdx((i) => (i - 1 + TESTIMONIALS_DATA.length) % TESTIMONIALS_DATA.length);
-  const next = () => setIdx((i) => (i + 1) % TESTIMONIALS_DATA.length);
+  const isLong = t.quote.length > QUOTE_TRUNCATE_LENGTH;
+  const displayQuote = !isLong || expanded ? t.quote : t.quote.slice(0, QUOTE_TRUNCATE_LENGTH).replace(/\s+\S*$/, "") + "\u2026";
+
+  const prev = () => { setIdx((i) => (i - 1 + TESTIMONIALS_DATA.length) % TESTIMONIALS_DATA.length); setExpanded(false); };
+  const next = () => { setIdx((i) => (i + 1) % TESTIMONIALS_DATA.length); setExpanded(false); };
 
   return (
     <div style={{ marginTop: 64, position: "relative" }}>
@@ -330,9 +371,24 @@ function TestimonialCarousel() {
           minHeight: 200, display: "flex", flexDirection: "column",
           justifyContent: "center",
         }}>
-          <p className="quote" style={{ marginBottom: 20 }}>
-            {"\u201C"}{t.quote}{"\u201D"}
+          <p className="quote" style={{ marginBottom: isLong && !expanded ? 12 : 20 }}>
+            {"\u201C"}{displayQuote}{"\u201D"}
           </p>
+          {isLong && (
+            <button
+              onClick={() => setExpanded(!expanded)}
+              style={{
+                background: "none", border: "none", cursor: "pointer",
+                color: "var(--gold-dark)", fontSize: 12, letterSpacing: ".1em",
+                textTransform: "uppercase", marginBottom: 16,
+                transition: "color .3s",
+              }}
+              onMouseEnter={(e) => (e.currentTarget.style.color = "var(--gold)")}
+              onMouseLeave={(e) => (e.currentTarget.style.color = "var(--gold-dark)")}
+            >
+              {expanded ? "Show less" : "Read full review"}
+            </button>
+          )}
           <p className="attr">{"\u2014"} {t.name}</p>
           <p className="attr-org">{t.org}</p>
         </div>
@@ -626,6 +682,13 @@ export default function Home() {
               ["\u201cThe time I\u2019ve invested with Jackson has led to tangible results in our business.\u201d", "Genevieve Lejeune, Founder, Skirt Club"],
               ["\u201cHe\u2019s a trusted confidant, coach, and a passionate advocate for me every step of the way.\u201d", "Benjamin Zaemisch, Founder, TheManicSerenity"],
               ["\u201cI\u2019ve definitely leveled-up. AUREA was nothing short of a magical experience.\u201d", "Stage Secrets Graduate"],
+              ["\u201cA turning point for my own free thinking and a new understanding of what is possible.\u201d", "Kim Ehardt"],
+              ["\u201cEach speaker had such conviction and care. Applicable to anyone who wants to be a better human.\u201d", "Brandi Marek"],
+              ["\u201cThis event stands out as the pinnacle of my experiences in 30+ years of exploration.\u201d", "Marc & Staci Kessler"],
+              ["\u201cLife changing on soooo many levels. Felt seen, heard, and understood.\u201d", "Gabriel Maldonado"],
+              ["\u201cThis event was epic!! I made new friends and found my soul tribe.\u201d", "Lisa"],
+              ["\u201cSo transformational for me and the 9 friends I brought. Amazing results in my life.\u201d", "Eric Balas"],
+              ["\u201cGreat community! Full of amazing experiences. I will definitely come back!\u201d", "Antonio Ponte"],
               ["\u201cTHIS is the community I\u2019ve been searching for over the last decade.\u201d", "Michelle Hori, Executive Coach"],
               ["\u201cJackson\u2019s guidance has been nothing short of transformative.\u201d", "Lakia Meadan, Sacred Earth Travels"],
               ["\u201cIf you do the work, you will get the results.\u201d", "Fernando Subirats, Founder, The Manifestival"],
