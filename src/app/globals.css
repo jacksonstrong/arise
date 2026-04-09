@@ -34,7 +34,7 @@ body {
   color: var(--gold-dark);
   margin-bottom: 24px;
 }
-.eyebrow-lg { font-size: 13px; letter-spacing: .28em; }
+.eyebrow-lg { font-size: 18px; letter-spacing: .24em; }
 .snapshot-card-title {
   font-family: var(--font-heading-stack);
   font-size: 22px;
