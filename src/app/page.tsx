@@ -427,6 +427,111 @@ function TestimonialCarousel() {
   );
 }
 
+const HERO_TESTIMONIALS = [
+  { quote: "THIS is the community I\u2019ve been searching for over the last decade.", name: "Michelle Hori", org: "Executive Coach" },
+  { quote: "Jackson\u2019s guidance has been nothing short of transformative. His unique blend of expertise and compassion empowered me to step into my true potential.", name: "Lakia Meadan", org: "Sacred Earth Travels" },
+  { quote: "If you do the work, you will get the results.", name: "Fernando Subirats", org: "Founder, The Manifestival" },
+  { quote: "It\u2019s truly a deep dive into your soul\u2019s purpose. Being in a group container with Jackson and other vibrant souls is so expansive. 11 out of 10!", name: "Daniela Sardi & Tyler Schraeder", org: "Stage Secrets Alumni" },
+  { quote: "It has renewed my vision and resolve around expanding my endeavors.", name: "Anamaria Aristizabal", org: "Master Coach & Author" },
+  { quote: "Jackson knows how to bring your authenticity to life and break through the blocks to speaking your truth.", name: "Kim Kong", org: "Founder, Movement University" },
+  { quote: "The quality of the content shared is priceless.", name: "Melly Anton", org: "Entrepreneur" },
+  { quote: "He will help you break free from your limiting beliefs.", name: "Christine Lee", org: "Entrepreneur" },
+  { quote: "You help me be my own healer \u2014 that is a true leader. Each morning, meditating with you changes the trajectory of my day. You have an incredible way to reframe difficult moments in life in a beautiful way.", name: "Natalie O\u2019Reilly", org: "Client" },
+  { quote: "The time I\u2019ve invested with Jackson has led to tangible results in our business. I know he cares about his work, his clients, and seeing them succeed because he\u2019s shown up rain or shine for me and Skirt Club.", name: "Genevieve Lejeune", org: "Founder, Skirt Club" },
+  { quote: "My investment with Jackson has helped me find hidden parts and pieces of my voice that needed to be heard. He\u2019s a trusted confidant, coach, and a passionate advocate for me every step of the way.", name: "Benjamin Zaemisch", org: "Founder, TheManicSerenity" },
+  { quote: "AUREA is a group unlike any I\u2019ve discovered before. Jackson has curated the most progressive minds, people who think far beyond the status quo and are actively creating the world they want to live in. Attending this event was a turning point for my own free thinking and molding a new understanding of what is possible.", name: "Kim Ehardt", org: "Google Review \u2605\u2605\u2605\u2605\u2605" },
+  { quote: "The curation of this event was amazing. I could tell that much thought went into the attendee experience. Each speaker had such conviction and care into what they were sharing. The diversity of topics truly made this event applicable to anyone that wants to be a better human.", name: "Brandi Marek", org: "Google Review \u2605\u2605\u2605\u2605\u2605" },
+  { quote: "This event stands out as the pinnacle of my experiences. The atmosphere was filled with love, acceptance, and genuine support. From the very beginning, it was evident that this event was designed to be interactive and transformative, unlike any I had attended in my 30 plus years of exploration.", name: "Marc & Staci Kessler", org: "Google Review \u2605\u2605\u2605\u2605\u2605" },
+  { quote: "Life changing event for me on soooo many levels. I was at a low point in life. Was invited to this event and it helped put me on a new life path trajectory. Met incredible heart-centered, giving, loving, like-minded tribe. Felt seen, heard, and understood.", name: "Gabriel Maldonado", org: "Google Review \u2605\u2605\u2605\u2605\u2605" },
+  { quote: "This event was epic!! The vibe was so high with many extraordinary moments. Aurea brought creative, talented, and love-filled beings together to create magic. I made new friends and found my soul tribe.", name: "Lisa", org: "Google Review \u2605\u2605\u2605\u2605\u2605" },
+  { quote: "I was very fortunate to attend one of their three-day events live in Miami, and bring 9 of my friends along with me! That was so transformational for me personally as well as each of the people I brought with. Following it up with a 21-day challenge group has produced amazing results in my life.", name: "Eric Balas", org: "Google Review \u2605\u2605\u2605\u2605\u2605" },
+  { quote: "AUREA seminar was an expectacular and very intensive 3-day event! It was full of amazing experiences, speakers, and wonderful crowd of participants! Great community! I will definitely come back next time!", name: "Antonio Ponte", org: "Google Review \u2605\u2605\u2605\u2605\u2605" },
+];
+
+function HeroTestimonialCarousel() {
+  const [idx, setIdx] = useState(0);
+  const [expanded, setExpanded] = useState(false);
+  const t = HERO_TESTIMONIALS[idx];
+  const maxLines = 5;
+  const lineClampStyle = !expanded ? {
+    display: "-webkit-box",
+    WebkitLineClamp: maxLines,
+    WebkitBoxOrient: "vertical" as const,
+    overflow: "hidden",
+  } : {};
+
+  const prev = () => { setIdx((i) => (i - 1 + HERO_TESTIMONIALS.length) % HERO_TESTIMONIALS.length); setExpanded(false); };
+  const next = () => { setIdx((i) => (i + 1) % HERO_TESTIMONIALS.length); setExpanded(false); };
+
+  return (
+    <div style={{ maxWidth: 640, margin: "20px auto 0", padding: "0 16px" }}>
+      <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+        <button
+          onClick={prev}
+          style={{
+            background: "none", border: "1px solid var(--ash-dark)", borderRadius: "50%",
+            width: 36, height: 36, color: "var(--gold)", fontSize: 16,
+            cursor: "pointer", flexShrink: 0, display: "flex",
+            alignItems: "center", justifyContent: "center",
+            transition: "border-color .3s",
+          }}
+          onMouseEnter={(e) => (e.currentTarget.style.borderColor = "var(--gold)")}
+          onMouseLeave={(e) => (e.currentTarget.style.borderColor = "var(--ash-dark)")}
+        >{"\u2039"}</button>
+        <div style={{
+          flex: 1, textAlign: "center", padding: "24px 16px",
+          border: "1px solid var(--ash-dark)", borderRadius: 2,
+          transition: "border-color .3s",
+        }}>
+          <p style={{
+            fontFamily: "var(--font-heading-stack)",
+            fontStyle: "italic",
+            fontSize: 18,
+            lineHeight: 1.6,
+            color: "var(--parchment)",
+            opacity: 0.9,
+            marginBottom: expanded ? 12 : 0,
+            ...lineClampStyle,
+          }}>
+            {"\u201C"}{t.quote}{"\u201D"}
+          </p>
+          {t.quote.length > 120 && (
+            <button
+              onClick={() => setExpanded(!expanded)}
+              style={{
+                background: "none", border: "none", cursor: "pointer",
+                color: "var(--gold-dark)", fontSize: 11, letterSpacing: ".1em",
+                textTransform: "uppercase", marginTop: 8,
+                transition: "color .3s",
+              }}
+              onMouseEnter={(e) => (e.currentTarget.style.color = "var(--gold)")}
+              onMouseLeave={(e) => (e.currentTarget.style.color = "var(--gold-dark)")}
+            >
+              {expanded ? "Show less" : "See full review"}
+            </button>
+          )}
+          <p style={{ fontSize: 13, color: "var(--gold-dark)", fontWeight: 400, marginTop: 12 }}>
+            {"\u2014"} {t.name}
+          </p>
+          <p style={{ fontSize: 11, color: "var(--ash)" }}>{t.org}</p>
+        </div>
+        <button
+          onClick={next}
+          style={{
+            background: "none", border: "1px solid var(--ash-dark)", borderRadius: "50%",
+            width: 36, height: 36, color: "var(--gold)", fontSize: 16,
+            cursor: "pointer", flexShrink: 0, display: "flex",
+            alignItems: "center", justifyContent: "center",
+            transition: "border-color .3s",
+          }}
+          onMouseEnter={(e) => (e.currentTarget.style.borderColor = "var(--gold)")}
+          onMouseLeave={(e) => (e.currentTarget.style.borderColor = "var(--ash-dark)")}
+        >{"\u203A"}</button>
+      </div>
+    </div>
+  );
+}
+
 export default function Home() {
   const [modalOpen, setModalOpen] = useState(false);
   const [showSticky, setShowSticky] = useState(false);
@@ -662,44 +767,12 @@ export default function Home() {
             ))}
           </div>
           <p style={{ fontSize: 12, color: "var(--parchment)", letterSpacing: ".05em" }}>
-            5 Stars on Google &middot; Trusted by 1,000&rsquo;s of coaches and entrepreneurs
+            AUREA &mdash; 5 Stars on Google &middot; Trusted by 1,000&rsquo;s of Entrepreneurs, Coaches, and Leaders
           </p>
         </div>
 
-        {/* Testimonial Ticker */}
-        <div className="ticker-wrap">
-          <div className="ticker">
-            {[
-              ["\u201cTHIS is the community I\u2019ve been searching for over the last decade.\u201d", "Michelle Hori, Executive Coach"],
-              ["\u201cJackson\u2019s guidance has been nothing short of transformative.\u201d", "Lakia Meadan, Sacred Earth Travels"],
-              ["\u201cIf you do the work, you will get the results.\u201d", "Fernando Subirats, Founder, The Manifestival"],
-              ["\u201cIt\u2019s truly a deep dive into your soul\u2019s purpose. 11 out of 10!\u201d", "Daniela Sardi & Tyler Schraeder"],
-              ["\u201cIt has renewed my vision and resolve around expanding my endeavors.\u201d", "Anamaria Aristizabal, Master Coach & Author"],
-              ["\u201cJackson knows how to bring your authenticity to life.\u201d", "Kim Kong, Founder, Movement University"],
-              ["\u201cThe quality of the content shared is priceless.\u201d", "Melly Anton, Entrepreneur"],
-              ["\u201cHe will help you break free from your limiting beliefs.\u201d", "Christine Lee, Entrepreneur"],
-              ["\u201cYou help me be my own healer \u2014 that is a true leader.\u201d", "Natalie O\u2019Reilly"],
-              ["\u201cThe time I\u2019ve invested with Jackson has led to tangible results in our business.\u201d", "Genevieve Lejeune, Founder, Skirt Club"],
-              ["\u201cHe\u2019s a trusted confidant, coach, and a passionate advocate for me every step of the way.\u201d", "Benjamin Zaemisch, Founder, TheManicSerenity"],
-              ["\u201cI\u2019ve definitely leveled-up. AUREA was nothing short of a magical experience.\u201d", "Stage Secrets Graduate"],
-              ["\u201cA turning point for my own free thinking and a new understanding of what is possible.\u201d", "Kim Ehardt"],
-              ["\u201cEach speaker had such conviction and care. Applicable to anyone who wants to be a better human.\u201d", "Brandi Marek"],
-              ["\u201cThis event stands out as the pinnacle of my experiences in 30+ years of exploration.\u201d", "Marc & Staci Kessler"],
-              ["\u201cLife changing on soooo many levels. Felt seen, heard, and understood.\u201d", "Gabriel Maldonado"],
-              ["\u201cThis event was epic!! I made new friends and found my soul tribe.\u201d", "Lisa"],
-              ["\u201cSo transformational for me and the 9 friends I brought. Amazing results in my life.\u201d", "Eric Balas"],
-              ["\u201cGreat community! Full of amazing experiences. I will definitely come back!\u201d", "Antonio Ponte"],
-              ["\u201cTHIS is the community I\u2019ve been searching for over the last decade.\u201d", "Michelle Hori, Executive Coach"],
-              ["\u201cJackson\u2019s guidance has been nothing short of transformative.\u201d", "Lakia Meadan, Sacred Earth Travels"],
-              ["\u201cIf you do the work, you will get the results.\u201d", "Fernando Subirats, Founder, The Manifestival"],
-              ["\u201cIt\u2019s truly a deep dive into your soul\u2019s purpose. 11 out of 10!\u201d", "Daniela Sardi & Tyler Schraeder"],
-            ].map(([quote, name], i) => (
-              <span key={i} className="ticker-item" aria-hidden={i >= 8 ? "true" : undefined}>
-                {quote} &mdash; <span className="name">{name}</span>
-              </span>
-            ))}
-          </div>
-        </div>
+        {/* Hero Testimonial Carousel */}
+        <HeroTestimonialCarousel />
 
       </section>
 
@@ -708,9 +781,7 @@ export default function Home() {
         <div className="container-wide">
           <p className="eyebrow eyebrow-lg text-center">What&rsquo;s Actually In Your Way</p>
           <h2 className="blocks-heading">
-            The Three Thresholds You Must Cross
-            <br />
-            to Live Your Mission at Full Volume
+            The Three Thresholds You Must Cross to Live Your Mission at Full Volume
           </h2>
           <p className="blocks-sub">
             Every course you&rsquo;ve taken tried to solve one of these. ARISE addresses all three
