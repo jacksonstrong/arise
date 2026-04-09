@@ -614,55 +614,6 @@ export default function Home() {
           </div>
         </div>
 
-        {/* What You Get Snapshot */}
-        <div style={{ margin: "0 auto 16px", maxWidth: 820, width: "100%" }}>
-          <p className="hero-snapshot-heading">
-            Access Live Coaching, Transformational Meditations, Advanced AI Insights, &amp; a Tribe of Co-Creators That Make Your Next Breakthrough an Inevitability
-          </p>
-          <div style={{ display: "flex", justifyContent: "center", gap: 20, flexWrap: "wrap" }}>
-            {[
-              { icon: "\u2666", title: "A Nervous System", subtitle: "That Scales", desc: "Feel your next-level self in your body" },
-              { icon: "\u2699", title: "An AI Business", subtitle: "Engine", desc: "This goes way beyond ChatGPT." },
-              { icon: "\u2726", title: "A Tribe That", subtitle: "Elevates You", desc: "People who make staying small impossible" },
-            ].map((item, i) => (
-              <div
-                key={i}
-                className="card-hover card-tilt"
-                style={{
-                  flex: 1,
-                  minWidth: 240,
-                  maxWidth: 280,
-                  border: "1px solid var(--gold-dark)",
-                  borderRadius: 4,
-                  padding: "32px 24px",
-                  textAlign: "center",
-                  background: "linear-gradient(180deg, rgba(201, 168, 76, 0.06) 0%, rgba(201, 168, 76, 0) 100%)",
-                  position: "relative",
-                  overflow: "hidden",
-                }}
-              >
-                <div style={{
-                  color: "var(--gold)",
-                  fontSize: 28,
-                  marginBottom: 14,
-                  filter: "drop-shadow(0 0 8px rgba(201, 168, 76, 0.4))",
-                }}>{item.icon}</div>
-                <p className="snapshot-card-title">
-                  {item.title}
-                  <br />
-                  {item.subtitle}
-                </p>
-                <p style={{
-                  fontSize: 17,
-                  color: "var(--ash)",
-                  lineHeight: 1.5,
-                  margin: 0,
-                }}>{item.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-
       </section>
 
       {/* ===== THREE BLOCKS ===== */}
@@ -933,6 +884,81 @@ export default function Home() {
             <button onClick={openModal} className="btn">
               Enter the 7-Day ARISE Challenge &mdash; Free
             </button>
+          </div>
+        </div>
+      </section>
+
+      {/* ===== WHAT YOU GET SNAPSHOT ===== */}
+      <section className="section-pad fade-in" style={{ background: "var(--ink)", paddingBottom: 0 }}>
+        <div style={{ margin: "0 auto", maxWidth: 820, width: "100%" }}>
+          <p className="eyebrow eyebrow-lg text-center">What You Get</p>
+          <p style={{
+            fontFamily: "var(--font-heading-stack)",
+            fontSize: "clamp(20px, 3vw, 28px)",
+            fontWeight: 300,
+            color: "var(--parchment)",
+            textAlign: "center",
+            lineHeight: 1.5,
+            marginBottom: 48,
+            opacity: 0.9,
+          }}>
+            Access Live Coaching, Transformational Meditations, Advanced AI Insights, &amp; a Tribe of Co-Creators That Make Your Next Breakthrough an Inevitability
+          </p>
+          <div style={{ display: "flex", justifyContent: "center", gap: 20, flexWrap: "wrap" }}>
+            {[
+              { icon: "\u2666", title: "A Nervous System", subtitle: "That Scales", desc: "Feel your next-level self in your body" },
+              { icon: "\u2699", title: "An AI Business", subtitle: "Engine", desc: "This goes way beyond ChatGPT." },
+              { icon: "tribe", title: "A Tribe That", subtitle: "Elevates You", desc: "People who make staying small impossible" },
+            ].map((item, i) => (
+              <div
+                key={i}
+                className="card-hover card-tilt"
+                style={{
+                  flex: 1,
+                  minWidth: 240,
+                  maxWidth: 280,
+                  border: "1px solid var(--gold-dark)",
+                  borderRadius: 4,
+                  padding: "32px 24px",
+                  textAlign: "center",
+                  background: "linear-gradient(180deg, rgba(201, 168, 76, 0.06) 0%, rgba(201, 168, 76, 0) 100%)",
+                  position: "relative",
+                  overflow: "hidden",
+                }}
+              >
+                <div style={{
+                  color: "var(--gold)",
+                  fontSize: 28,
+                  marginBottom: 14,
+                  filter: "drop-shadow(0 0 8px rgba(201, 168, 76, 0.4))",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}>
+                  {item.icon === "tribe" ? (
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                      <circle cx="12" cy="7" r="3" />
+                      <circle cx="5" cy="10" r="2.5" />
+                      <circle cx="19" cy="10" r="2.5" />
+                      <path d="M8 21v-2a4 4 0 0 1 8 0v2" />
+                      <path d="M1 21v-1.5a3.5 3.5 0 0 1 5-3.15" />
+                      <path d="M23 21v-1.5a3.5 3.5 0 0 0-5-3.15" />
+                    </svg>
+                  ) : item.icon}
+                </div>
+                <p className="snapshot-card-title">
+                  {item.title}
+                  <br />
+                  {item.subtitle}
+                </p>
+                <p style={{
+                  fontSize: 17,
+                  color: "var(--ash)",
+                  lineHeight: 1.5,
+                  margin: 0,
+                }}>{item.desc}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>

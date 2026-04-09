@@ -28,11 +28,20 @@ body {
 }
 
 .eyebrow {
-  font-size: 10px;
+  font-size: 12px;
   text-transform: uppercase;
-  letter-spacing: .28em;
+  letter-spacing: .24em;
   color: var(--gold-dark);
   margin-bottom: 24px;
+}
+.eyebrow-lg { font-size: 13px; letter-spacing: .28em; }
+.snapshot-card-title {
+  font-family: var(--font-heading-stack);
+  font-size: 22px;
+  font-weight: 400;
+  color: var(--gold-light);
+  line-height: 1.3;
+  margin: 0 0 10px;
 }
 .section-pad { padding: 120px 24px; }
 .container { max-width: 800px; margin: 0 auto; }
@@ -112,7 +121,7 @@ body {
   z-index: 0;
 }
 .hero > * { position: relative; z-index: 1; }
-.hero .eyebrow { margin-bottom: 16px; font-size: 13px; }
+.hero .eyebrow { margin-bottom: 16px; font-size: 12px; }
 .hero h1 {
   font-family: var(--font-heading-stack);
   font-weight: 300;
@@ -343,7 +352,7 @@ body {
 .blocks-heading {
   font-family: var(--font-heading-stack);
   font-weight: 300;
-  font-size: clamp(28px, 5vw, 44px);
+  font-size: clamp(30px, 5vw, 44px);
   text-align: center;
   margin-bottom: 20px;
   line-height: 1.25;
@@ -393,7 +402,7 @@ body {
 .block-card h3 {
   font-family: var(--font-heading-stack);
   font-weight: 300;
-  font-size: 38px;
+  font-size: clamp(28px, 4vw, 36px);
   color: var(--gold);
   margin-bottom: 8px;
   position: relative;
@@ -429,7 +438,7 @@ body {
   letter-spacing: .1em;
   text-transform: uppercase;
 }
-.guide-text h2 { font-family: var(--font-heading-stack); font-weight: 300; font-size: 32px; margin-bottom: 4px; }
+.guide-text h2 { font-family: var(--font-heading-stack); font-weight: 300; font-size: clamp(28px, 4vw, 36px); margin-bottom: 4px; }
 .guide-text .title-sub { font-size: 14px; color: var(--gold-dark); margin-bottom: 32px; }
 .guide-text p { margin-bottom: 20px; color: var(--parchment); opacity: 0.88; }
 .guide-text .vulnerability { border-left: 2px solid var(--gold-dark); padding-left: 20px; margin: 32px 0; }
@@ -490,7 +499,7 @@ body {
 @media (max-width: 768px) { .who-grid { grid-template-columns: 1fr; } }
 .who-col { border: 1px solid var(--ash-dark); border-radius: 2px; padding: 36px; }
 .who-col.yes { border-color: var(--gold-dark); }
-.who-col h3 { font-family: var(--font-heading-stack); font-weight: 400; font-size: 20px; margin-bottom: 24px; }
+.who-col h3 { font-family: var(--font-heading-stack); font-weight: 400; font-size: 22px; margin-bottom: 24px; }
 .who-col.yes h3 { color: var(--gold); }
 .who-col.no h3 { color: var(--ash); }
 .who-col ul { list-style: none; }
@@ -538,7 +547,7 @@ body {
   background: radial-gradient(circle, rgba(201, 168, 76, 0.08) 0%, transparent 70%);
   pointer-events: none;
 }
-.final-cta h2 { font-family: var(--font-heading-stack); font-weight: 300; font-size: clamp(36px, 6vw, 64px); line-height: 1.15; margin-bottom: 32px; }
+.final-cta h2 { font-family: var(--font-heading-stack); font-weight: 300; font-size: clamp(32px, 5vw, 56px); line-height: 1.15; margin-bottom: 32px; }
 .final-cta .sub { color: var(--ash); margin-bottom: 40px; font-size: 18px; }
 .final-cta .details { margin-top: 24px; font-size: 13px; color: var(--ash); letter-spacing: .05em; }
 .final-cta .closing-quote { font-family: var(--font-heading-stack); font-style: italic; font-size: 18px; color: var(--gold-dark); margin-top: 64px; max-width: 500px; }
@@ -830,27 +839,105 @@ footer .logo { font-family: var(--font-heading-stack); font-size: 18px; color: v
 
 /* ---- MOBILE REFINEMENTS ---- */
 @media (max-width: 768px) {
-  .section-pad { padding: 80px 20px; }
+  .section-pad { padding: 60px 20px; }
+
+  /* Buttons — touch-friendly */
   .btn { padding: 16px 36px; font-size: 12px; min-height: 48px; }
   .btn-large { padding: 18px 40px; font-size: 13px; }
+
+  /* Sticky CTA */
   .sticky-cta { padding: 12px 16px; gap: 12px; }
   .sticky-cta p { font-size: 13px; }
   .sticky-cta .btn { padding: 10px 20px; font-size: 10px; white-space: nowrap; }
-  .problem .prob-row { grid-template-columns: 1fr; gap: 32px; }
-  .problem .prob-text { font-size: 18px; }
-  .problem .prob-img { height: 320px; }
-  .problem .prob-divider { margin: 40px auto; }
+
+  /* Hero — stack to single column */
+  .hero-grid-50 { grid-template-columns: 1fr !important; gap: 24px !important; }
+  .hero-grid-50 h1 { text-align: center !important; font-size: clamp(28px, 7vw, 40px) !important; }
+  .hero .btn-large { font-size: 11px !important; padding: 16px 20px !important; }
+  .hero-cta-row { flex-direction: column !important; gap: 12px !important; align-items: stretch !important; }
+  .hero-cta-row .btn { white-space: normal !important; text-align: center; }
+
+  /* Three blocks */
+  .block-card h3 { font-size: 28px; }
+  .block-card p { font-size: 14px; }
+
+  /* Problem section — single column */
+  .problem .prob-row { grid-template-columns: 1fr !important; gap: 28px; }
+  .problem .prob-label { font-size: 18px !important; }
+  .problem .prob-text { font-size: 17px; }
+  .problem .prob-img { height: 280px; }
+  .problem .prob-divider { margin: 36px auto; }
+
+  /* Guides — stack */
+  .guides-row { grid-template-columns: 1fr !important; gap: 56px !important; }
+  .guide-text h2 { font-size: 26px; }
+
+  /* Journey */
   .day-card { gap: 16px; }
-  .day-num { font-size: 48px; width: 52px; }
-  .ticker-item { font-size: 18px; }
-  .faq-q { padding: 20px 0; font-size: 17px; min-height: 48px; }
-  .modal { padding: 36px 24px; }
-  .final-cta { min-height: 60vh; padding: 60px 20px; }
-  .who-col { padding: 28px 20px; }
-  .who-col ul li { padding: 10px 0; min-height: 44px; display: flex; align-items: center; }
+  .day-num { font-size: 42px; width: 48px; }
   .phase-label::before, .phase-label::after { width: 40px; }
   .phase-label::before { right: calc(50% + 50px); }
   .phase-label::after { left: calc(50% + 50px); }
+
+  /* Serafina features — single column */
+  .seraph-features-grid { grid-template-columns: 1fr !important; }
+
+  /* Outcomes — 1 column */
+  .outcomes-grid { grid-template-columns: 1fr !important; }
+
+  /* Who section */
+  .who-grid { grid-template-columns: 1fr !important; }
+  .who-col { padding: 28px 20px; }
+  .who-col ul li { padding: 10px 0; min-height: 44px; display: flex; align-items: center; }
+
+  /* Ticker */
+  .ticker-item { font-size: 16px; }
+
+  /* FAQ */
+  .faq-q { padding: 20px 0; font-size: 17px; min-height: 48px; }
+  .faq-item.open .faq-a { max-height: 600px; }
+
+  /* Modal */
+  .modal { padding: 36px 20px; width: 95vw; }
+
+  /* Final CTA */
+  .final-cta { min-height: 60vh; padding: 60px 20px; }
+  .final-cta h2 { font-size: clamp(26px, 6vw, 38px); }
+
+  /* Testimonials */
+  .testimonials-row { grid-template-columns: 1fr !important; }
+
+  /* Eyebrow text */
+  .eyebrow { font-size: 11px; letter-spacing: .12em; }
+  .eyebrow-lg { font-size: 16px; letter-spacing: .14em; }
+
+  /* Hero snapshot */
+  .hero-snapshot-heading { font-size: 15px; letter-spacing: .14em; margin-top: 40px; margin-bottom: 24px; }
+  .snapshot-card-title { font-size: 18px; }
+
+  /* Testimonial quotes */
+  .test-card .quote { font-size: 18px; }
+
+  /* Transition bridge quote */
+  .transition-bridge-quote { font-size: clamp(18px, 4.5vw, 28px) !important; }
+
+  /* Stakes section */
+  .stakes-dont h3, .stakes-do h3 { font-size: 18px; }
+  .stakes-do .closer { font-size: 17px; }
+
+  /* Closing quote */
+  .final-cta .closing-quote { font-size: 16px; margin-top: 40px; }
+  .final-cta .sub { font-size: 16px; }
+
+  /* Countdown */
+  .countdown-num { font-size: 24px; }
+
+  /* Alchemy section large text */
+  .section-pad h2 { font-size: clamp(24px, 5.5vw, 38px); }
+
+  /* Decorative glows — reduce for performance */
+  .hero::before { width: 400px; height: 400px; }
+  .final-cta::before { width: 300px; height: 300px; }
 }
 
 /* ---- SCROLL-DRIVEN ANIMATIONS (Progressive enhancement) ---- */
