@@ -273,7 +273,7 @@ const TESTIMONIALS_DATA = [
     org: "Stage Secrets Alumni",
   },
   {
-    quote: "Jackson knows how to bring your authenticity to life and break through the blocks to speaking your truth. The time I\u2019ve invested with Jackson has led to tangible results in our business.",
+    quote: "Jackson knows how to bring your authenticity to life and break through the blocks to speaking your truth. My heart as an entrepreneur is in a better place.",
     name: "Kim Kong",
     org: "Founder, Movement University",
   },
@@ -283,9 +283,14 @@ const TESTIMONIALS_DATA = [
     org: "Client",
   },
   {
-    quote: "It has been nothing short of a permanent upgrade. Unlike any event I had attended in my 30 plus years of exploration. This was designed to be interactive and transformative.",
-    name: "Jeff Parker",
-    org: "AUREA Event Attendee",
+    quote: "The time I\u2019ve invested with Jackson has led to tangible results in our business. I know he cares about his work, his clients, and seeing them succeed because he\u2019s shown up rain or shine for me and Skirt Club.",
+    name: "Genevieve Lejeune",
+    org: "Founder, Skirt Club",
+  },
+  {
+    quote: "My investment with Jackson has helped me find hidden parts and pieces of my voice that needed to be heard. He\u2019s a trusted confidant, coach, and a passionate advocate for me every step of the way.",
+    name: "Benjamin Zaemisch",
+    org: "Founder, TheManicSerenity",
   },
   {
     quote: "As a person who struggled with my voice my whole life, I have definitely leveled-up. AUREA was nothing short of a magical experience. It\u2019s been a life-changing experience.",
@@ -618,7 +623,8 @@ export default function Home() {
               ["\u201cThe quality of the content shared is priceless.\u201d", "Melly Anton, Entrepreneur"],
               ["\u201cHe will help you break free from your limiting beliefs.\u201d", "Christine Lee, Entrepreneur"],
               ["\u201cYou help me be my own healer \u2014 that is a true leader.\u201d", "Natalie O\u2019Reilly"],
-              ["\u201cNothing short of a permanent upgrade. Unlike any event in my 30+ years of exploration.\u201d", "Jeff Parker, AUREA Attendee"],
+              ["\u201cThe time I\u2019ve invested with Jackson has led to tangible results in our business.\u201d", "Genevieve Lejeune, Founder, Skirt Club"],
+              ["\u201cHe\u2019s a trusted confidant, coach, and a passionate advocate for me every step of the way.\u201d", "Benjamin Zaemisch, Founder, TheManicSerenity"],
               ["\u201cI\u2019ve definitely leveled-up. AUREA was nothing short of a magical experience.\u201d", "Stage Secrets Graduate"],
               ["\u201cTHIS is the community I\u2019ve been searching for over the last decade.\u201d", "Michelle Hori, Executive Coach"],
               ["\u201cJackson\u2019s guidance has been nothing short of transformative.\u201d", "Lakia Meadan, Sacred Earth Travels"],
