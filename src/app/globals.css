@@ -857,7 +857,7 @@ footer .logo { font-family: var(--font-heading-stack); font-size: 18px; color: v
   .hero-grid-50 h1 { text-align: center !important; font-size: clamp(28px, 7vw, 40px) !important; }
   .hero .btn-large { font-size: 11px !important; padding: 16px 20px !important; }
   .hero-cta-row { flex-direction: column !important; gap: 12px !important; align-items: stretch !important; }
-  .hero-cta-row .btn { white-space: normal !important; text-align: center; }
+  .hero-cta-row .btn { white-space: normal !important; text-align: center; flex: none !important; }
 
   /* Three blocks */
   .block-card h3 { font-size: 28px; }
