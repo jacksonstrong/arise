@@ -334,7 +334,7 @@ const TESTIMONIALS_DATA = [
   },
 ];
 
-const QUOTE_TRUNCATE_LENGTH = 200;
+const QUOTE_TRUNCATE_LENGTH = 180;
 
 function TestimonialCarousel() {
   const [idx, setIdx] = useState(0);
@@ -350,7 +350,7 @@ function TestimonialCarousel() {
     <div style={{ marginTop: 64, position: "relative" }}>
       <div style={{
         display: "flex", alignItems: "center", gap: 16,
-        maxWidth: 700, margin: "0 auto",
+        width: 700, maxWidth: "100%", margin: "0 auto",
       }}>
         <button
           onClick={prev}
@@ -366,31 +366,28 @@ function TestimonialCarousel() {
         >
           ‹
         </button>
-        <div className="test-card" style={{
-          flex: 1, textAlign: "center", padding: "32px 24px",
-          minHeight: 200, display: "flex", flexDirection: "column",
-          justifyContent: "center",
+        <div style={{
+          flex: 1, textAlign: "center", padding: "28px 24px",
+          border: "1px solid var(--ash-dark)", borderRadius: 2,
+          height: 220, display: "flex", flexDirection: "column",
+          alignItems: "center", justifyContent: "center", overflow: "hidden",
         }}>
-          <p className="quote" style={{ marginBottom: isLong && !expanded ? 12 : 20 }}>
+          <p style={{
+            fontFamily: "var(--font-heading-stack)",
+            fontStyle: "italic",
+            fontSize: 18,
+            lineHeight: 1.55,
+            color: "var(--parchment)",
+            display: "-webkit-box",
+            WebkitLineClamp: 3,
+            WebkitBoxOrient: "vertical" as const,
+            overflow: "hidden",
+            marginBottom: 10,
+          }}>
             {"\u201C"}{displayQuote}{"\u201D"}
           </p>
-          {isLong && (
-            <button
-              onClick={() => setExpanded(!expanded)}
-              style={{
-                background: "none", border: "none", cursor: "pointer",
-                color: "var(--gold-dark)", fontSize: 12, letterSpacing: ".1em",
-                textTransform: "uppercase", marginBottom: 16,
-                transition: "color .3s",
-              }}
-              onMouseEnter={(e) => (e.currentTarget.style.color = "var(--gold)")}
-              onMouseLeave={(e) => (e.currentTarget.style.color = "var(--gold-dark)")}
-            >
-              {expanded ? "Show less" : "Read full review"}
-            </button>
-          )}
-          <p className="attr">{"\u2014"} {t.name}</p>
-          <p className="attr-org">{t.org}</p>
+          <p style={{ fontSize: 13, color: "var(--gold-dark)", fontWeight: 400, margin: "0 0 2px" }}>{"\u2014"} {t.name}</p>
+          <p style={{ fontSize: 12, color: "var(--ash)", margin: 0 }}>{t.org}</p>
         </div>
         <button
           onClick={next}
@@ -450,83 +447,74 @@ const HERO_TESTIMONIALS = [
 
 function HeroTestimonialCarousel() {
   const [idx, setIdx] = useState(0);
-  const [expanded, setExpanded] = useState(false);
   const t = HERO_TESTIMONIALS[idx];
-  const maxLines = 5;
-  const lineClampStyle = !expanded ? {
-    display: "-webkit-box",
-    WebkitLineClamp: maxLines,
-    WebkitBoxOrient: "vertical" as const,
-    overflow: "hidden",
-  } : {};
+  const truncated = t.quote.length > 180 ? t.quote.slice(0, 180).replace(/\s+\S*$/, "") + "\u2026" : t.quote;
 
-  const prev = () => { setIdx((i) => (i - 1 + HERO_TESTIMONIALS.length) % HERO_TESTIMONIALS.length); setExpanded(false); };
-  const next = () => { setIdx((i) => (i + 1) % HERO_TESTIMONIALS.length); setExpanded(false); };
+  const prev = () => setIdx((i) => (i - 1 + HERO_TESTIMONIALS.length) % HERO_TESTIMONIALS.length);
+  const next = () => setIdx((i) => (i + 1) % HERO_TESTIMONIALS.length);
 
   return (
-    <div style={{ maxWidth: 640, margin: "20px auto 0", padding: "0 16px" }}>
-      <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+    <div style={{ marginTop: 32, position: "relative" }}>
+      <div style={{ display: "flex", alignItems: "center", gap: 16, width: 700, maxWidth: "100%", margin: "0 auto" }}>
         <button
           onClick={prev}
           style={{
             background: "none", border: "1px solid var(--ash-dark)", borderRadius: "50%",
-            width: 36, height: 36, color: "var(--gold)", fontSize: 16,
+            width: 44, height: 44, color: "var(--gold)", fontSize: 18,
             cursor: "pointer", flexShrink: 0, display: "flex",
-            alignItems: "center", justifyContent: "center",
-            transition: "border-color .3s",
+            alignItems: "center", justifyContent: "center", transition: "border-color .3s",
           }}
           onMouseEnter={(e) => (e.currentTarget.style.borderColor = "var(--gold)")}
           onMouseLeave={(e) => (e.currentTarget.style.borderColor = "var(--ash-dark)")}
-        >{"\u2039"}</button>
+        >‹</button>
         <div style={{
-          flex: 1, textAlign: "center", padding: "24px 16px",
+          flex: 1, textAlign: "center", padding: "28px 24px",
           border: "1px solid var(--ash-dark)", borderRadius: 2,
-          transition: "border-color .3s",
+          height: 220, display: "flex", flexDirection: "column",
+          alignItems: "center", justifyContent: "center", overflow: "hidden",
         }}>
           <p style={{
             fontFamily: "var(--font-heading-stack)",
             fontStyle: "italic",
             fontSize: 18,
-            lineHeight: 1.6,
+            lineHeight: 1.55,
             color: "var(--parchment)",
-            opacity: 0.9,
-            marginBottom: expanded ? 12 : 0,
-            ...lineClampStyle,
+            display: "-webkit-box",
+            WebkitLineClamp: 3,
+            WebkitBoxOrient: "vertical" as const,
+            overflow: "hidden",
+            marginBottom: 10,
           }}>
-            {"\u201C"}{t.quote}{"\u201D"}
+            {"\u201C"}{truncated}{"\u201D"}
           </p>
-          {t.quote.length > 120 && (
-            <button
-              onClick={() => setExpanded(!expanded)}
-              style={{
-                background: "none", border: "none", cursor: "pointer",
-                color: "var(--gold-dark)", fontSize: 11, letterSpacing: ".1em",
-                textTransform: "uppercase", marginTop: 8,
-                transition: "color .3s",
-              }}
-              onMouseEnter={(e) => (e.currentTarget.style.color = "var(--gold)")}
-              onMouseLeave={(e) => (e.currentTarget.style.color = "var(--gold-dark)")}
-            >
-              {expanded ? "Show less" : "See full review"}
-            </button>
-          )}
-          <p style={{ fontSize: 13, color: "var(--gold-dark)", fontWeight: 400, marginTop: 12 }}>
-            {"\u2014"} {t.name}
-          </p>
-          <p style={{ fontSize: 11, color: "var(--ash)" }}>{t.org}</p>
+          <p style={{ fontSize: 13, color: "var(--gold-dark)", fontWeight: 400, margin: "0 0 2px" }}>{"\u2014"} {t.name}</p>
+          <p style={{ fontSize: 12, color: "var(--ash)", margin: 0 }}>{t.org}</p>
         </div>
         <button
           onClick={next}
           style={{
             background: "none", border: "1px solid var(--ash-dark)", borderRadius: "50%",
-            width: 36, height: 36, color: "var(--gold)", fontSize: 16,
+            width: 44, height: 44, color: "var(--gold)", fontSize: 18,
             cursor: "pointer", flexShrink: 0, display: "flex",
-            alignItems: "center", justifyContent: "center",
-            transition: "border-color .3s",
+            alignItems: "center", justifyContent: "center", transition: "border-color .3s",
           }}
           onMouseEnter={(e) => (e.currentTarget.style.borderColor = "var(--gold)")}
           onMouseLeave={(e) => (e.currentTarget.style.borderColor = "var(--ash-dark)")}
-        >{"\u203A"}</button>
+        >›</button>
+      </div>
+      <div style={{ display: "flex", justifyContent: "center", gap: 8, marginTop: 16 }}>
+        {HERO_TESTIMONIALS.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => setIdx(i)}
+            style={{
+              width: 8, height: 8, borderRadius: "50%",
+              background: i === idx ? "var(--gold)" : "var(--ash-dark)",
+              border: "none", cursor: "pointer", padding: 0,
+              transition: "background .3s",
+            }}
+          />
+        ))}
       </div>
     </div>
   );
@@ -742,11 +730,11 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="hero-cta-row" style={{ display: "flex", gap: 16, margin: "32px auto 20px", width: "100%", maxWidth: 960, justifyContent: "center", padding: "0 16px", flexWrap: "wrap" }}>
-          <button onClick={openModal} className="btn btn-large" style={{ flex: "1 1 280px", maxWidth: 440 }}>
+        <div className="hero-cta-row" style={{ display: "flex", gap: 16, margin: "32px auto 20px", width: "100%", maxWidth: 960, justifyContent: "center", padding: "0 16px" }}>
+          <button onClick={openModal} className="btn btn-large" style={{ flex: 1, whiteSpace: "nowrap" }}>
             Enter the 7-Day ARISE Challenge &mdash; Free
           </button>
-          <a href="https://serafina.aurealeaders.com" className="btn btn-large btn-secondary" style={{ flex: "1 1 280px", maxWidth: 440, textAlign: "center" }}>
+          <a href="https://serafina.aurealeaders.com" className="btn btn-large btn-secondary" style={{ flex: 1, whiteSpace: "nowrap", textAlign: "center" }}>
             Try the AI Built to Manifest Your Mission
           </a>
         </div>
@@ -811,19 +799,20 @@ export default function Home() {
               </p>
             </div>
             <div className="block-card fade-in card-tilt" data-stagger>
-              {/* Tribe icon — three connected flames */}
+              {/* Tribe icon — three figures, circle of belonging */}
               <div style={{ margin: "0 auto 20px", width: 56, height: 56, display: "flex", alignItems: "center", justifyContent: "center" }}>
                 <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M28 8c0 0-6 8-6 14s2.7 8 6 8 6-2 6-8S28 8 28 8z" fill="var(--gold)" opacity="0.85" />
-                  <path d="M14 20c0 0-4 6-4 10s2 6 4 6 4-1.5 4-6S14 20 14 20z" fill="var(--gold)" opacity="0.45" />
-                  <path d="M42 20c0 0-4 6-4 10s2 6 4 6 4-1.5 4-6S42 20 42 20z" fill="var(--gold)" opacity="0.45" />
-                  <line x1="18" y1="32" x2="24" y2="28" stroke="var(--gold-dark)" strokeWidth="0.8" opacity="0.4" />
-                  <line x1="38" y1="32" x2="32" y2="28" stroke="var(--gold-dark)" strokeWidth="0.8" opacity="0.4" />
-                  <circle cx="28" cy="44" r="3" stroke="var(--gold-dark)" strokeWidth="0.8" opacity="0.3" />
-                  <circle cx="16" cy="44" r="3" stroke="var(--gold-dark)" strokeWidth="0.8" opacity="0.3" />
-                  <circle cx="40" cy="44" r="3" stroke="var(--gold-dark)" strokeWidth="0.8" opacity="0.3" />
-                  <line x1="19" y1="44" x2="25" y2="44" stroke="var(--gold-dark)" strokeWidth="0.6" opacity="0.25" />
-                  <line x1="31" y1="44" x2="37" y2="44" stroke="var(--gold-dark)" strokeWidth="0.6" opacity="0.25" />
+                  {/* Center figure — most prominent */}
+                  <circle cx="28" cy="13" r="5.5" fill="var(--gold)" opacity="0.9" />
+                  <path d="M21 30c0-3.9 3.1-7 7-7s7 3.1 7 7" stroke="var(--gold)" strokeWidth="1.8" strokeLinecap="round" fill="none" opacity="0.9" />
+                  {/* Left figure */}
+                  <circle cx="13" cy="18" r="4.5" fill="var(--gold)" opacity="0.6" />
+                  <path d="M7.5 33c0-3 2.5-5.5 5.5-5.5s5.5 2.5 5.5 5.5" stroke="var(--gold)" strokeWidth="1.5" strokeLinecap="round" fill="none" opacity="0.6" />
+                  {/* Right figure */}
+                  <circle cx="43" cy="18" r="4.5" fill="var(--gold)" opacity="0.6" />
+                  <path d="M37.5 33c0-3 2.5-5.5 5.5-5.5s5.5 2.5 5.5 5.5" stroke="var(--gold)" strokeWidth="1.5" strokeLinecap="round" fill="none" opacity="0.6" />
+                  {/* Unifying arc beneath */}
+                  <path d="M9 44 Q28 53 47 44" stroke="var(--gold)" strokeWidth="0.8" strokeLinecap="round" fill="none" opacity="0.3" />
                 </svg>
               </div>
               <h3>Tribe</h3>
@@ -873,7 +862,7 @@ export default function Home() {
       <div style={{
         position: "relative",
         padding: "80px 24px",
-        background: "linear-gradient(180deg, var(--black) 0%, var(--ink) 100%)",
+        background: "var(--ink)",
         textAlign: "center",
         overflow: "hidden",
       }}>
@@ -999,7 +988,7 @@ export default function Home() {
               <img src="/woman-doorway.jpg" alt="Woman stepping through cosmic doorway" />
             </div>
             <div>
-              <p className="prob-label">The pattern that got you here won&rsquo;t get you there</p>
+              <p className="prob-label">but The pattern that got you here won&rsquo;t get you there</p>
               <div className="prob-img prob-img-mobile">
                 <img src="/woman-doorway.jpg" alt="Woman stepping through cosmic doorway" />
               </div>
@@ -1027,7 +1016,7 @@ export default function Home() {
           {/* ——— Row 3: Text left · Image right ——— */}
           <div className="prob-row">
             <div>
-              <p className="prob-label">The cost of staying here is someone else&rsquo;s healing</p>
+              <p className="prob-label">and The cost of staying here is someone else&rsquo;s healing</p>
               <div className="prob-img prob-img-mobile">
                 <img src="/the-cosmic-boob.jpg" alt="Hand reaching toward golden constellation" />
               </div>
@@ -1052,6 +1041,58 @@ export default function Home() {
               Enter the 7-Day ARISE Challenge &mdash; Free
             </button>
           </div>
+        </div>
+      </section>
+
+      {/* ===== SYSTEM GAP ===== */}
+      <section className="section-pad fade-in" style={{ background: "var(--ink)", borderTop: "1px solid var(--ash-dark)" }}>
+        <div style={{ maxWidth: 780, margin: "0 auto", textAlign: "center", padding: "0 24px" }}>
+          <h2 style={{
+            fontFamily: "var(--font-heading-stack)",
+            fontSize: "clamp(32px, 4vw, 52px)",
+            fontWeight: 400,
+            color: "var(--parchment)",
+            lineHeight: 1.2,
+            marginBottom: 36,
+          }}>
+            The Real Reason You Haven&rsquo;t Gotten the Results You Want Yet
+          </h2>
+          <p style={{
+            fontSize: "clamp(17px, 2vw, 20px)",
+            color: "rgba(247, 243, 236, 0.85)",
+            lineHeight: 1.8,
+            marginBottom: 28,
+          }}>
+            You know you have something powerful. You&rsquo;ve always known. But you can&rsquo;t fully articulate it yet &mdash; and that gap between what you carry and what you can communicate is costing you clients, income, and confidence every single day.
+          </p>
+          <p style={{
+            fontSize: "clamp(17px, 2vw, 20px)",
+            color: "rgba(247, 243, 236, 0.85)",
+            lineHeight: 1.8,
+            marginBottom: 28,
+          }}>
+            You&rsquo;ve tried to build the structure. But every time things start to work, something pulls you back. You jump to the next idea before finishing the last one. You overcomplicate, get overwhelmed, and crash. You&rsquo;re tired of pretending you&rsquo;re fine &mdash; tired of living the same day on repeat &mdash; when you can feel how close you are to something real.
+          </p>
+          <p style={{
+            fontSize: "clamp(17px, 2vw, 20px)",
+            color: "rgba(247, 243, 236, 0.85)",
+            lineHeight: 1.8,
+            marginBottom: 28,
+          }}>
+            And underneath all of it: you want to stop surviving and finally start thriving. You want to be paid for your gifts without feeling guilty about it. You want soul-level connection with people who get it &mdash; not surface-level networking with people who don&rsquo;t. You want a place where structure meets soul.
+          </p>
+          <p style={{
+            fontSize: "clamp(17px, 2vw, 20px)",
+            color: "rgba(247, 243, 236, 0.85)",
+            lineHeight: 1.8,
+            marginBottom: 48,
+          }}>
+            That place has never existed. Until now.
+          </p>
+
+          <button onClick={openModal} className="btn btn-large">
+            Enter the 7-Day ARISE Challenge &mdash; Free
+          </button>
         </div>
       </section>
 
@@ -1309,7 +1350,7 @@ export default function Home() {
               <h3>Build Your Offer &mdash; With Serafina</h3>
               <p>
                 Your gifts become a structure: a name, a promise, a price, a format. Today you step
-                into <strong style={{ color: "var(--gold-light)" }}>Serafina</strong> for the first
+                into <strong style={{ color: "var(--gold-light)" }}>Serafina</strong>{" "}for the first
                 time &mdash; and experience what it feels like to build with AI that understands
                 sacred work.
               </p>
@@ -1376,34 +1417,127 @@ export default function Home() {
               lineHeight: 1.25,
             }}
           >
-            The World&rsquo;s First Sovereign Operating System
-            <br />
-            for Transformation Leaders
+            The World&rsquo;s First Sovereign Operating System for Transformational Leaders
           </h2>
           <p
             style={{
               textAlign: "center",
-              color: "var(--ash)",
+              color: "rgba(247, 243, 236, 0.85)",
               maxWidth: 620,
-              margin: "0 auto 20px",
-              fontSize: 17,
-              lineHeight: 1.7,
-            }}
-          >
-            Every tool on the market was built for marketers. Serafina was built for <em>you</em>.
-          </p>
-          <p
-            style={{
-              textAlign: "center",
-              fontFamily: "var(--font-heading-stack)",
-              fontStyle: "italic",
+              margin: "0 auto 48px",
               fontSize: 18,
-              color: "var(--gold-dark)",
-              marginBottom: 56,
+              lineHeight: 1.75,
             }}
           >
-            During ARISE, you experience it first. Your feedback shapes what it becomes.
+            The fastest path from inner work to outer impact — built for the way you actually think, feel, and create.
           </p>
+          <div className="serafina-features-grid" style={{ margin: "0 auto 56px" }}>
+            {[
+              {
+                icon: (
+                  <svg width="52" height="52" viewBox="0 0 52 52" fill="none" style={{ color: "var(--gold)" }}>
+                    <path d="M6 26C6 26 14 13 26 13C38 13 46 26 46 26C46 26 38 39 26 39C14 39 6 26 6 26Z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"/>
+                    <circle cx="26" cy="26" r="7" stroke="currentColor" strokeWidth="1.5"/>
+                    <circle cx="26" cy="26" r="2.5" fill="currentColor"/>
+                    <line x1="26" y1="2" x2="26" y2="8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+                    <line x1="26" y1="44" x2="26" y2="50" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+                    <line x1="2" y1="26" x2="8" y2="26" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+                    <line x1="44" y1="26" x2="50" y2="26" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+                  </svg>
+                ),
+                title: "Awareness of Your Gifts",
+                desc: "Surface what you were born to offer, with clarity so sharp your ideal client feels it before you finish the sentence.",
+              },
+              {
+                icon: (
+                  <svg width="52" height="52" viewBox="0 0 52 52" fill="none" style={{ color: "var(--gold)" }}>
+                    <path d="M34 6C25 8 18 16 18 26C18 36 25 44 34 46C23 43 15 35 15 26C15 17 23 9 34 6Z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" fill="none"/>
+                    <circle cx="38" cy="12" r="2.5" fill="currentColor"/>
+                    <circle cx="44" cy="7" r="1.5" fill="currentColor" opacity="0.5"/>
+                    <circle cx="42" cy="18" r="1.5" fill="currentColor" opacity="0.5"/>
+                  </svg>
+                ),
+                title: "Shadow into Sovereignty",
+                desc: "A system for transmuting what has blocked you into the exact credibility that makes you irreplaceable.",
+              },
+              {
+                icon: (
+                  <svg width="52" height="52" viewBox="0 0 52 52" fill="none" style={{ color: "var(--gold)" }}>
+                    <polygon points="26,4 48,17 48,35 26,48 4,35 4,17" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinejoin="round"/>
+                    <polygon points="26,14 38,21 38,31 26,38 14,31 14,21" stroke="currentColor" strokeWidth="1" fill="none" strokeLinejoin="round" opacity="0.5"/>
+                    <circle cx="26" cy="26" r="3" fill="currentColor"/>
+                    <line x1="26" y1="4" x2="26" y2="14" stroke="currentColor" strokeWidth="1" opacity="0.4"/>
+                    <line x1="26" y1="38" x2="26" y2="48" stroke="currentColor" strokeWidth="1" opacity="0.4"/>
+                    <line x1="4" y1="17" x2="14" y2="21" stroke="currentColor" strokeWidth="1" opacity="0.4"/>
+                    <line x1="38" y1="31" x2="48" y2="35" stroke="currentColor" strokeWidth="1" opacity="0.4"/>
+                    <line x1="48" y1="17" x2="38" y2="21" stroke="currentColor" strokeWidth="1" opacity="0.4"/>
+                    <line x1="14" y1="31" x2="4" y2="35" stroke="currentColor" strokeWidth="1" opacity="0.4"/>
+                  </svg>
+                ),
+                title: "Business Structure That Fits Your Soul",
+                desc: "Offers, pricing, and systems designed around your genius — not someone else\u2019s template.",
+              },
+              {
+                icon: (
+                  <svg width="52" height="52" viewBox="0 0 52 52" fill="none" style={{ color: "var(--gold)" }}>
+                    <path d="M4 34 Q26 10 48 34" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round"/>
+                    <line x1="4" y1="36" x2="48" y2="36" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+                    <line x1="26" y1="22" x2="26" y2="16" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+                    <line x1="14" y1="25" x2="11" y2="20" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+                    <line x1="38" y1="25" x2="41" y2="20" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+                    <circle cx="26" cy="34" r="2.5" fill="currentColor"/>
+                  </svg>
+                ),
+                title: "Daily Habits That Hold",
+                desc: "Practices calibrated to your nervous system so you can sustain the level you\u2019re stepping into.",
+              },
+              {
+                icon: (
+                  <svg width="52" height="52" viewBox="0 0 52 52" fill="none" style={{ color: "var(--gold)" }}>
+                    <circle cx="26" cy="14" r="5" stroke="currentColor" strokeWidth="1.5"/>
+                    <circle cx="12" cy="36" r="5" stroke="currentColor" strokeWidth="1.5"/>
+                    <circle cx="40" cy="36" r="5" stroke="currentColor" strokeWidth="1.5"/>
+                    <line x1="21" y1="18" x2="15" y2="31" stroke="currentColor" strokeWidth="1" opacity="0.6" strokeLinecap="round"/>
+                    <line x1="31" y1="18" x2="37" y2="31" stroke="currentColor" strokeWidth="1" opacity="0.6" strokeLinecap="round"/>
+                    <line x1="17" y1="36" x2="35" y2="36" stroke="currentColor" strokeWidth="1" opacity="0.6" strokeLinecap="round"/>
+                  </svg>
+                ),
+                title: "Tribe by Design",
+                desc: "A matched community of co-creators who refuse to let you shrink, and grow faster because of you.",
+              },
+            ].map(({ icon, title, desc }) => (
+              <div
+                key={title}
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "flex-start",
+                  padding: "28px 28px",
+                  border: "1px solid var(--ash-dark)",
+                  borderRadius: 2,
+                  transition: "border-color 0.3s",
+                }}
+              >
+                <div style={{ marginBottom: 20 }}>{icon}</div>
+                <p style={{
+                  fontFamily: "var(--font-heading-stack)",
+                  fontSize: 20,
+                  fontWeight: 400,
+                  color: "var(--parchment)",
+                  marginBottom: 10,
+                }}>
+                  {title}
+                </p>
+                <p style={{
+                  fontSize: 15,
+                  color: "rgba(247, 243, 236, 0.75)",
+                  lineHeight: 1.65,
+                }}>
+                  {desc}
+                </p>
+              </div>
+            ))}
+          </div>
 
           {/* Serafina Video */}
           <div
@@ -1459,52 +1593,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div
-            className="seraph-features-grid"
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(3, 1fr)",
-              gap: 24,
-              maxWidth: 960,
-              margin: "0 auto",
-            }}
-          >
-            {[
-              { icon: "\u263C", title: "Sacred Alarm", desc: "A personalized morning activation \u2014 somatic, strategic, and calibrated to your nervous system state." },
-              { icon: "\u2756", title: "Serafina \u2014 Your AI Guide", desc: "A soul-aligned AI intelligence that knows your journey stage and builds your offers with warmth." },
-              { icon: "\u2666", title: "HD Penta Tribe Matching", desc: "Matched into a co-creator pod based on your Human Design profile \u2014 not demographics." },
-              { icon: "\u2699", title: "Pathfinder Panel", desc: "Your daily command center \u2014 identity, offers, content, tribe, and progress in one screen." },
-              { icon: "\u25B2", title: "Gain Tracker", desc: "Retrain your brain to measure forward from where you started, not backward from where you\u2019re going." },
-              { icon: "\u2605", title: "The Leader\u2019s Journey", desc: "A 12-month Hero\u2019s Journey curriculum with stage gates, sacred quests, and progression." },
-            ].map((item, i) => (
-              <div
-                key={i}
-                className="feature-card-hover fade-in card-tilt"
-                data-stagger
-                style={{
-                  border: "1px solid var(--ash-dark)",
-                  borderRadius: 2,
-                  padding: "32px 24px",
-                }}
-              >
-                <p style={{ fontSize: 24, marginBottom: 12 }}>{item.icon}</p>
-                <h4
-                  style={{
-                    fontFamily: "var(--font-heading-stack)",
-                    fontWeight: 400,
-                    fontSize: 20,
-                    color: "var(--gold-light)",
-                    marginBottom: 10,
-                  }}
-                >
-                  {item.title}
-                </h4>
-                <p style={{ fontSize: 14, color: "var(--ash)", lineHeight: 1.65 }}>{item.desc}</p>
-              </div>
-            ))}
-          </div>
-
-          <div style={{ maxWidth: 680, margin: "56px auto 0", textAlign: "center" }}>
+          <div style={{ maxWidth: 680, margin: "0 auto", textAlign: "center" }}>
             <div
               style={{
                 border: "1px solid var(--gold-dark)",
@@ -1516,28 +1605,33 @@ export default function Home() {
               <p
                 style={{
                   fontFamily: "var(--font-heading-stack)",
-                  fontSize: 22,
-                  fontWeight: 300,
+                  fontSize: 32,
+                  fontWeight: 400,
                   color: "var(--parchment)",
-                  marginBottom: 12,
-                  lineHeight: 1.4,
+                  marginBottom: 24,
+                  lineHeight: 1.3,
                 }}
               >
-                Nothing like this exists. We checked.
+                The Missing System for Purpose-Driven Leaders
               </p>
-              <p style={{ color: "var(--ash)", fontSize: 15, lineHeight: 1.7, marginBottom: 16 }}>
-                Serafina is not another CRM with a chatbot bolted on. It is a sovereign operating
-                system for identity, nervous system regulation, and wealth transformation.
+              <p style={{ color: "rgba(247, 243, 236, 0.9)", fontSize: 19, lineHeight: 1.75, marginBottom: 28 }}>
+                After ten years guiding purpose-driven entrepreneurs, I kept running into the same
+                wall. The inner work was profound. The gifts were real. But there was no single place
+                that could hold identity and strategy, shadow and structure, morning practice and
+                monetization — all calibrated to the way a transformational leader actually thinks
+                and feels. Every tool on the market was built for marketers. Not for you.
               </p>
               <p
                 style={{
                   fontFamily: "var(--font-heading-stack)",
                   fontStyle: "italic",
-                  fontSize: 18,
+                  fontSize: 22,
                   color: "var(--gold)",
+                  lineHeight: 1.5,
                 }}
               >
-                ARISE participants are co-creators, not customers.
+                Serafina is the answer to the question I have been asking for ten years: what would
+                it look like if the technology actually understood the human using it?
               </p>
               <div style={{ marginTop: 28 }}>
                 <a
@@ -1559,23 +1653,24 @@ export default function Home() {
           <p className="eyebrow eyebrow-lg text-center">In 7 Days, You Will Have...</p>
           <div className="outcomes-grid">
             {[
-              ["Your Frequency", "The felt sense of your highest self \u2014 activated in your body, not just your mind."],
-              ["Your Genius Statement", "The 1-2 sentence distillation of the transformation only you can deliver."],
-              ["Your Co-Creator Pod", "A matched tribe of builders at your level \u2014 people who see your fire and refuse to let you shrink."],
-              ["Your Identity Declarations", "5 present-tense statements about who you are becoming \u2014 anchored somatically."],
-              ["Your First Offer + Landing Page", "Named, priced, structured, and LIVE \u2014 built inside Serafina with Serafina guiding the process."],
-              ["Your First Piece of Content", "Something real, shared with a real audience. The ice is broken forever."],
-              ["Your Regulation Practice", "A nervous system protocol for YOUR wiring \u2014 so you can hold the wealth, visibility, and impact that\u2019s coming."],
-              ["Hands-On Serafina Experience", "You will have used the platform no one else has seen \u2014 and your feedback will shape its future."],
-            ].map(([title, desc], i) => (
+              ["◉", "Your Frequency", "The felt sense of your highest self \u2014 activated in your body, not just your mind."],
+              ["✧", "Your Genius Statement", "The 1-2 sentence distillation of the transformation only you can deliver."],
+              ["△", "Your Co-Creator Pod", "A matched tribe of builders at your level \u2014 people who see your fire and refuse to let you shrink."],
+              ["⊕", "Your Identity Declarations", "5 present-tense statements about who you are becoming \u2014 anchored somatically."],
+              ["↑", "Your First Piece of Content", "Something real, shared with a real audience. The ice is broken forever."],
+              ["≋", "Your Regulation Practice", "A nervous system protocol for YOUR wiring \u2014 so you can hold the wealth, visibility, and impact that\u2019s coming."],
+              ["∞", "Hands-On Serafina Experience", "You will have used the platform no one else has seen \u2014 and your feedback will shape its future."],
+            ].map(([icon, title, desc], i) => (
               <div
                 key={i}
                 className="outcome-card fade-in"
                 data-stagger
-                style={i === 7 ? { borderColor: "var(--gold-dark)" } : undefined}
+                style={i === 6 ? { borderColor: "var(--gold-dark)" } : undefined}
               >
-                <div className="symbol">&#10022;</div>
-                <h4>{title}</h4>
+                <div className="outcome-header">
+                  <div className="symbol">{icon}</div>
+                  <h4>{title}</h4>
+                </div>
                 <p>{desc}</p>
               </div>
             ))}
@@ -1802,7 +1897,7 @@ export default function Home() {
           <Image src="/aurea-logo.png" alt="AUREA" width={78} height={60} />
         </div>
         <p>
-          <a href="/privacy">Privacy</a> <a href="/terms">Terms</a> <a href="mailto:hello@aurealeaders.com">Contact</a>
+          <a href="/privacy">Privacy</a> <a href="/terms">Terms</a> <a href="mailto:goldenpath@aurealeaders.com">Contact</a>
         </p>
         <p style={{ marginTop: 12 }}>
           &copy; 2026 Aurea Leaders. All rights reserved.
