@@ -8,6 +8,7 @@ UID:arise-challenge-2026-04-21@aurealeaders.com
 DTSTAMP:20260414T000000Z
 DTSTART:20260422T000000Z
 DTEND:20260422T010000Z
+RRULE:FREQ=DAILY;COUNT=7
 SUMMARY:The Arise Challenge
 DESCRIPTION:Join us live on Zoom for The Arise Challenge.\n\nZoom: https://us06web.zoom.us/j/86087699337?pwd=FV2o1ZTNXL3VMaENEVmhuYnJFTjdpZz09
 LOCATION:https://us06web.zoom.us/j/86087699337?pwd=FV2o1ZTNXL3VMaENEVmhuYnJFTjdpZz09
