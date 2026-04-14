@@ -141,6 +141,19 @@ function RegistrationModal({
                 />
               ))}
             </div>
+            {/* AUREA logo */}
+            <img
+              src="/aurea-logo.png"
+              alt="AUREA"
+              className="success-stagger success-stagger-1"
+              style={{
+                width: 64,
+                height: "auto",
+                margin: "0 auto 16px",
+                display: "block",
+                opacity: 0.95,
+              }}
+            />
             {/* Animated checkmark */}
             <svg className="success-check" width="48" height="48" viewBox="0 0 48 48" aria-hidden="true">
               <circle cx="24" cy="24" r="22" fill="none" stroke="var(--gold)" strokeWidth="1.5" className="check-circle" />
@@ -164,11 +177,72 @@ function RegistrationModal({
               style={{
                 color: "var(--ash)",
                 fontSize: 15,
-                marginBottom: 8,
+                marginBottom: 4,
               }}
             >
               Welcome to ARISE. Check your email for details.
             </p>
+            <p
+              className="success-stagger success-stagger-2"
+              style={{
+                color: "var(--gold-light)",
+                fontSize: 13,
+                letterSpacing: "0.12em",
+                textTransform: "uppercase",
+                marginTop: 12,
+                marginBottom: 16,
+              }}
+            >
+              April 21&ndash;27 &middot; 7:00 PM CT &middot; Live on Zoom
+            </p>
+            {/* Calendar buttons */}
+            <div
+              className="success-stagger success-stagger-3"
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                gap: 8,
+                margin: "0 auto 20px",
+                maxWidth: 280,
+              }}
+            >
+              <a
+                href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=AUREA+Arise+Challenge+-+Live+on+Zoom&dates=20260422T000000Z/20260422T010000Z&recur=RRULE:FREQ%3DDAILY;COUNT%3D7&details=Join+us+live+on+Zoom+for+the+AUREA+Arise+Challenge.%0A%0AZoom%3A+https%3A%2F%2Fus06web.zoom.us%2Fj%2F86087699337%3Fpwd%3DFV2o1ZTNXL3VMaENEVmhuYnJFTjdpZz09&location=https%3A%2F%2Fus06web.zoom.us%2Fj%2F86087699337%3Fpwd%3DFV2o1ZTNXL3VMaENEVmhuYnJFTjdpZz09"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  display: "block",
+                  padding: "10px 20px",
+                  border: "1px solid var(--gold)",
+                  borderRadius: 2,
+                  color: "var(--gold)",
+                  textDecoration: "none",
+                  fontSize: 11,
+                  letterSpacing: "0.2em",
+                  textTransform: "uppercase",
+                  fontFamily: "var(--font-body-stack)",
+                }}
+              >
+                Add to Google Calendar
+              </a>
+              <a
+                href="/arise.ics"
+                style={{
+                  display: "block",
+                  padding: "10px 20px",
+                  border: "1px solid var(--gold)",
+                  borderRadius: 2,
+                  color: "var(--gold)",
+                  textDecoration: "none",
+                  fontSize: 11,
+                  letterSpacing: "0.2em",
+                  textTransform: "uppercase",
+                  fontFamily: "var(--font-body-stack)",
+                }}
+              >
+                Add to Apple / Outlook
+              </a>
+            </div>
             <p
               className="success-stagger success-stagger-3"
               style={{
@@ -177,10 +251,29 @@ function RegistrationModal({
                 color: "var(--gold-dark)",
                 fontSize: 16,
                 marginTop: 20,
+                marginBottom: 20,
               }}
             >
               &ldquo;The hero inside you is not waiting for the fear to pass.
               They are waiting for you to move anyway.&rdquo;
+            </p>
+            <p
+              className="success-stagger success-stagger-3"
+              style={{
+                color: "var(--ash)",
+                fontSize: 13,
+                marginTop: 12,
+              }}
+            >
+              Know someone else called to rise?
+              <br />
+              Send them to{" "}
+              <a
+                href="https://arise.aurealeaders.com"
+                style={{ color: "var(--gold)", textDecoration: "none", borderBottom: "1px solid var(--gold-dark)" }}
+              >
+                arise.aurealeaders.com
+              </a>
             </p>
           </div>
         ) : (
