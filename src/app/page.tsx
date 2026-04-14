@@ -823,13 +823,10 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="hero-cta-row" style={{ display: "flex", gap: 16, margin: "32px auto 20px", width: "100%", maxWidth: 960, justifyContent: "center", padding: "0 16px" }}>
+        <div className="hero-cta-row" style={{ display: "flex", margin: "32px auto 20px", width: "100%", maxWidth: 480, justifyContent: "center", padding: "0 16px" }}>
           <button onClick={openModal} className="btn btn-large" style={{ flex: 1, whiteSpace: "nowrap" }}>
             Enter the 7-Day ARISE Challenge &mdash; Free
           </button>
-          <a href="https://serafina.aurealeaders.com" className="btn btn-large btn-secondary" style={{ flex: 1, whiteSpace: "nowrap", textAlign: "center" }}>
-            Try the AI Built to Manifest Your Mission
-          </a>
         </div>
         <div
           style={{
@@ -1727,13 +1724,13 @@ export default function Home() {
                 it look like if the technology actually understood the human using it?
               </p>
               <div style={{ marginTop: 28 }}>
-                <a
-                  href="https://serafina.aurealeaders.com"
+                <button
+                  onClick={openModal}
                   className="btn btn-large"
-                  style={{ textDecoration: "none", display: "inline-block" }}
+                  style={{ display: "inline-block" }}
                 >
-                  Meet Serafina Now
-                </a>
+                  Enter the 7-Day ARISE Challenge &mdash; Free
+                </button>
               </div>
             </div>
           </div>
