@@ -1394,48 +1394,37 @@ export default function Home() {
                   Founder of AUREA Leaders &middot; Creator of Stage Secrets
                 </p>
                 <p>
-                  My career began in high-tech private equity and the startup world. I worked for
-                  multiple companies valued over $300M. I was good at it.
+                  My career began in high-tech private equity and the startup world, working for
+                  multiple companies valued over $300M. I was good at it. But I was dying in the matrix.
                 </p>
-                <p>But I was dying in the matrix.</p>
                 <p>
                   In 2016, the tension between my corporate life and my soul&rsquo;s work snapped. I
-                  had a legitimate nervous breakdown. I got divorced, quit the corporate life, and
+                  had a legitimate nervous breakdown, got divorced, quit the corporate life, and
                   founded my first company serving purpose-driven entrepreneurs.
                 </p>
                 <p>
                   Since then, I&rsquo;ve generated over $600,000 helping transformational leaders find
-                  their message, build their offer, and monetize their mission. I&rsquo;ve spent 10,000+
-                  hours in the room with people just like you.
+                  their message, build their offer, and monetize their mission &mdash; 10,000+ hours
+                  in the room with people just like you.
                 </p>
                 <div className="vulnerability">
                   <p>
-                    I need to tell you something that people in my position aren&rsquo;t supposed to
-                    say: this past year has been one of the hardest of my life. I have felt the same
-                    fear, the same contraction, the same voice whispering &ldquo;who are you to do
-                    this&rdquo; that I know you&rsquo;re feeling right now.
+                    I need to tell you something people in my position aren&rsquo;t supposed to say:
+                    this past year has been one of the hardest of my life. I have felt the same fear,
+                    the same contraction, the same voice whispering &ldquo;who are you to do this&rdquo;
+                    that I know you&rsquo;re feeling right now.
                   </p>
                 </div>
-                <p>But the hardest year of my life was also the deepest work I&rsquo;ve ever done.</p>
                 <p>
                   I went into seclusion in the forests of East Texas. I sat with deep medicines. I
-                  consulted with guides and allies I trust with my life. I confronted every shadow that
-                  has been holding me back &mdash; not to bypass it, not to transcend it, but to{" "}
-                  <em>alchemize</em> it.
-                </p>
-                <p>
-                  ARISE is what I found at the bottom. The bone broth. The most concentrated, distilled
-                  essence of everything I&rsquo;ve heard, everything I&rsquo;ve lived, and everything I
-                  know works. Seven days. Three blocks. No filler.
-                </p>
-                <p>
-                  And we&rsquo;re not done listening. During ARISE, your feedback directly shapes what
-                  we build next.
+                  confronted every shadow holding me back &mdash; not to bypass it, but to{" "}
+                  <em>alchemize</em> it. ARISE is what I found at the bottom. The most concentrated,
+                  distilled essence of everything I know works.
                 </p>
                 <p>
                   I&rsquo;m not here as a guru. I&rsquo;m here as a builder who went into the fire
-                  &mdash; mine and yours &mdash; and came back with something real. Not from a
-                  mountaintop. From the arena. And the arena is still where I live.
+                  &mdash; mine and yours &mdash; and came back with something real. From the arena.
+                  And the arena is still where I live.
                 </p>
               </div>
             </div>
@@ -1740,60 +1729,6 @@ export default function Home() {
                 </p>
               </div>
             ))}
-          </div>
-
-          {/* Serafina Video */}
-          <div
-            style={{
-              position: "relative",
-              width: "100%",
-              maxWidth: 720,
-              margin: "0 auto 56px",
-              paddingBottom: "40.5%",
-              borderRadius: 4,
-              overflow: "hidden",
-              border: "1px solid var(--ash-dark)",
-              background: "var(--ash-dark)",
-            }}
-          >
-            <div
-              style={{
-                position: "absolute",
-                inset: 0,
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                justifyContent: "center",
-                gap: 12,
-              }}
-            >
-              <div
-                style={{
-                  width: 64,
-                  height: 64,
-                  borderRadius: "50%",
-                  border: "2px solid var(--gold)",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  background: "rgba(201, 168, 76, 0.1)",
-                }}
-              >
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="var(--gold)">
-                  <polygon points="8,5 19,12 8,19" />
-                </svg>
-              </div>
-              <p
-                style={{
-                  fontSize: 12,
-                  color: "var(--ash)",
-                  textTransform: "uppercase",
-                  letterSpacing: ".15em",
-                }}
-              >
-                Serafina Video Coming Soon
-              </p>
-            </div>
           </div>
 
           <div style={{ maxWidth: 680, margin: "0 auto", textAlign: "center" }}>
