@@ -82,6 +82,12 @@ export async function POST(req: NextRequest) {
             { status: 400 }
           );
         }
+        if (field === "email" && (code === "duplicate" || code === "already_registered" || code === "duplicate_email")) {
+          return NextResponse.json(
+            { error: "This email has already registered." },
+            { status: 409 }
+          );
+        }
         if (parsed.detail?.message) {
           return NextResponse.json(
             { error: parsed.detail.message },
@@ -99,7 +105,14 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  const data = await res.json();
+  const data = (await res.json()) as { id?: string; is_duplicate?: boolean };
+
+  if (data.is_duplicate) {
+    return NextResponse.json(
+      { error: "This email has already registered." },
+      { status: 409 }
+    );
+  }
 
   // Add to GHL in background — failure does not block registration
   addToGHL(name, email, phone).catch((err) =>
