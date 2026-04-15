@@ -68,6 +68,31 @@ export async function POST(req: NextRequest) {
   if (!res.ok) {
     const errorData = await res.text();
     console.error("Adhara API error:", res.status, errorData);
+
+    if (res.status === 422) {
+      try {
+        const parsed = JSON.parse(errorData) as {
+          detail?: { field?: string; error_code?: string; message?: string };
+        };
+        const code = parsed.detail?.error_code;
+        const field = parsed.detail?.field;
+        if (field === "email" && (code === "invalid_domain" || code === "invalid_format")) {
+          return NextResponse.json(
+            { error: "Please enter a valid email address." },
+            { status: 400 }
+          );
+        }
+        if (parsed.detail?.message) {
+          return NextResponse.json(
+            { error: parsed.detail.message },
+            { status: 400 }
+          );
+        }
+      } catch {
+        // fall through to generic error
+      }
+    }
+
     return NextResponse.json(
       { error: "Failed to submit registration" },
       { status: 500 }
