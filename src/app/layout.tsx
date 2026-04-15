@@ -18,6 +18,7 @@ const jost = Jost({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://arise.aurealeaders.com"),
   title: "ARISE — 7 Days to Clear, Build, and Sustain | AUREA Leaders",
   description:
     "Free 7-day challenge for coaches, healers, speakers, and thought leaders. Break through the 3 blocks to your mission — and get first access to Serafina, the sovereign intelligence platform for Golden Age Leaders.",

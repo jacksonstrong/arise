@@ -19,9 +19,12 @@ function RegistrationModal({
   const [errorMsg, setErrorMsg] = useState("");
   const modalRef = useRef<HTMLDivElement>(null);
   const previousFocusRef = useRef<HTMLElement | null>(null);
+  const submittingRef = useRef(false);
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
+    if (submittingRef.current) return;
+    submittingRef.current = true;
     setStatus("loading");
     setErrorMsg("");
 
@@ -41,6 +44,8 @@ function RegistrationModal({
     } catch (err) {
       setStatus("error");
       setErrorMsg(err instanceof Error ? err.message : "Something went wrong");
+    } finally {
+      submittingRef.current = false;
     }
   };
 
@@ -142,9 +147,11 @@ function RegistrationModal({
               ))}
             </div>
             {/* AUREA logo */}
-            <img
+            <Image
               src="/aurea-logo.png"
               alt="AUREA"
+              width={64}
+              height={64}
               className="success-stagger success-stagger-1"
               style={{
                 width: 64,
@@ -193,7 +200,7 @@ function RegistrationModal({
                 marginBottom: 16,
               }}
             >
-              April 21&ndash;27 &middot; 7:00 PM CT &middot; Live on Zoom
+              April 21&ndash;27 (Tue&ndash;Mon) &middot; 7:00 PM CT &middot; Live on Zoom
             </p>
             {/* Calendar buttons */}
             <div
@@ -207,7 +214,7 @@ function RegistrationModal({
               }}
             >
               <a
-                href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=AUREA+Arise+Challenge+-+Live+on+Zoom&dates=20260422T000000Z/20260422T010000Z&recur=RRULE:FREQ%3DDAILY;COUNT%3D7&details=Join+us+live+on+Zoom+for+the+AUREA+Arise+Challenge.%0A%0AZoom%3A+https%3A%2F%2Fus06web.zoom.us%2Fj%2F86087699337%3Fpwd%3DFV2o1ZTNXL3VMaENEVmhuYnJFTjdpZz09&location=https%3A%2F%2Fus06web.zoom.us%2Fj%2F86087699337%3Fpwd%3DFV2o1ZTNXL3VMaENEVmhuYnJFTjdpZz09"
+                href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=AUREA+Arise+Challenge+-+Live+on+Zoom&dates=20260422T000000Z/20260422T010000Z&recur=RRULE:FREQ%3DDAILY;COUNT%3D7&details=Join+us+live+on+Zoom+for+the+AUREA+Arise+Challenge.%0A%0AZoom%3A+https%3A%2F%2Fus06web.zoom.us%2Fj%2F5608769933%3Fpwd%3DV2o1ZTNXL3VMaENEVmhuYnJFTjdpZz09&location=https%3A%2F%2Fus06web.zoom.us%2Fj%2F5608769933%3Fpwd%3DV2o1ZTNXL3VMaENEVmhuYnJFTjdpZz09"
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{
@@ -280,7 +287,7 @@ function RegistrationModal({
           <form onSubmit={handleSubmit} className="registration-form">
             <p className="modal-eyebrow">The 7-Day Invitation</p>
             <h3 id="modal-title">
-              Step Through <em>the Doorway.</em>
+              Cross <em>the Threshold.</em>
             </h3>
             <div className="modal-ornament" aria-hidden="true" />
             <p className="modal-sub">
@@ -312,6 +319,8 @@ function RegistrationModal({
                 placeholder="Your full name"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
+                aria-describedby={status === "error" ? "reg-error" : undefined}
+                aria-invalid={status === "error"}
                 required
               />
               <label htmlFor="reg-email" className="sr-only">Email address</label>
@@ -321,6 +330,8 @@ function RegistrationModal({
                 placeholder="Your best email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+                aria-describedby={status === "error" ? "reg-error" : undefined}
+                aria-invalid={status === "error"}
                 required
               />
               <label htmlFor="reg-phone" className="sr-only">Phone number (optional)</label>
@@ -330,6 +341,7 @@ function RegistrationModal({
                 placeholder="Phone number (optional)"
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
+                aria-describedby={status === "error" ? "reg-error" : undefined}
               />
             </div>
 
@@ -339,15 +351,15 @@ function RegistrationModal({
               disabled={status === "loading"}
             >
               {status === "loading"
-                ? "Opening the Doorway..."
+                ? "Crossing the Threshold..."
                 : "Claim My Place \u2014 Free"}
             </button>
-            {status === "error" && <p className="error-msg" role="alert">{errorMsg}</p>}
+            {status === "error" && <p id="reg-error" className="error-msg" role="alert">{errorMsg}</p>}
             <p className="modal-details-primary">
-              Starts Monday, April 21 &middot; 7:00 PM CT &middot; Live on Zoom
+              Starts Tuesday, April 21 &middot; 7:00 PM CT &middot; Live on Zoom
             </p>
             <p className="modal-details-secondary">
-              No card required &middot; Full commitment
+              Nothing to pay &middot; Everything to claim
             </p>
           </form>
         )}
@@ -634,6 +646,111 @@ function HeroTestimonialCarousel() {
   );
 }
 
+function HeroVideo() {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [isMuted, setIsMuted] = useState(true);
+
+  const handleUnmute = () => {
+    const v = videoRef.current;
+    if (!v) return;
+    v.muted = false;
+    v.volume = 1;
+    if (v.paused) v.play().catch(() => {});
+    setIsMuted(false);
+  };
+
+  return (
+    <div
+      style={{
+        position: "relative",
+        width: "100%",
+        paddingBottom: "56.25%",
+        borderRadius: 4,
+        overflow: "hidden",
+        border: "1px solid var(--ash-dark)",
+      }}
+    >
+      <video
+        ref={videoRef}
+        src="https://pub-e02c13db6b014a7a8fd6c604391c7e43.r2.dev/frequency-mission-web.mp4"
+        title="Frequency of the Mission-Driven Identity"
+        autoPlay
+        muted
+        playsInline
+        controls={!isMuted}
+        preload="metadata"
+        onVolumeChange={(e) => {
+          if (!e.currentTarget.muted && isMuted) setIsMuted(false);
+        }}
+        style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          width: "100%",
+          height: "100%",
+          border: 0,
+          backgroundColor: "#000",
+        }}
+      />
+      {isMuted && (
+        <button
+          type="button"
+          onClick={handleUnmute}
+          aria-label="Unmute video"
+          style={{
+            position: "absolute",
+            inset: 0,
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+            gap: 16,
+            background: "linear-gradient(180deg, rgba(13,11,8,0.15) 0%, rgba(13,11,8,0.55) 100%)",
+            border: 0,
+            cursor: "pointer",
+            color: "var(--parchment)",
+            fontFamily: "var(--font-body-stack)",
+            transition: "background 0.3s ease",
+          }}
+        >
+          <span
+            style={{
+              width: 92,
+              height: 92,
+              borderRadius: "50%",
+              border: "1.5px solid var(--gold)",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              background: "rgba(13,11,8,0.6)",
+              backdropFilter: "blur(8px)",
+              WebkitBackdropFilter: "blur(8px)",
+              boxShadow: "0 0 48px rgba(201,168,76,0.35)",
+            }}
+          >
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" fill="var(--gold)" />
+              <path d="M15.54 8.46a5 5 0 0 1 0 7.07" />
+              <path d="M19.07 4.93a10 10 0 0 1 0 14.14" />
+            </svg>
+          </span>
+          <span
+            style={{
+              fontSize: 12,
+              letterSpacing: ".28em",
+              textTransform: "uppercase",
+              color: "var(--gold)",
+              fontWeight: 400,
+            }}
+          >
+            Tap to Unmute
+          </span>
+        </button>
+      )}
+    </div>
+  );
+}
+
 export default function Home() {
   const [modalOpen, setModalOpen] = useState(false);
   const [showSticky, setShowSticky] = useState(false);
@@ -782,7 +899,7 @@ export default function Home() {
           <Image src="/aurea-logo.png" alt="AUREA" width={130} height={100} priority />
         </div>
         <p className="eyebrow">
-          Join the 7-Day ARISE Breakthrough &middot; Launching Monday, April 21, 2026
+          Join the 7-Day ARISE Breakthrough &middot; Launching Tuesday, April 21, 2026
         </p>
 
         <div
@@ -803,32 +920,7 @@ export default function Home() {
             </h1>
           </div>
           <div style={{ display: "flex", flexDirection: "column", width: "100%" }}>
-            <div
-              style={{
-                position: "relative",
-                width: "100%",
-                paddingBottom: "56.25%",
-                borderRadius: 4,
-                overflow: "hidden",
-                border: "1px solid var(--ash-dark)",
-              }}
-            >
-              <iframe
-                src="https://player.vimeo.com/video/1011664596?h=0&autoplay=1&muted=1&title=0&byline=0&portrait=0"
-                title="ARISE 7-Day Challenge introduction video"
-                loading="lazy"
-                style={{
-                  position: "absolute",
-                  top: 0,
-                  left: 0,
-                  width: "100%",
-                  height: "100%",
-                  border: 0,
-                }}
-                allow="autoplay; fullscreen; picture-in-picture"
-                allowFullScreen
-              />
-            </div>
+            <HeroVideo />
             <p
               style={{
                 fontSize: 12,
@@ -1070,7 +1162,7 @@ export default function Home() {
             <div>
               <p className="prob-label">You can feel it &mdash; something massive is trying to come through you</p>
               <div className="prob-img prob-img-mobile">
-                <img src="/woman-horizon.jpg" alt="Woman silhouetted against golden horizon" />
+                <Image src="/woman-horizon.jpg" alt="Woman silhouetted against golden horizon" fill sizes="(max-width: 860px) 100vw, 50vw" style={{ objectFit: "cover" }} />
               </div>
               <div className="prob-text">
                 <p>But you&rsquo;ve hit a ceiling &mdash; and you know it.</p>
@@ -1082,7 +1174,7 @@ export default function Home() {
               </div>
             </div>
             <div className="prob-img prob-img-desktop">
-              <img src="/woman-horizon.jpg" alt="Woman silhouetted against golden horizon" />
+              <Image src="/woman-horizon.jpg" alt="Woman silhouetted against golden horizon" fill sizes="(max-width: 860px) 100vw, 50vw" style={{ objectFit: "cover" }} />
             </div>
           </div>
 
@@ -1096,12 +1188,12 @@ export default function Home() {
           {/* ——— Row 2: Image left · Text right ——— */}
           <div className="prob-row">
             <div className="prob-img prob-img-desktop">
-              <img src="/woman-doorway.jpg" alt="Woman stepping through cosmic doorway" />
+              <Image src="/woman-doorway.jpg" alt="Woman stepping through cosmic doorway" fill sizes="(max-width: 860px) 100vw, 50vw" style={{ objectFit: "cover" }} />
             </div>
             <div>
               <p className="prob-label">but The pattern that got you here won&rsquo;t get you there</p>
               <div className="prob-img prob-img-mobile">
-                <img src="/woman-doorway.jpg" alt="Woman stepping through cosmic doorway" />
+                <Image src="/woman-doorway.jpg" alt="Woman stepping through cosmic doorway" fill sizes="(max-width: 860px) 100vw, 50vw" style={{ objectFit: "cover" }} />
               </div>
               <div className="prob-text">
                 <p>So you keep striving. Keep pressing on. Keep showing up doing what <strong>USED TO</strong> work. What <strong>USED TO</strong> feel safe. Being who you <strong>USED TO</strong> be.</p>
@@ -1129,7 +1221,7 @@ export default function Home() {
             <div>
               <p className="prob-label">and The cost of staying here is someone else&rsquo;s healing</p>
               <div className="prob-img prob-img-mobile">
-                <img src="/the-cosmic-boob.jpg" alt="Hand reaching toward golden constellation" />
+                <Image src="/the-cosmic-boob.jpg" alt="Hand reaching toward golden constellation" fill sizes="(max-width: 860px) 100vw, 50vw" style={{ objectFit: "cover" }} />
               </div>
               <div className="prob-text">
                 <p className="break"><strong>Every day you stay in the status quo is a day someone who needed your medicine&hellip; didn&rsquo;t find it.</strong></p>
@@ -1142,7 +1234,7 @@ export default function Home() {
               </div>
             </div>
             <div className="prob-img prob-img-desktop">
-              <img src="/the-cosmic-boob.jpg" alt="Hand reaching toward golden constellation" />
+              <Image src="/the-cosmic-boob.jpg" alt="Hand reaching toward golden constellation" fill sizes="(max-width: 860px) 100vw, 50vw" style={{ objectFit: "cover" }} />
             </div>
           </div>
 
@@ -1993,7 +2085,7 @@ export default function Home() {
           Enter the 7-Day ARISE Challenge &mdash; Free
         </button>
         <p className="details">
-          Starts Monday, April 21, 2026 &middot; Zero cost, full commitment
+          Starts Tuesday, April 21, 2026 &middot; Zero cost, full commitment
         </p>
         <p className="closing-quote">
           &ldquo;The hero inside you is not waiting for the fear to pass. They are waiting for you to

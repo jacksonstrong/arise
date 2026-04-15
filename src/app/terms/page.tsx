@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function TermsPage() {
   return (
     <main style={{ background: "var(--ink)", minHeight: "100vh", padding: "80px 24px" }}>
@@ -29,9 +31,9 @@ export default function TermsPage() {
         ))}
 
         <div style={{ marginTop: 64, paddingTop: 32, borderTop: "1px solid var(--ash-dark)" }}>
-          <a href="/" style={{ color: "var(--gold-dark)", fontSize: 13, textDecoration: "none", letterSpacing: ".1em", textTransform: "uppercase" }}>
+          <Link href="/" style={{ color: "var(--gold-dark)", fontSize: 13, textDecoration: "none", letterSpacing: ".1em", textTransform: "uppercase" }}>
             &larr; Back to ARISE
-          </a>
+          </Link>
         </div>
       </div>
     </main>
