@@ -12,10 +12,10 @@ const nextConfig: NextConfig = {
   async headers() {
     return [
       {
-        source: "/arise.ics",
+        source: "/AUREA-Arise-Challenge.ics",
         headers: [
           { key: "Content-Type", value: "text/calendar; charset=utf-8" },
-          { key: "Content-Disposition", value: 'attachment; filename="arise.ics"' },
+          { key: "Content-Disposition", value: 'attachment; filename="AUREA-Arise-Challenge.ics"' },
         ],
       },
     ];

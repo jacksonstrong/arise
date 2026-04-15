@@ -226,7 +226,7 @@ function RegistrationModal({
                 Add to Google Calendar
               </a>
               <a
-                href="/arise.ics"
+                href="/AUREA-Arise-Challenge.ics"
                 style={{
                   display: "block",
                   padding: "10px 20px",
@@ -277,56 +277,77 @@ function RegistrationModal({
             </p>
           </div>
         ) : (
-          <form onSubmit={handleSubmit}>
-            <h3 id="modal-title">Join the ARISE Challenge</h3>
+          <form onSubmit={handleSubmit} className="registration-form">
+            <p className="modal-eyebrow">The 7-Day Invitation</p>
+            <h3 id="modal-title">
+              Step Through <em>the Doorway.</em>
+            </h3>
+            <div className="modal-ornament" aria-hidden="true" />
             <p className="modal-sub">
-              Everything you need to break through &mdash; the coaching, the technology, the tribe &mdash; delivered in 7 days.
+              The <em>Identity</em>, the <em>Sovereign AI</em>, and the <em>Tribe</em>
+              <br />
+              &mdash; delivered in 7 days.
             </p>
-            <label htmlFor="reg-name" className="sr-only">Full name</label>
-            <input
-              id="reg-name"
-              type="text"
-              placeholder="Your full name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              required
-            />
-            <label htmlFor="reg-email" className="sr-only">Email address</label>
-            <input
-              id="reg-email"
-              type="email"
-              placeholder="Your best email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
-            <label htmlFor="reg-phone" className="sr-only">Phone number (optional)</label>
-            <input
-              id="reg-phone"
-              type="tel"
-              placeholder="Phone number (optional)"
-              value={phone}
-              onChange={(e) => setPhone(e.target.value)}
-            />
+
+            <ul className="modal-benefits" aria-label="What you receive">
+              <li>
+                <span className="modal-benefit-mark" aria-hidden="true">✦</span>
+                <span>7 live transmissions with Jackson &amp; Patrick</span>
+              </li>
+              <li>
+                <span className="modal-benefit-mark" aria-hidden="true">✦</span>
+                <span>Daily ARISE rituals &amp; full replays</span>
+              </li>
+              <li>
+                <span className="modal-benefit-mark" aria-hidden="true">✦</span>
+                <span>Your place in the tribe of rising leaders</span>
+              </li>
+            </ul>
+
+            <div className="modal-fields">
+              <label htmlFor="reg-name" className="sr-only">Full name</label>
+              <input
+                id="reg-name"
+                type="text"
+                placeholder="Your full name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                required
+              />
+              <label htmlFor="reg-email" className="sr-only">Email address</label>
+              <input
+                id="reg-email"
+                type="email"
+                placeholder="Your best email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+              <label htmlFor="reg-phone" className="sr-only">Phone number (optional)</label>
+              <input
+                id="reg-phone"
+                type="tel"
+                placeholder="Phone number (optional)"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+              />
+            </div>
+
             <button
               type="submit"
-              className="btn btn-large"
+              className="btn btn-large btn-pulse"
               disabled={status === "loading"}
             >
               {status === "loading"
-                ? "Securing Your Spot..."
-                : "Enter the 7-Day ARISE Challenge \u2014 Free"}
+                ? "Opening the Doorway..."
+                : "Claim My Place \u2014 Free"}
             </button>
             {status === "error" && <p className="error-msg" role="alert">{errorMsg}</p>}
-            <p
-              style={{
-                fontSize: 12,
-                color: "var(--ash)",
-                textAlign: "center",
-                marginTop: 16,
-              }}
-            >
-              Starts Monday, April 21, 2026 &middot; Zero cost, full commitment
+            <p className="modal-details-primary">
+              Starts Monday, April 21 &middot; 7:00 PM CT &middot; Live on Zoom
+            </p>
+            <p className="modal-details-secondary">
+              No card required &middot; Full commitment
             </p>
           </form>
         )}
