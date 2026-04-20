@@ -464,22 +464,23 @@ const QUOTE_TRUNCATE_LENGTH = 180;
 
 function TestimonialCarousel() {
   const [idx, setIdx] = useState(0);
-  const [expanded, setExpanded] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
   const t = TESTIMONIALS_DATA[idx];
   const isLong = t.quote.length > QUOTE_TRUNCATE_LENGTH;
-  const displayQuote = !isLong || expanded ? t.quote : t.quote.slice(0, QUOTE_TRUNCATE_LENGTH).replace(/\s+\S*$/, "") + "\u2026";
+  const displayQuote = isLong ? t.quote.slice(0, QUOTE_TRUNCATE_LENGTH).replace(/\s+\S*$/, "") + "\u2026" : t.quote;
 
-  const prev = () => { setIdx((i) => (i - 1 + TESTIMONIALS_DATA.length) % TESTIMONIALS_DATA.length); setExpanded(false); };
-  const next = () => { setIdx((i) => (i + 1) % TESTIMONIALS_DATA.length); setExpanded(false); };
+  const prev = () => { setIdx((i) => (i - 1 + TESTIMONIALS_DATA.length) % TESTIMONIALS_DATA.length); };
+  const next = () => { setIdx((i) => (i + 1) % TESTIMONIALS_DATA.length); };
 
   return (
     <div style={{ marginTop: 64, position: "relative" }}>
-      <div style={{
+      <div className="test-carousel-frame" style={{
         display: "flex", alignItems: "center", gap: 16,
         width: 700, maxWidth: "100%", margin: "0 auto",
       }}>
         <button
           onClick={prev}
+          className="test-carousel-arrow"
           style={{
             background: "none", border: "1px solid var(--ash-dark)", borderRadius: "50%",
             width: 44, height: 44, color: "var(--gold)", fontSize: 18,
@@ -492,8 +493,8 @@ function TestimonialCarousel() {
         >
           ‹
         </button>
-        <div style={{
-          flex: 1, textAlign: "center", padding: "28px 24px",
+        <div className="test-carousel-box" style={{
+          flex: 1, minWidth: 0, textAlign: "center", padding: "28px 24px",
           border: "1px solid var(--ash-dark)", borderRadius: 2,
           height: 220, display: "flex", flexDirection: "column",
           alignItems: "center", justifyContent: "center", overflow: "hidden",
@@ -514,9 +515,23 @@ function TestimonialCarousel() {
           </p>
           <p style={{ fontSize: 13, color: "var(--gold-dark)", fontWeight: 400, margin: "0 0 2px" }}>{"\u2014"} {t.name}</p>
           <p style={{ fontSize: 12, color: "var(--ash)", margin: 0 }}>{t.org}</p>
+          {isLong && (
+            <button
+              onClick={() => setModalOpen(true)}
+              style={{
+                marginTop: 8, background: "none", border: "none",
+                color: "var(--gold)", fontSize: 10, letterSpacing: ".2em",
+                textTransform: "uppercase", cursor: "pointer", fontWeight: 400,
+                padding: 0,
+              }}
+            >
+              See More
+            </button>
+          )}
         </div>
         <button
           onClick={next}
+          className="test-carousel-arrow"
           style={{
             background: "none", border: "1px solid var(--ash-dark)", borderRadius: "50%",
             width: 44, height: 44, color: "var(--gold)", fontSize: 18,
@@ -531,7 +546,7 @@ function TestimonialCarousel() {
         </button>
       </div>
       <div style={{
-        display: "flex", justifyContent: "center", gap: 8, marginTop: 16,
+        display: "flex", justifyContent: "center", gap: 8, marginTop: 16, flexWrap: "wrap", padding: "0 16px",
       }}>
         {TESTIMONIALS_DATA.map((_, i) => (
           <button
@@ -545,6 +560,50 @@ function TestimonialCarousel() {
             }}
           />
         ))}
+      </div>
+      {modalOpen && <TestimonialModal testimonial={t} onClose={() => setModalOpen(false)} />}
+    </div>
+  );
+}
+
+function TestimonialModal({ testimonial, onClose }: { testimonial: { quote: string; name: string; org: string }; onClose: () => void }) {
+  return (
+    <div
+      onClick={onClose}
+      style={{
+        position: "fixed", inset: 0,
+        background: "rgba(10,10,14,.88)", backdropFilter: "blur(6px)",
+        zIndex: 1000, display: "flex", alignItems: "center", justifyContent: "center",
+        padding: 20,
+      }}
+    >
+      <div
+        onClick={(e) => e.stopPropagation()}
+        style={{
+          maxWidth: 560, width: "100%",
+          background: "var(--ink)", border: "1px solid var(--gold-dark)",
+          padding: "44px 28px 32px", borderRadius: 2, position: "relative",
+          maxHeight: "80vh", overflowY: "auto",
+        }}
+      >
+        <button
+          onClick={onClose}
+          aria-label="Close"
+          style={{
+            position: "absolute", top: 10, right: 14,
+            background: "none", border: "none", color: "var(--ash)",
+            fontSize: 26, lineHeight: 1, cursor: "pointer", padding: 4,
+          }}
+        >×</button>
+        <p style={{
+          fontFamily: "var(--font-heading-stack)", fontStyle: "italic",
+          fontSize: 19, lineHeight: 1.6, color: "var(--parchment)",
+          marginBottom: 18, textAlign: "center",
+        }}>
+          {"\u201C"}{testimonial.quote}{"\u201D"}
+        </p>
+        <p style={{ fontSize: 13, color: "var(--gold-dark)", fontWeight: 400, margin: "0 0 2px", textAlign: "center" }}>{"\u2014"} {testimonial.name}</p>
+        <p style={{ fontSize: 12, color: "var(--ash)", margin: 0, textAlign: "center" }}>{testimonial.org}</p>
       </div>
     </div>
   );
@@ -573,17 +632,20 @@ const HERO_TESTIMONIALS = [
 
 function HeroTestimonialCarousel() {
   const [idx, setIdx] = useState(0);
+  const [modalOpen, setModalOpen] = useState(false);
   const t = HERO_TESTIMONIALS[idx];
-  const truncated = t.quote.length > 180 ? t.quote.slice(0, 180).replace(/\s+\S*$/, "") + "\u2026" : t.quote;
+  const isLong = t.quote.length > 180;
+  const truncated = isLong ? t.quote.slice(0, 180).replace(/\s+\S*$/, "") + "\u2026" : t.quote;
 
   const prev = () => setIdx((i) => (i - 1 + HERO_TESTIMONIALS.length) % HERO_TESTIMONIALS.length);
   const next = () => setIdx((i) => (i + 1) % HERO_TESTIMONIALS.length);
 
   return (
     <div style={{ marginTop: 32, position: "relative" }}>
-      <div style={{ display: "flex", alignItems: "center", gap: 16, width: 700, maxWidth: "100%", margin: "0 auto" }}>
+      <div className="test-carousel-frame" style={{ display: "flex", alignItems: "center", gap: 16, width: 700, maxWidth: "100%", margin: "0 auto" }}>
         <button
           onClick={prev}
+          className="test-carousel-arrow"
           style={{
             background: "none", border: "1px solid var(--ash-dark)", borderRadius: "50%",
             width: 44, height: 44, color: "var(--gold)", fontSize: 18,
@@ -593,8 +655,8 @@ function HeroTestimonialCarousel() {
           onMouseEnter={(e) => (e.currentTarget.style.borderColor = "var(--gold)")}
           onMouseLeave={(e) => (e.currentTarget.style.borderColor = "var(--ash-dark)")}
         >‹</button>
-        <div style={{
-          flex: 1, textAlign: "center", padding: "28px 24px",
+        <div className="test-carousel-box" style={{
+          flex: 1, minWidth: 0, textAlign: "center", padding: "28px 24px",
           border: "1px solid var(--ash-dark)", borderRadius: 2,
           height: 220, display: "flex", flexDirection: "column",
           alignItems: "center", justifyContent: "center", overflow: "hidden",
@@ -615,9 +677,23 @@ function HeroTestimonialCarousel() {
           </p>
           <p style={{ fontSize: 13, color: "var(--gold-dark)", fontWeight: 400, margin: "0 0 2px" }}>{"\u2014"} {t.name}</p>
           <p style={{ fontSize: 12, color: "var(--ash)", margin: 0 }}>{t.org}</p>
+          {isLong && (
+            <button
+              onClick={() => setModalOpen(true)}
+              style={{
+                marginTop: 8, background: "none", border: "none",
+                color: "var(--gold)", fontSize: 10, letterSpacing: ".2em",
+                textTransform: "uppercase", cursor: "pointer", fontWeight: 400,
+                padding: 0,
+              }}
+            >
+              See More
+            </button>
+          )}
         </div>
         <button
           onClick={next}
+          className="test-carousel-arrow"
           style={{
             background: "none", border: "1px solid var(--ash-dark)", borderRadius: "50%",
             width: 44, height: 44, color: "var(--gold)", fontSize: 18,
@@ -628,7 +704,7 @@ function HeroTestimonialCarousel() {
           onMouseLeave={(e) => (e.currentTarget.style.borderColor = "var(--ash-dark)")}
         >›</button>
       </div>
-      <div style={{ display: "flex", justifyContent: "center", gap: 8, marginTop: 16 }}>
+      <div style={{ display: "flex", justifyContent: "center", gap: 8, marginTop: 16, flexWrap: "wrap", padding: "0 16px" }}>
         {HERO_TESTIMONIALS.map((_, i) => (
           <button
             key={i}
@@ -642,6 +718,7 @@ function HeroTestimonialCarousel() {
           />
         ))}
       </div>
+      {modalOpen && <TestimonialModal testimonial={t} onClose={() => setModalOpen(false)} />}
     </div>
   );
 }
@@ -1391,7 +1468,7 @@ export default function Home() {
               <div className="guide-text">
                 <h2>Jackson Strong</h2>
                 <p className="title-sub">
-                  Founder of AUREA Leaders &middot; Creator of Stage Secrets
+                  Founder of AUREA &middot; Creator of Stage Secrets
                 </p>
                 <p>
                   My career began in high-tech private equity and the startup world, working for
@@ -1973,7 +2050,7 @@ export default function Home() {
           />
           <FaqItem
             question="Is this really free?"
-            answer="Yes. No credit card. No hidden upsell wall. You will be invited to continue the journey with AUREA Leaders at the end, but the 7 days are complete on their own."
+            answer="Yes. No credit card. No hidden upsell wall. You will be invited to continue the journey with AUREA at the end, but the 7 days are complete on their own."
           />
           <FaqItem
             question="Is Jackson going to try to sell me something?"
@@ -1997,7 +2074,7 @@ export default function Home() {
           />
           <FaqItem
             question="Will there be an opportunity to continue after the 7 days?"
-            answer="Yes. Day 7 includes an invitation to join the AUREA Leaders ecosystem. But there is zero pressure. The challenge delivers standalone value."
+            answer="Yes. Day 7 includes an invitation to join the AUREA ecosystem. But there is zero pressure. The challenge delivers standalone value."
           />
         </div>
       </section>
@@ -2038,7 +2115,7 @@ export default function Home() {
           <a href="/privacy">Privacy</a> <a href="/terms">Terms</a> <a href="mailto:goldenpath@aurealeaders.com">Contact</a>
         </p>
         <p style={{ marginTop: 12 }}>
-          &copy; 2026 Aurea Leaders. All rights reserved.
+          &copy; 2026 AUREA. All rights reserved.
           <br />
           Architected for the Golden Age.
         </p>

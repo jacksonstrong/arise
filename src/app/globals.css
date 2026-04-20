@@ -1080,6 +1080,12 @@ footer .logo { font-family: var(--font-heading-stack); font-size: 18px; color: v
   /* Testimonial quotes */
   .test-card .quote { font-size: 18px; }
 
+  /* Testimonial carousel — narrow box for mobile, keep uniform */
+  .test-carousel-frame { gap: 8px !important; width: 100% !important; max-width: calc(100vw - 32px) !important; }
+  .test-carousel-arrow { width: 36px !important; height: 36px !important; font-size: 16px !important; }
+  .test-carousel-box { padding: 18px 14px !important; }
+  .test-carousel-box p:first-of-type { font-size: 15px !important; line-height: 1.5 !important; }
+
   /* Transition bridge quote */
   .transition-bridge-quote { font-size: clamp(18px, 4.5vw, 28px) !important; }
 
