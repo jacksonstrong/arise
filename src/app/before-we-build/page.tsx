@@ -140,7 +140,10 @@ export default function BeforeWeBuildPage() {
         throw new Error(err.error || "Submission failed.");
       }
       try { localStorage.removeItem(STORAGE_KEY); } catch {}
-      router.push("/before-we-build/received");
+      try {
+        sessionStorage.setItem("before-we-build-submission", JSON.stringify(data));
+      } catch {}
+      router.push("/before-we-build/the-calling");
     } catch (err) {
       setError(err instanceof Error ? err.message : "Something went wrong. Please try again.");
       setSubmitting(false);
@@ -181,10 +184,11 @@ export default function BeforeWeBuildPage() {
           </div>
 
           <div style={{ fontSize: 18, lineHeight: 1.85, color: "rgba(247, 243, 236, 0.88)" }}>
-            <p style={{ marginBottom: 24 }}>You just finished seven days with me.</p>
-            <p style={{ marginBottom: 24 }}>Thank you. I don&rsquo;t take that lightly — your time, your honesty, the things you let yourself see.</p>
-            <p style={{ marginBottom: 24 }}>Now the real work begins. The part where what you felt in the room becomes the thing you actually build.</p>
-            <p style={{ marginBottom: 40 }}>And that&rsquo;s where I need you.</p>
+            <p style={{ marginBottom: 24 }}>You just finished seven days with me. Thank you!</p>
+            <p style={{ marginBottom: 24 }}>I don&rsquo;t take that lightly — your time, your honesty, the things you let yourself (and us) see.</p>
+            <p style={{ marginBottom: 24 }}>Now the real work begins&hellip; the part where what you felt in the room becomes the thing you actually build.</p>
+            <p style={{ marginBottom: 24 }}>What is the dream in your heart? What are you desiring to build that you see the world needs?</p>
+            <p style={{ marginBottom: 40 }}>Answer what follows in your own time. When you reach the end, you&rsquo;ll receive <em style={{ color: "var(--gold-light)", fontStyle: "italic" }}>The Calling</em> — your own words, woven back to you in the voice of the oracle. A transmission of the creational vocation you carried into ARISE, and the one you are carrying out.</p>
 
             <p style={{ marginBottom: 24 }}>I&rsquo;ve been building transformational coaching work for nearly 10 years. I&rsquo;ve watched rooms change people&rsquo;s lives. I&rsquo;ve also watched rooms promise everything and deliver a PDF and a Slack group.</p>
             <p style={{ marginBottom: 24 }}>I&rsquo;m done with both extremes.</p>
@@ -251,7 +255,7 @@ export default function BeforeWeBuildPage() {
         </div>
 
         {/* SECTION 1 */}
-        <Section id="section-1" numeral="I" title="Who you are">
+        <Section id="section-1" numeral="I" title="You, arriving">
           <Field label="Name" required>
             <input
               type="text"
@@ -304,7 +308,7 @@ export default function BeforeWeBuildPage() {
         </Section>
 
         {/* SECTION 2 */}
-        <Section id="section-2" numeral="II" title="Where you are now">
+        <Section id="section-2" numeral="II" title="The signal">
           <Prompt
             q="What’s been draining you most in the last 90 days?"
             value={data.draining}
@@ -333,7 +337,7 @@ export default function BeforeWeBuildPage() {
         </Section>
 
         {/* SECTION 3 */}
-        <Section id="section-3" numeral="III" title="Who you’re becoming">
+        <Section id="section-3" numeral="III" title="The calling">
           <Prompt
             q="When you imagine the next version of your life and business, what does it actually look like?"
             value={data.next_version}
@@ -362,7 +366,7 @@ export default function BeforeWeBuildPage() {
         </Section>
 
         {/* SECTION 4 */}
-        <Section id="section-4" numeral="IV" title="Your current foundation">
+        <Section id="section-4" numeral="IV" title="The vessel">
           <Field label="Current website URL">
             <input
               type="url"
@@ -498,7 +502,7 @@ export default function BeforeWeBuildPage() {
         </Section>
 
         {/* SECTION 6 */}
-        <Section id="section-6" numeral="VI" title="The opening">
+        <Section id="section-6" numeral="VI" title="Your sealing">
           <Prompt
             q="Anything else you want us to know?"
             value={data.anything_else}
@@ -566,7 +570,7 @@ export default function BeforeWeBuildPage() {
             className="btn btn-large"
             style={{ opacity: submitting ? 0.55 : 1, minWidth: 260 }}
           >
-            {submitting ? "Sending…" : "Send it to Jackson"}
+            {submitting ? "Receiving…" : "Receive The Calling"}
           </button>
           {savedAt && !submitting && (
             <p style={{
