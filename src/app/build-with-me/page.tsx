@@ -181,14 +181,47 @@ export default function BuildWithMePage() {
           </div>
 
           <div style={{ fontSize: 18, lineHeight: 1.85, color: "rgba(247, 243, 236, 0.88)" }}>
-            <p style={{ marginBottom: 24 }}>You just finished seven days with me. Thank you!</p>
-            <p style={{ marginBottom: 24 }}>I don&rsquo;t take that lightly — your time, your honesty, the things you let yourself (and us) see.</p>
-            <p style={{ marginBottom: 24 }}>Now the real work begins&hellip; the part where what you felt in the room becomes the thing you actually build.</p>
-            <p style={{ marginBottom: 40 }}>What is the dream in your heart? What are you desiring to build that you see the world needs?</p>
+            <p style={{ marginBottom: 24 }}>Thank you for being here.</p>
+            <p style={{ marginBottom: 24 }}>I want to come back to you with something built for exactly what you need — not a repackaged program I already had planned. So before you answer what follows, I want to name a few things I hear often from the people I&rsquo;m lucky enough to work with. Not to assume it&rsquo;s you, but to let you know what&rsquo;s already in the room.</p>
+            <p style={{ marginBottom: 24 }}>Many come to me having outgrown spiritual communities that stayed on the surface. They&rsquo;ve built things they&rsquo;re proud of and feel the loneliness of being the strong one, the healer, the one everyone leans on — while quietly wondering who they get to lean into.</p>
+            <p style={{ marginBottom: 40 }}>Many have had real financial success and know they are under-leveraging their actual purpose. Many can feel the movement they&rsquo;re meant to bring but can&rsquo;t yet translate it into clear, magnetic offerings. Many are exhausted from doing it alone, and unsure how to scale without losing the integrity that made the work matter in the first place.</p>
+            <p style={{ marginBottom: 40 }}>If any of that is true for you — or if none of it is and the truth is something else entirely — I want to hear it from you.</p>
 
-            <p style={{ marginBottom: 24 }}>I&rsquo;ve been building transformational coaching work for nearly 10 years. I&rsquo;ve watched rooms change people&rsquo;s lives. I&rsquo;ve also watched rooms promise everything and deliver a PDF and a Slack group.</p>
-            <p style={{ marginBottom: 24 }}>I&rsquo;m done with both extremes.</p>
-            <p style={{ marginBottom: 40 }}>This time I&rsquo;m building differently — and the container I build next has to be shaped by what you actually need, not by what I think I know.</p>
+            <p style={{ marginBottom: 20 }}>So, directly:</p>
+            <p style={{
+              fontFamily: "var(--font-heading-stack)",
+              fontStyle: "italic",
+              fontSize: "clamp(19px, 2.3vw, 22px)",
+              color: "var(--gold-light)",
+              lineHeight: 1.5,
+              marginBottom: 16,
+            }}>If we worked together, what would you most desire from me?</p>
+            <p style={{
+              fontFamily: "var(--font-heading-stack)",
+              fontStyle: "italic",
+              fontSize: "clamp(19px, 2.3vw, 22px)",
+              color: "var(--gold-light)",
+              lineHeight: 1.5,
+              marginBottom: 16,
+            }}>What inner transformation are you seeking?</p>
+            <p style={{
+              fontFamily: "var(--font-heading-stack)",
+              fontStyle: "italic",
+              fontSize: "clamp(19px, 2.3vw, 22px)",
+              color: "var(--gold-light)",
+              lineHeight: 1.5,
+              marginBottom: 16,
+            }}>What shifts do you most want in your business — in your offers, your rhythm, your reach, your revenue?</p>
+            <p style={{
+              fontFamily: "var(--font-heading-stack)",
+              fontStyle: "italic",
+              fontSize: "clamp(19px, 2.3vw, 22px)",
+              color: "var(--gold-light)",
+              lineHeight: 1.5,
+              marginBottom: 40,
+            }}>What does real support look like for you, in the season you&rsquo;re in right now?</p>
+
+            <p style={{ marginBottom: 40 }}>I&rsquo;ve been doing this work for nearly 10 years. Long enough to know the answers aren&rsquo;t inside my head. They&rsquo;re inside your life.</p>
 
             {/* Pull quote */}
             <blockquote style={{
@@ -204,12 +237,12 @@ export default function BuildWithMePage() {
               borderTop: "1px solid rgba(201, 168, 76, 0.25)",
               borderBottom: "1px solid rgba(201, 168, 76, 0.25)",
             }}>
-              The more honest you are, the more precisely I can build something that actually serves you.
+              The more honest you are, the more precisely I can serve you.
             </blockquote>
 
-            <p style={{ marginBottom: 24 }}>I&rsquo;m not going to pretend I know what you need. I&rsquo;ve been doing this long enough to know the answer isn&rsquo;t inside my head. It&rsquo;s inside your life — what you&rsquo;ve tried, what&rsquo;s still aching, what you&rsquo;d actually pay for if it were real.</p>
-            <p style={{ marginBottom: 24 }}>This isn&rsquo;t a form. It&rsquo;s the beginning of a conversation.</p>
-            <p style={{ marginBottom: 48 }}>Take as long as you need. No timer. No wrong answers. I&rsquo;ll read every word myself, and come back to you directly with something built for what you actually need.</p>
+            <p style={{ marginBottom: 24 }}>Every question on the pages that follow is here because I actually need your answer — not to decide if you qualify, but to shape what I come back to you with.</p>
+            <p style={{ marginBottom: 24 }}>I read every word myself.</p>
+            <p style={{ marginBottom: 48 }}>No timer. No wrong answers. No formula.</p>
 
             <p style={{
               fontFamily: "var(--font-heading-stack)",
