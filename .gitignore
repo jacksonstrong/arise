@@ -40,3 +40,11 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 .env*.local
+
+# Confidential — investor/internal docs (must stay local)
+SERAPH_*
+serafina-investor-*
+
+# Local agent config
+.agents/
+.claude/
