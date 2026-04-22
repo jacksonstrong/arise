@@ -7,7 +7,6 @@ type FormData = {
   name: string;
   email: string;
   phone: string;
-  dob: string;
   timezone: string;
   bio: string;
   draining: string;
@@ -45,7 +44,7 @@ const STORAGE_KEY = "before-we-build-draft-v1";
 const AUTOSAVE_MS = 30000;
 
 const INITIAL: FormData = {
-  name: "", email: "", phone: "", dob: "", timezone: "", bio: "",
+  name: "", email: "", phone: "", timezone: "", bio: "",
   draining: "", stuck: "", alive: "", cost: "", story: "",
   next_version: "", message: "", dream_tuesday: "", ideal_person: "", survived: "",
   website: "", business_name: "", entity: "", offers: "",
@@ -124,7 +123,7 @@ export default function BeforeWeBuildPage() {
     e.preventDefault();
     setError(null);
     if (data.website_hp) return;
-    if (!data.name || !data.email || !data.phone || !data.dob || !data.timezone || !data.bio) {
+    if (!data.name || !data.email || !data.phone || !data.timezone || !data.bio) {
       setError("Please complete the 'Who You Are' section before sending.");
       document.getElementById("section-1")?.scrollIntoView({ behavior: "smooth" });
       return;
@@ -152,46 +151,104 @@ export default function BeforeWeBuildPage() {
     <main style={{ background: "var(--ink)", minHeight: "100vh", color: "var(--parchment)" }}>
       <form onSubmit={submit} noValidate>
         {/* OPENING LETTER */}
-        <section style={{ padding: "120px 24px 120px", maxWidth: 680, margin: "0 auto" }}>
-          <p className="eyebrow" style={{ textAlign: "center", marginBottom: 32 }}>
-            A letter
+        <section style={{ padding: "120px 24px 80px", maxWidth: 680, margin: "0 auto" }}>
+          <p className="eyebrow" style={{ textAlign: "center", marginBottom: 32, color: "var(--gold-dark)" }}>
+            After ARISE · A Letter from Jackson
           </p>
           <h1 style={{
             fontFamily: "var(--font-heading-stack)",
-            fontSize: "clamp(40px, 6vw, 64px)",
+            fontSize: "clamp(44px, 6.5vw, 72px)",
             fontWeight: 300,
-            lineHeight: 1.15,
-            marginBottom: 56,
+            lineHeight: 1.1,
+            marginBottom: 24,
             textAlign: "center",
-            letterSpacing: "-0.01em",
+            letterSpacing: "-0.015em",
           }}>
             Before we begin.
           </h1>
+
+          {/* Ornament under title */}
+          <div style={{
+            display: "flex",
+            alignItems: "center",
+            gap: 14,
+            maxWidth: 260,
+            margin: "0 auto 64px",
+          }} aria-hidden="true">
+            <div style={{ flex: 1, height: 1, background: "linear-gradient(90deg, transparent, var(--gold-dark))" }} />
+            <div style={{ color: "var(--gold)", fontSize: 14 }}>&#10022;</div>
+            <div style={{ flex: 1, height: 1, background: "linear-gradient(90deg, var(--gold-dark), transparent)" }} />
+          </div>
+
           <div style={{ fontSize: 18, lineHeight: 1.85, color: "rgba(247, 243, 236, 0.88)" }}>
-            <p style={{ marginBottom: 24 }}>I&rsquo;ve been building transformational coaching work for nearly 10 years.</p>
-            <p style={{ marginBottom: 24 }}>I&rsquo;ve watched rooms change people&rsquo;s lives. I&rsquo;ve also watched rooms promise everything and deliver a PDF and a Slack group.</p>
+            <p style={{ marginBottom: 24 }}>You just finished seven days with me.</p>
+            <p style={{ marginBottom: 24 }}>Thank you. I don&rsquo;t take that lightly — your time, your honesty, the things you let yourself see.</p>
+            <p style={{ marginBottom: 24 }}>Now the real work begins. The part where what you felt in the room becomes the thing you actually build.</p>
+            <p style={{ marginBottom: 40 }}>And that&rsquo;s where I need you.</p>
+
+            <p style={{ marginBottom: 24 }}>I&rsquo;ve been building transformational coaching work for nearly 10 years. I&rsquo;ve watched rooms change people&rsquo;s lives. I&rsquo;ve also watched rooms promise everything and deliver a PDF and a Slack group.</p>
             <p style={{ marginBottom: 24 }}>I&rsquo;m done with both extremes.</p>
-            <p style={{ marginBottom: 24 }}>This time I&rsquo;m building differently — and I need you to help me build it.</p>
-            <p style={{ marginBottom: 24 }}>I&rsquo;m not going to pretend I know what you need. I&rsquo;ve been doing this long enough to know the answer isn&rsquo;t inside my head. It&rsquo;s inside your life. What you&rsquo;ve tried. What&rsquo;s still aching. What you&rsquo;d actually pay for if it were real.</p>
-            <p style={{ marginBottom: 24 }}>This isn&rsquo;t a form. It&rsquo;s the beginning of a conversation. The more honest you are, the more precisely I can build something that actually serves you — not a repackaged version of what everyone else is selling.</p>
+            <p style={{ marginBottom: 40 }}>This time I&rsquo;m building differently — and the container I build next has to be shaped by what you actually need, not by what I think I know.</p>
+
+            {/* Pull quote */}
+            <blockquote style={{
+              fontFamily: "var(--font-heading-stack)",
+              fontStyle: "italic",
+              fontSize: "clamp(22px, 3vw, 30px)",
+              fontWeight: 300,
+              color: "var(--gold-light)",
+              lineHeight: 1.35,
+              textAlign: "center",
+              padding: "28px 20px",
+              margin: "8px 0 40px",
+              borderTop: "1px solid rgba(201, 168, 76, 0.25)",
+              borderBottom: "1px solid rgba(201, 168, 76, 0.25)",
+            }}>
+              The more honest you are, the more precisely I can build something that actually serves you.
+            </blockquote>
+
+            <p style={{ marginBottom: 24 }}>I&rsquo;m not going to pretend I know what you need. I&rsquo;ve been doing this long enough to know the answer isn&rsquo;t inside my head. It&rsquo;s inside your life — what you&rsquo;ve tried, what&rsquo;s still aching, what you&rsquo;d actually pay for if it were real.</p>
+            <p style={{ marginBottom: 24 }}>This isn&rsquo;t a form. It&rsquo;s the beginning of a conversation.</p>
             <p style={{ marginBottom: 48 }}>Take as long as you need. No timer. No wrong answers. I&rsquo;ll read every word myself.</p>
+
             <p style={{
               fontFamily: "var(--font-heading-stack)",
-              fontSize: 24,
+              fontSize: 26,
               fontStyle: "italic",
               color: "var(--gold)",
               lineHeight: 1.5,
+              textAlign: "center",
             }}>
               Love &amp; Strength,<br />
               Jackson
             </p>
           </div>
-          <div style={{ textAlign: "center", marginTop: 96 }}>
-            <button type="button" onClick={scrollToFirst} className="btn btn-large">
+
+          <div style={{ textAlign: "center", marginTop: 72 }}>
+            <button
+              type="button"
+              onClick={scrollToFirst}
+              className="btn btn-large"
+              style={{ boxShadow: "0 0 40px rgba(201, 168, 76, 0.08)" }}
+            >
               Begin
             </button>
           </div>
         </section>
+
+        {/* Divider into survey */}
+        <div style={{
+          display: "flex",
+          alignItems: "center",
+          gap: 20,
+          maxWidth: 420,
+          margin: "40px auto 0",
+          padding: "0 24px",
+        }} aria-hidden="true">
+          <div style={{ flex: 1, height: 1, background: "linear-gradient(90deg, transparent, var(--gold-dark))" }} />
+          <div style={{ color: "var(--gold)", fontSize: 18 }}>&#10022;</div>
+          <div style={{ flex: 1, height: 1, background: "linear-gradient(90deg, var(--gold-dark), transparent)" }} />
+        </div>
 
         {/* SECTION 1 */}
         <Section id="section-1" numeral="I" title="Who you are">
@@ -218,19 +275,6 @@ export default function BeforeWeBuildPage() {
               type="tel"
               value={data.phone}
               onChange={(e) => update("phone", e.target.value)}
-              style={inputStyle}
-              required
-            />
-          </Field>
-          <Field
-            label="Date of birth"
-            required
-            hint="Serafina uses your birth data to personalize."
-          >
-            <input
-              type="date"
-              value={data.dob}
-              onChange={(e) => update("dob", e.target.value)}
               style={inputStyle}
               required
             />
@@ -554,34 +598,43 @@ function Section({
     <section
       id={id}
       style={{
-        padding: "100px 24px",
+        padding: "120px 24px 100px",
         maxWidth: 680,
         margin: "0 auto",
-        borderTop: "1px solid var(--ash-dark)",
       }}
     >
-      <div style={{ marginBottom: 64, textAlign: "center" }}>
+      <div style={{ marginBottom: 72, textAlign: "center" }}>
         <p style={{
           fontFamily: "var(--font-heading-stack)",
-          fontSize: 22,
-          color: "var(--gold-dark)",
+          fontSize: 24,
+          color: "var(--gold)",
           letterSpacing: "0.3em",
-          marginBottom: 20,
+          marginBottom: 16,
+          fontWeight: 400,
         }}>
           {numeral}
         </p>
+        <div
+          aria-hidden="true"
+          style={{
+            width: 48,
+            height: 1,
+            background: "var(--gold-dark)",
+            margin: "0 auto 28px",
+          }}
+        />
         <h2 style={{
           fontFamily: "var(--font-heading-stack)",
-          fontSize: "clamp(32px, 4.5vw, 44px)",
+          fontSize: "clamp(34px, 5vw, 48px)",
           fontWeight: 300,
           color: "var(--parchment)",
-          lineHeight: 1.2,
-          letterSpacing: "-0.01em",
+          lineHeight: 1.15,
+          letterSpacing: "-0.015em",
         }}>
           {title}
         </h2>
       </div>
-      <div style={{ display: "flex", flexDirection: "column", gap: 40 }}>
+      <div style={{ display: "flex", flexDirection: "column", gap: 44 }}>
         {children}
       </div>
     </section>

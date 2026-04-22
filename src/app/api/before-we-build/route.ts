@@ -17,7 +17,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ success: true });
   }
 
-  const required = ["name", "email", "phone", "dob", "timezone", "bio"] as const;
+  const required = ["name", "email", "phone", "timezone", "bio"] as const;
   for (const key of required) {
     if (typeof body[key] !== "string" || !(body[key] as string).trim()) {
       return NextResponse.json(
