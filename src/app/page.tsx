@@ -1700,6 +1700,27 @@ export default function Home() {
           >
             The fastest path from inner work to outer impact — built for the way you actually think, feel, and create.
           </p>
+          <div
+            style={{
+              maxWidth: 920,
+              margin: "0 auto 56px",
+              borderRadius: 6,
+              overflow: "hidden",
+              border: "1px solid rgba(201,168,76,.15)",
+            }}
+          >
+            <video
+              src="/arise-intro.mp4"
+              controls
+              preload="metadata"
+              playsInline
+              style={{
+                width: "100%",
+                display: "block",
+                background: "#0D0B08",
+              }}
+            />
+          </div>
           <div className="serafina-features-grid" style={{ margin: "0 auto 56px" }}>
             {[
               {
