@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "Thank You — AUREA",
@@ -14,11 +15,13 @@ export default function ThankYouPage() {
         minHeight: "100vh",
         color: "var(--parchment)",
         display: "flex",
+        flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
-        padding: "80px 24px",
+        padding: "40px 24px 80px",
       }}
     >
+      <Image src="/aurea-logo.png" alt="AUREA" width={88} height={68} priority style={{ opacity: 0.92, marginBottom: 64 }} />
       <div style={{ maxWidth: 640, textAlign: "center" }}>
         <p className="eyebrow" style={{ marginBottom: 32, color: "var(--gold-dark)" }}>
           A note back
