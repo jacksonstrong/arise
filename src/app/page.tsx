@@ -723,7 +723,13 @@ function HeroTestimonialCarousel() {
   );
 }
 
-function HeroVideo() {
+function HeroVideo({
+  src = "https://pub-e02c13db6b014a7a8fd6c604391c7e43.r2.dev/frequency-mission-web.mp4",
+  title = "Frequency of the Mission-Driven Identity",
+}: {
+  src?: string;
+  title?: string;
+} = {}) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isMuted, setIsMuted] = useState(true);
 
@@ -749,8 +755,8 @@ function HeroVideo() {
     >
       <video
         ref={videoRef}
-        src="https://pub-e02c13db6b014a7a8fd6c604391c7e43.r2.dev/frequency-mission-web.mp4"
-        title="Frequency of the Mission-Driven Identity"
+        src={src}
+        title={title}
         autoPlay
         muted
         playsInline
@@ -1700,26 +1706,8 @@ export default function Home() {
           >
             The fastest path from inner work to outer impact — built for the way you actually think, feel, and create.
           </p>
-          <div
-            style={{
-              maxWidth: 920,
-              margin: "0 auto 56px",
-              borderRadius: 6,
-              overflow: "hidden",
-              border: "1px solid rgba(201,168,76,.15)",
-            }}
-          >
-            <video
-              src="/arise-intro.mp4"
-              controls
-              preload="metadata"
-              playsInline
-              style={{
-                width: "100%",
-                display: "block",
-                background: "#0D0B08",
-              }}
-            />
+          <div style={{ maxWidth: 920, margin: "0 auto 56px" }}>
+            <HeroVideo src="/arise-intro.mp4" title="Introducing Serafina" />
           </div>
           <div className="serafina-features-grid" style={{ margin: "0 auto 56px" }}>
             {[
