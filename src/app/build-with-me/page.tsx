@@ -193,40 +193,6 @@ export default function BuildWithMePage() {
             <p style={{ marginBottom: 40 }}>Many have had real financial success and know they are under-leveraging their actual purpose. Many can feel the movement they&rsquo;re meant to bring but can&rsquo;t yet translate it into clear, magnetic offerings. Many are exhausted from doing it alone, and unsure how to scale without losing the integrity that made the work matter in the first place.</p>
             <p style={{ marginBottom: 40 }}>If any of that is true for you — or if none of it is and the truth is something else entirely — I want to hear it from you.</p>
 
-            <p style={{ marginBottom: 20 }}>So, directly:</p>
-            <p style={{
-              fontFamily: "var(--font-heading-stack)",
-              fontStyle: "italic",
-              fontSize: "clamp(19px, 2.3vw, 22px)",
-              color: "var(--gold-light)",
-              lineHeight: 1.5,
-              marginBottom: 16,
-            }}>If we worked together, what would you most desire from me?</p>
-            <p style={{
-              fontFamily: "var(--font-heading-stack)",
-              fontStyle: "italic",
-              fontSize: "clamp(19px, 2.3vw, 22px)",
-              color: "var(--gold-light)",
-              lineHeight: 1.5,
-              marginBottom: 16,
-            }}>What inner transformation are you seeking?</p>
-            <p style={{
-              fontFamily: "var(--font-heading-stack)",
-              fontStyle: "italic",
-              fontSize: "clamp(19px, 2.3vw, 22px)",
-              color: "var(--gold-light)",
-              lineHeight: 1.5,
-              marginBottom: 16,
-            }}>What shifts do you most want in your business — in your offers, your rhythm, your reach, your revenue?</p>
-            <p style={{
-              fontFamily: "var(--font-heading-stack)",
-              fontStyle: "italic",
-              fontSize: "clamp(19px, 2.3vw, 22px)",
-              color: "var(--gold-light)",
-              lineHeight: 1.5,
-              marginBottom: 40,
-            }}>What does real support look like for you, in the season you&rsquo;re in right now?</p>
-
             <p style={{ marginBottom: 40 }}>I&rsquo;ve been doing this work for nearly 10 years. Long enough to know the answers aren&rsquo;t inside my head. They&rsquo;re inside your life.</p>
 
             {/* Pull quote */}
