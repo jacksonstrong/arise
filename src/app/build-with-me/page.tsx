@@ -152,8 +152,14 @@ export default function BuildWithMePage() {
       <form onSubmit={submit} noValidate>
         {/* OPENING LETTER */}
         <section style={{ padding: "120px 24px 80px", maxWidth: 680, margin: "0 auto" }}>
-          <p className="eyebrow" style={{ textAlign: "center", marginBottom: 32, color: "var(--gold-dark)" }}>
-            After ARISE · A Letter from Jackson
+          <p className="eyebrow" style={{
+            textAlign: "center",
+            marginBottom: 32,
+            color: "var(--gold)",
+            fontSize: 15,
+            letterSpacing: "0.32em",
+          }}>
+            A Conversation, Not a Form
           </p>
           <h1 style={{
             fontFamily: "var(--font-heading-stack)",
