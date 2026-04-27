@@ -1663,10 +1663,16 @@ export default function Home() {
             <div className="day-content">
               <h3>ARISE</h3>
               <p>
-                Your frequency. Your tribe. Your technology. Today they converge. You launch with
-                your pod &mdash; your offer live, your voice in the world, your nervous system
-                regulated to hold what&rsquo;s coming. You are no longer preparing. You are building.
-                And the people who need you can finally find you.
+                The launch is the threshold. Picture the life on the other side: a morning you
+                wake into work that finally feels like yours. A calendar full of the right people,
+                not just any people. Revenue your body can actually hold. A pod that knows your
+                fire and matches it. The technology under your work as steady as the mission. And
+                ahead &mdash; bigger rooms, deeper teaching, a movement that no longer needs you
+                to prove it.{" "}
+                <span className="highlight">
+                  This is the life this was always pointing at. The people who need you have
+                  already found you.
+                </span>
               </p>
             </div>
           </div>
