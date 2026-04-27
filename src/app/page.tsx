@@ -1642,13 +1642,16 @@ export default function Home() {
           <div className="day-card fade-in">
             <div className="day-num">6</div>
             <div className="day-content">
-              <h3>Find Your Voice + Regulate to Receive</h3>
+              <h3>Architect Your Event</h3>
               <p>
-                Morning: you press record and speak your truth to a real audience. Afternoon: you
-                learn the science of why your throat tightens when you think about charging.{" "}
-                <span className="highlight">
-                  This is the session that makes everything else stick.
-                </span>
+                Today the offer gets a stage. We walk you through the proven two-day arc &mdash;
+                opening, story, the teaching that shifts the room, breakouts that build trust, and
+                the moment of the invitation. Then you map your own, beat by beat. You&rsquo;ll
+                leave with the architecture &mdash; every component, every transition, every move
+                that makes an event convert.{" "}
+                <span className="highlight">You&rsquo;ll know exactly what to build.</span>{" "}
+                The how &mdash; the execution, the holding, the room run with you &mdash; is the
+                next layer.
               </p>
             </div>
           </div>
